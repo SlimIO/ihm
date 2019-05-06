@@ -17,16 +17,29 @@ header {
     flex-shrink: 0;
 }
 
-h1.title {
+h2.title {
     font-family: 'Gugi', cursive;
     font-size: 25px;
     margin-top: 25px;
     margin-bottom: 25px;
+    text-align: center;
 }
 
 img.img-btn {
     margin: 10px;
     width: 60px;
+}
+
+div.addon {
+    width: 250px;
+    height: 100px;
+    border: 1px solid #555;
+    margin-bottom: 20px;
+}
+
+div.addon:hover {
+    box-shadow: 0 0 5px #707070;
+    background-color: #cacaca;
 }
 
 div#arrow {
@@ -59,6 +72,11 @@ div.block p {
     margin-bottom: 20px;
 }
 
+div.block-addons {
+    display: flex;
+    position: relative;
+}
+
 div#apropos {
     margin: 0 20px 0 20px;
     width: 500px;
@@ -72,12 +90,6 @@ div#hr {
     background-color: #555;
     border: 1px solid black;
     align-self: center;
-}
-
-div#addons-list {
-    flex-grow: 1;
-    text-align: center;
-    height: 100%;
 }
 
 div#container {
@@ -98,8 +110,9 @@ div#img-slim {
     margin-right: 15px;
 }
 
-div#addons-list {
+div#addons-content {
     margin: 0 20px 0 20px;
+    flex-grow: 1;
 }
 
 div#menu {

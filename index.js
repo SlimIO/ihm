@@ -38,11 +38,11 @@ visual.on("start", async() => {
         });
 
     // Main page
-    // visual.sendMessage("events.get_info").subscribe(
-    //     (data) => {
-
-    //     }
-    // )
+    visual.sendMessage("events.get_info").subscribe(
+        (data) => {
+            console.log(data);
+        }
+    );
 
     // Tell the core that your addon is ready!
     visual.ready();
