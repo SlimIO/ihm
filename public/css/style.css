@@ -31,15 +31,33 @@ img.img-btn {
 }
 
 div.addon {
-    width: 250px;
-    height: 100px;
-    border: 1px solid #555;
+    width: 240px;
+    height: 50px;
+    border: 1px solid #888;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
-div.addon:hover {
-    box-shadow: 0 0 5px #707070;
-    background-color: #cacaca;
+div#addon-list p {
+    text-align: center;
+    background-color: #999;
+    border-bottom: 1px solid #999;
+    text-align: center;
+    font-weight: bold;
+    padding: 2px;
+}
+
+div#addon-infos {
+    flex-grow: 1;
+    height: 100%;
+    margin-right: 20px;
+    margin-left: 20px;
+    box-shadow: 0 0 5px inset #404040;
+}
+
+div#addon-list {
+    overflow: auto;
+    padding: 0 20px;
 }
 
 div#arrow {
@@ -75,6 +93,9 @@ div.block p {
 div.block-addons {
     display: flex;
     position: relative;
+    cursor: auto;
+    overflow: hidden;
+    padding: 20px 0;
 }
 
 div#apropos {
@@ -83,10 +104,10 @@ div#apropos {
     text-align: center;
 }
 
-div#hr {
-    width: 10px;
-    height: 90%;
-    border-radius: 5px;
+div.hr {
+    width: 5px;
+    height: 100%;
+    border-radius: 2px;
     background-color: #555;
     border: 1px solid black;
     align-self: center;
@@ -126,6 +147,10 @@ div#menu a {
     font-family: 'Titillium Web', sans-serif;
 }
 
+div#menu a:active {
+    outline-style: none;
+}
+
 div.btn {
     width: 80px;
     height: 80px;
@@ -137,17 +162,17 @@ div.btn {
     transition: 0.3s background linear;
 }
 
-div.btn>div img {
+div.btn > div img {
     width: 60px;
 }
 
-div.btn>p {
+div.btn > p {
     color: black;
     font-size: 12px;
     transition: 0.3s color linear;
 }
 
-div#menu a:hover>div.btn {
+div#menu a:hover > div.btn {
     box-shadow: 0 0 10px #404040;
     background-color: #bbb;
     border-color: #707070;

@@ -1,16 +1,35 @@
+/* eslint-disable */
 (function(){
+    // Variables
     const doc = window.document;
-    const aPropos = document.getElementById("apropos");
+    const blockList = doc.getElementsByClassName("addon");
 
-    doc.addEventListener("DOMContentLoaded", function() {
-        console.log("coucou")
-        aPropos.addEventListener("scroll", function(e) {
-            console.log("coucou");
+    // Animation addon list
+    for (const div of blockList) {
+        const cible = div.style;
+        div.addEventListener("click", function(e) {
+            init();
+            cible.backgroundColor = "#cacaca";
+            cible.boxShadow = "0 0 5px #404040";
+            cible.borderColor = "#008aff";
+        });
+        div.addEventListener("mouseover", function() {
+            cible.backgroundColor = "#cacaca";
         })
-        aPropos.addEventListener("click", function(e) {
-            console.log("coucou");
+        div.addEventListener("mouseout", function() {
+            if (cible.boxShadow === "") {
+                cible.backgroundColor = "#bbb";
+            }
         })
+    }
 
-    })
+    // Init block addon
+    function init() {
+        for (const div of blockList) {
+            div.style.backgroundColor = "transparent";
+            div.style.boxShadow = "";
+            div.style.borderColor = "#888";
+        }
+    }
 
 }());
