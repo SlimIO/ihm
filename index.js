@@ -18,10 +18,10 @@ let listAddon;
 let server;
 
 // Create addon
-const visual = new Addon("visual");
+const ihm = new Addon("ihm");
 
 // Catch start event!
-visual.on("start", async() => {
+ihm.on("start", async() => {
     // Read index
     const views = await readFile(join(VIEWS_DIR, "index.html"), { encoding: "utf8" });
     server = polka();
@@ -35,9 +35,10 @@ visual.on("start", async() => {
             send(res, 200, views, { "Content-Type": "text/html" });
         })
         .get("/infos", (req, res) => {
-            visual.sendMessage("events.get_info").subscribe(
+            ihm.sendMessage("events.get_info").subscribe(
                 (data) => {
-                    send(res, 200, data.name);
+                    const datraJSON = JSON.stringify(data);
+                    send(res, 200, data);
                 }
             );
         })
@@ -45,13 +46,13 @@ visual.on("start", async() => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);
         });
     // Tell the core that your addon is ready!
-    visual.ready();
+    ihm.ready();
 });
 
-visual.on("stop", async() => {
+ihm.on("stop", async() => {
     server.server.close();
     console.log(`${red("Server close")}`);
 });
 
 // Export addon for SlimIO Core.
-module.exports = visual;
+module.exports = ihm;

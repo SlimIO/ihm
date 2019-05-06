@@ -3,6 +3,7 @@
     // Variables
     const doc = window.document;
     const blockList = doc.getElementsByClassName("addon");
+    const req = new XMLHttpRequest();
 
     // Animation addon list
     for (const div of blockList) {
@@ -13,13 +14,12 @@
             cible.boxShadow = "0 0 5px #404040";
             cible.borderColor = "#008aff";
 
-            const req = new XMLHttpRequest();
             req.open("GET", "http://localhost:8000/infos", true);
             req.send(null);
-            req.onload = function() {
-                console.log(req.responseText);
+            req.onload = function(data) {
+                console.log(data);
+                console.log(JSON.parse(req.response));
             }
-
 
         });
         div.addEventListener("mouseover", function() {
@@ -32,6 +32,14 @@
         })
     }
 
+    // Request server
+    const intervID = setInterval(function(){
+        req.open("GET", "http://localhost:8000/etats", true);
+        req.send(null);
+        req.onload = function() {
+           
+        }
+    }, 500);
     // Init block addon
     function init() {
         for (const div of blockList) {
