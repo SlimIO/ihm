@@ -12,6 +12,15 @@
             cible.backgroundColor = "#cacaca";
             cible.boxShadow = "0 0 5px #404040";
             cible.borderColor = "#008aff";
+
+            const req = new XMLHttpRequest();
+            req.open("GET", "http://localhost:8000/infos", true);
+            req.send(null);
+            req.onload = function() {
+                console.log(req.responseText);
+            }
+
+
         });
         div.addEventListener("mouseover", function() {
             cible.backgroundColor = "#cacaca";

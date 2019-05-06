@@ -28,22 +28,22 @@ visual.on("start", async() => {
 
     // Create POLKA server
     server
-        .use("css/", sirv(join(__dirname, "public", "css")))
-        .use("img/", sirv(join(__dirname, "public", "img")))
+        .use("css", sirv(join(__dirname, "public", "css")))
+        .use("img", sirv(join(__dirname, "public", "img")))
+        .use("js", sirv(join(__dirname, "public", "js")))
         .get("/", (req, res) => {
             send(res, 200, views, { "Content-Type": "text/html" });
+        })
+        .get("/infos", (req, res) => {
+            visual.sendMessage("events.get_info").subscribe(
+                (data) => {
+                    send(res, 200, data.name);
+                }
+            );
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);
         });
-
-    // Main page
-    visual.sendMessage("events.get_info").subscribe(
-        (data) => {
-            console.log(data);
-        }
-    );
-
     // Tell the core that your addon is ready!
     visual.ready();
 });
