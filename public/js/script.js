@@ -10,7 +10,7 @@
         const cible = div.style;
         div.addEventListener("click", function(e) {
             init();
-            cible.backgroundColor = "#cacaca";
+            cible.backgroundColor = "#d5e9fb";
             cible.boxShadow = "0 0 5px #404040";
             cible.borderColor = "#008aff";
 
@@ -27,7 +27,7 @@
         })
         div.addEventListener("mouseout", function() {
             if (cible.boxShadow === "") {
-                cible.backgroundColor = "#bbb";
+                cible.backgroundColor = "transparent";
             }
         })
     }
