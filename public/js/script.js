@@ -47,12 +47,14 @@
 
     // Request server
     const intervID = setInterval(function(){
-        req.open("GET", "http://localhost:8000/etats", true);
+        req.open("GET", "http://localhost:8000/stat", true);
         req.send(null);
         req.onload = function() {
-           
+           const data = JSON.parse(req.response);
+           console.log(data);
         }
-    }, 500);
+    }, 2000);
+
     // Init block addon
     function init() {
         for (const div of blockList) {
@@ -68,5 +70,4 @@
             targetP.color = "black";
         }
     }
-
 }());

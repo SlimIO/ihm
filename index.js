@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 8000;
 const VIEWS_DIR = join(__dirname, "views");
 
 // Globlas
-let listAddon;
 let server;
 
 // Create addon
@@ -38,9 +37,28 @@ ihm.on("start", async() => {
             ihm.sendMessage("events.get_info").subscribe(
                 (data) => {
                     const datraJSON = JSON.stringify(data);
-                    send(res, 200, data);
+                    send(res, 200, datraJSON);
                 }
             );
+        })
+        .get("/stat", async(req, res) => {
+            // eslint-disable-next-line func-names
+            // Add list addon to listAddons
+            const ret = {};
+            const listAddons = await ihm.sendOne("gate.list_addons");
+
+            // Addon filter
+            const list = await listAddons
+                .filter((addonName) => addonName !== "Ihm")
+                .map((addon) => addon.toLowerCase());
+
+            // Loop on all addons
+            for (const addon of list) {
+                ret[addon] = await ihm.sendOne(`${addon}.get_info`);
+            }
+
+            send(res, 200, JSON.stringify(ret));
+            // Send
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);
