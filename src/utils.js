@@ -6,15 +6,16 @@
  */
 
 function creaDiv(infos) {
-    const name = `${info.name.substring(0, 1).toUpperCase}${info.name.substring(1)}`;
-
-    return [
+    const name = `${infos.name.substring(0, 1).toUpperCase()}${infos.name.substring(1)}`;
+    const div = [
         "<div class=\"addon\">",
         `<p>${name}</p>`,
         "<div class=\"etat\">",
         `<div style="color=${color(infos.ready)};">Ready</div>`,
         `<div style="color=${color(infos.started)};">Started</div>`
     ].join("");
+
+    return div;
 }
 
 /**
@@ -30,3 +31,5 @@ function color(bool) {
 
     return "red";
 }
+
+module.exports = creaDiv;

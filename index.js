@@ -57,12 +57,13 @@ ihm.on("start", async() => {
 
             // Loop on all addons
             for (let idx = 0; idx < list.length; idx++) {
-                ret[idx] = await ihm.sendOne(`${list[idx]}.get_info`);
-                console.log(ret[idx])
+                const infos = await ihm.sendOne(`${list[idx]}.get_info`);
+                const div = creaDiv(infos);
+                ret[idx] = div;
             }
 
             // Send
-            send(res, 200, JSON.stringify(ret));
+            send(res, 200, ret);
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);
@@ -73,7 +74,7 @@ ihm.on("start", async() => {
 
 ihm.on("stop", async() => {
     server.server.close();
-    console.log(`${red("Server close")}`);
+    console.log(`${red("Server Ihm close")}`);
 });
 
 // Export addon for SlimIO Core.
