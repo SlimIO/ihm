@@ -6,16 +6,16 @@
  */
 
 function creaDiv(infos) {
+    // First case to Upper
     const name = `${infos.name.substring(0, 1).toUpperCase()}${infos.name.substring(1)}`;
-    const div = [
-        "<div class=\"addon\">",
+
+    return [
+        `<div class="addon" id="${infos.name}">`,
         `<p>${name}</p>`,
-        "<div class=\"etat\">",
+        "<div class='etat'>",
         `<div style="color=${color(infos.ready)};">Ready</div>`,
         `<div style="color=${color(infos.started)};">Started</div>`
     ].join("");
-
-    return div;
 }
 
 /**

@@ -9,30 +9,40 @@
         req.open("GET", "http://localhost:8000/stat", true);
         req.send(null);
         req.onload = function() {
-           const addonsList = JSON.parse(req.response);
-        //    for (const addon of addonsList) {
-        //        if (doc.getElementById(addon.name) === null) {
-                   
-        //        }
-        //        else {
+            // Datas returned
+            const addonsList = JSON.parse(req.response);
+            console.log(addonsList);
 
-        //        }
-        //    }
+            // Delete all addon div
+            const addonDiv = doc.getElementsByClassName("addon");
+            for (const div of addonDiv) {
+                div.remove()
+            }
+
+            // Builds div
+            for (const addon of addonsList) {
+                if (doc.getElementById(addon.name) === null) {
+                    
+                }
+                else {
+
+                }
+            }
         }
     }, 2000);
 
     function eventAssign() {
-        const blockList = doc.getElementsByClassName("addon");
+        const addonDiv = doc.getElementsByClassName("addon");
     
         // Animation addon list
-        for (const div of blockList) {
+        for (const div of addonDiv) {
             // Init const
             const target = div.style;
             const targetP = div.children[0].style;
     
             // Event click
             div.addEventListener("click", function(e) {
-                init();
+                init(addonDiv);
                 // Style div
                 target.backgroundColor = "rgba(255, 151, 3, .5)";
                 target.boxShadow = "0 0 5px #404040";
@@ -66,8 +76,8 @@
     }
 
     // Init block addon
-    function init() {
-        for (const div of blockList) {
+    function init(addonDiv) {
+        for (const div of addonDiv) {
             // Init const
             const target = div.style;
             const targetP = div.children[0].style;
