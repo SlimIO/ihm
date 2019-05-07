@@ -7,12 +7,12 @@
 
     // Animation addon list
     for (const div of blockList) {
-        const cible = div.style;
+        const target = div.style;
         div.addEventListener("click", function(e) {
             init();
-            cible.backgroundColor = "rgba(255, 151, 3, .5)";
-            cible.boxShadow = "0 0 5px #404040";
-            cible.borderColor = "black";
+            target.backgroundColor = "rgba(255, 151, 3, .5)";
+            target.boxShadow = "0 0 5px #404040";
+            target.borderColor = "black";
 
             req.open("GET", "http://localhost:8000/infos", true);
             req.send(null);
@@ -23,10 +23,12 @@
 
         });
         div.addEventListener("mouseover", function() {
-            cible.boxShadow = "0 0 5px #404040";
+            target.boxShadow = "0 0 5px #404040";
         })
         div.addEventListener("mouseout", function() {
-            cible.boxShadow = "";
+            if (target.borderColor !== "black") {
+                target.boxShadow = "";
+            }
         })
     }
 
@@ -41,9 +43,10 @@
     // Init block addon
     function init() {
         for (const div of blockList) {
-            div.style.backgroundColor = "transparent";
-            div.style.boxShadow = "";
-            div.style.borderColor = "#888";
+            const target = div.style;
+            target.backgroundColor = "transparent";
+            target.boxShadow = "";
+            target.borderColor = "#888";
         }
     }
 
