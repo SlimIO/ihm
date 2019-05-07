@@ -10,9 +10,9 @@
         const cible = div.style;
         div.addEventListener("click", function(e) {
             init();
-            cible.backgroundColor = "#d5e9fb";
+            cible.backgroundColor = "rgba(255, 151, 3, .5)";
             cible.boxShadow = "0 0 5px #404040";
-            cible.borderColor = "#008aff";
+            cible.borderColor = "black";
 
             req.open("GET", "http://localhost:8000/infos", true);
             req.send(null);
@@ -23,12 +23,10 @@
 
         });
         div.addEventListener("mouseover", function() {
-            cible.backgroundColor = "#cacaca";
+            cible.boxShadow = "0 0 5px #404040";
         })
         div.addEventListener("mouseout", function() {
-            if (cible.boxShadow === "") {
-                cible.backgroundColor = "transparent";
-            }
+            cible.boxShadow = "";
         })
     }
 
