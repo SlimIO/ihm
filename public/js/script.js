@@ -10,26 +10,27 @@
         req.send(null);
         req.onload = function() {
             // Datas returned
-            const addonsList = JSON.parse(req.response);
-            console.log(addonsList);
+            const divsList = req.response;
 
             // Delete all addon div
             const addonDiv = doc.getElementsByClassName("addon");
-            for (const div of addonDiv) {
-                div.remove()
-            }
-
-            // Builds div
-            for (const addon of addonsList) {
-                if (doc.getElementById(addon.name) === null) {
+            const modal = doc.getElementById("addon-list");
+            
+            while (modal.firstChild) {
+                if (condition) {
                     
                 }
-                else {
-
-                }
+                modal.removeChild(modal.firstChild);
             }
+            // // Builds div
+            // for (const addon of addonsList) {
+            //     if (doc.getElementById(addon.name) !== null) {
+
+            //         break;
+            //     }
+            // }
         }
-    }, 2000);
+    }, 1000);
 
     function eventAssign() {
         const addonDiv = doc.getElementsByClassName("addon");

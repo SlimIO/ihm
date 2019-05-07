@@ -47,26 +47,23 @@ ihm.on("start", async() => {
         .get("/stat", async(req, res) => {
             // eslint-disable-next-line func-names
             // Add list addon to addonsList
-            const divList = [];
-            const ret = {};
+            const ret = [];
             const addonsList = await ihm.sendOne("gate.list_addons");
 
             // Addon filter
             const list = await addonsList
                 .filter((addonName) => addonName !== "Ihm")
-                .map((addon) => addon.toLowerCase());
-            ret.addons = list;
+                .sort();
 
             // Loop on all addons
             for (let idx = 0; idx < list.length; idx++) {
                 const infos = await ihm.sendOne(`${list[idx]}.get_info`);
                 const div = creaDiv(infos);
-                divList[idx] = div;
+                ret[idx] = div;
             }
-            ret.divs = divList;
 
             // Send
-            send(res, 200, JSON.stringify(ret));
+            send(res, 200, ret);
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);

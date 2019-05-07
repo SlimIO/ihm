@@ -22,6 +22,7 @@ div.addon {
     border: 1px solid #888;
     cursor: pointer;
     height: 50px;
+    margin: 0 auto;
     margin-bottom: 20px;
     width: 240px;
 }
@@ -100,6 +101,7 @@ div#addon-infos {
 div#addon-list {
     overflow: auto;
     padding: 0 20px;
+    width: 290px;
 }
 
 div#addons-content {

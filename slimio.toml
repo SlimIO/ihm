@@ -1,4 +1,4 @@
-name = "interface"
+name = "ihm"
 version = "0.1.0"
 type = "Addon"
 dependencies = { }
