@@ -9,6 +9,9 @@ const send = require("@polka/send-type");
 const sirv = require("sirv");
 const { yellow, red } = require("kleur");
 
+// Require Internal dependencies
+const creaDiv = require("./src/utils");
+
 // Constants
 const PORT = process.env.PORT || 8000;
 const VIEWS_DIR = join(__dirname, "views");
@@ -43,22 +46,23 @@ ihm.on("start", async() => {
         })
         .get("/stat", async(req, res) => {
             // eslint-disable-next-line func-names
-            // Add list addon to listAddons
-            const ret = {};
-            const listAddons = await ihm.sendOne("gate.list_addons");
+            // Add list addon to addonsList
+            const ret = [];
+            const addonsList = await ihm.sendOne("gate.list_addons");
 
             // Addon filter
-            const list = await listAddons
+            const list = await addonsList
                 .filter((addonName) => addonName !== "Ihm")
                 .map((addon) => addon.toLowerCase());
 
             // Loop on all addons
-            for (const addon of list) {
-                ret[addon] = await ihm.sendOne(`${addon}.get_info`);
+            for (let idx = 0; idx < list.length; idx++) {
+                ret[idx] = await ihm.sendOne(`${list[idx]}.get_info`);
+                console.log(ret[idx])
             }
 
-            send(res, 200, JSON.stringify(ret));
             // Send
+            send(res, 200, JSON.stringify(ret));
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);

@@ -50,8 +50,15 @@
         req.open("GET", "http://localhost:8000/stat", true);
         req.send(null);
         req.onload = function() {
-           const data = JSON.parse(req.response);
-           console.log(data);
+           const addonsList = JSON.parse(req.response);
+           for (const addon of addonsList) {
+               if (doc.getElementById(addon.name) === null) {
+                   
+               }
+               else {
+
+               }
+           }
         }
     }, 2000);
 
@@ -70,4 +77,6 @@
             targetP.color = "black";
         }
     }
+
+    // 
 }());
