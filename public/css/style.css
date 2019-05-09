@@ -75,7 +75,7 @@ div#home {
         div#home > div#board > div.menu {
             overflow-y: auto;
             font-weight: bold;
-            background: linear-gradient(#c0d3e6, white);
+            background: linear-gradient(#555, white);
         }
 
         div#home > div#board > div.addon ul {
@@ -117,14 +117,17 @@ div#home {
             
             div#home > div#board > div.hori-field li.field5{
                 width:6%;
+                justify-content: center;
             }
 
             div#home > div#board > div.hori-field li.field6{
                 width:6%;
+                justify-content: center;
             }
 
             div#home > div#board > div.hori-field li.field7{
                 width:6%;
+                justify-content: center;
             }
 
             div#home > div#board > div.hori-field li.field8{

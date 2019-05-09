@@ -23,9 +23,9 @@ function buildElem(infos) {
             `<li class="field2 description" style="flex-grow:10">${info.description}</li>`,
             `<li class="field3 version">${info.version}</li>`,
             `<li class="field4 containerVersion">${info.containerVersion}</li>`,
-            `<li class="field5 ready" style="font-weight:bold;color:${color(info.ready)}">${info.ready}</li>`,
-            `<li class="field6 started" style="font-weight:bold;color:${color(info.started)}">${info.started}</li>`,
-            `<li class="field7 awake" style="font-weight:bold;color:${color(info.awake)}">${info.awake}</li>`,
+            `<li class="field5 ready" style="${color(info.ready, true)}">${color(info.ready)}</li>`,
+            `<li class="field6 started" style="${color(info.started, true)}">${color(info.started)}</li>`,
+            `<li class="field7 awake" style="${color(info.awake, true)}">${color(info.awake)}</li>`,
             `<li class="field8 callbacksDescriptor" style="flex-grow:3">${info.callbacksDescriptor}</li>`,
             "</ul>",
             "</div>"
@@ -39,14 +39,22 @@ function buildElem(infos) {
  * @function color
  * @description Return a color, red or green
  * @param {Boolean} bool A boolean
+ * @param {Boolean} getColor A boolean
  * @returns {String}
  */
-function color(bool) {
+function color(bool, getColor) {
+    if (getColor) {
+        if (bool) {
+            return "font-weight:bold;color:green";
+        }
+
+        return "font-weight:bold;color:red";
+    }
     if (bool) {
-        return "green";
+        return "<i class=\"icon-ok\"></i>";
     }
 
-    return "red";
+    return "<i class=\"icon-cancel\"></i>";
 }
 
 module.exports = buildElem;
