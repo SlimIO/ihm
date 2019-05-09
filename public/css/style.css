@@ -75,14 +75,41 @@ div#home {
 
         div#home > div#board > div#menu {
             display: flex;
-            background-color: #e1e1e1;
+            background-color: #eee;
             height: 50px;
+            border-bottom: 1px solid #333;
         }
+
+            div#home > div#board > div#menu .btn-board {
+                border-right: 1px solid #333;
+                height: 100%;
+                width: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+            div#home > div#board > div#menu .btn-board:hover {
+                background-color: #555;
+            }
+
+            div#home > div#board > div#menu .btn-board:hover i {
+                color: white
+            }
+
+            div#home > div#board > div#menu .btn-board i {
+                font-size: 150%;
+            }
 
         div#home > div#board > div#label {
             overflow-y: auto;
             font-weight: bold;
-            background: linear-gradient(#555, white);
+            background: linear-gradient(#9eb592, white);
+        }
+
+        div#home > div#board > div.addon:hover {
+            background-color: #eee;
         }
 
         div#home > div#board > div.addon ul {

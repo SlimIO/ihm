@@ -1,14 +1,15 @@
 /* eslint-disable */
-(function(){
+window.addEventListener("DOMContentLoaded", function() {
     // Variables
     const DOC = window.document;
-    const BUTTONS = DOC.getElementsByClassName("btn");
+    const HEAD_BUTT = DOC.getElementsByClassName("btn");
+    let ACTUALIZE_BUTT = DOC.getElementById("actualize");
     const W_COLOR = "white";
     const B_COLOR = "black";
     const MENU_ELEMS = new Set(["label", "menu"])
 
-    // Event header button
-    for (const btn of BUTTONS) {
+    // Event header buttons
+    for (const btn of HEAD_BUTT) {
         btn.addEventListener("click", function() {
             initHead()
             btn.style.boxShadow = "0 0 10px inset #333";
@@ -29,6 +30,11 @@
         });
     };
 
+    // Event board buttons
+    ACTUALIZE_BUTT.addEventListener("click", function(e) {
+        buildAddon();
+    })
+
     // Request http in loop
     const intervID = setInterval(function() {
         // fetch("/stat").then(async function(res) {
@@ -38,7 +44,7 @@
 
     // Init style header button
     function initHead () {
-        for (const btn of BUTTONS) {
+        for (const btn of HEAD_BUTT) {
             btn.style.boxShadow = "";
             btn.style.color = B_COLOR;
         }
@@ -62,10 +68,20 @@
             return body;
         }).then(function(body) {
             // Add addons
-            target.innerHTML += body.join("");
+            const setDiv = DOC.createDocumentFragment();
+
+            for (const addon of body) {
+                const newDiv = DOC.createElement('div');
+                newDiv.className = "hori-field addon";
+                newDiv.id = addon.name
+                newDiv.innerHTML = addon.div;
+                setDiv.appendChild(newDiv);
+            }
+            target.appendChild(setDiv);
         })
     };
 
-    buildAddon();
+    // Press home button default
+    document.getElementById("home").click();
 
-}());
+});

@@ -35,6 +35,12 @@
       "css": "cancel",
       "code": 59395,
       "src": "fontawesome"
+    },
+    {
+      "uid": "465bb89b6f204234e5787c326b4ae54c",
+      "css": "ccw",
+      "code": 59396,
+      "src": "entypo"
     }
   ]
 }

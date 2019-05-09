@@ -2,7 +2,7 @@
  * @function creaDiv
  * @desc Return a div for html file
  * @param {Object[]} infos addons infos
- * @returns {String[]}
+ * @returns {Object[]}
  */
 function buildElem(infos) {
     const ret = [];
@@ -16,20 +16,21 @@ function buildElem(infos) {
             info.description = "";
         }
 
-        ret.push([
-            `<div class="hori-field addon" id="${info.name}">`,
-            "<ul>",
-            `<li class="field1 name" style="flex-grow:2">${name}</li>`,
-            `<li class="field2 description" style="flex-grow:10">${info.description}</li>`,
-            `<li class="field3 version">${info.version}</li>`,
-            `<li class="field4 containerVersion">${info.containerVersion}</li>`,
-            `<li class="field5 ready" style="${color(info.ready, true)}">${color(info.ready)}</li>`,
-            `<li class="field6 started" style="${color(info.started, true)}">${color(info.started)}</li>`,
-            `<li class="field7 awake" style="${color(info.awake, true)}">${color(info.awake)}</li>`,
-            `<li class="field8 callbacksDescriptor" style="flex-grow:3">${info.callbacksDescriptor}</li>`,
-            "</ul>",
-            "</div>"
-        ].join(""));
+        ret.push({
+            name: info.name,
+            div: [
+                "<ul>",
+                `<li class="field1 name" style="flex-grow:2">${name}</li>`,
+                `<li class="field2 description" style="flex-grow:10">${info.description}</li>`,
+                `<li class="field3 version">${info.version}</li>`,
+                `<li class="field4 containerVersion">${info.containerVersion}</li>`,
+                `<li class="field5 ready" style="${color(info.ready, true)}">${color(info.ready)}</li>`,
+                `<li class="field6 started" style="${color(info.started, true)}">${color(info.started)}</li>`,
+                `<li class="field7 awake" style="${color(info.awake, true)}">${color(info.awake)}</li>`,
+                `<li class="field8 callbacksDescriptor" style="flex-grow:3">${info.callbacksDescriptor}</li>`,
+                "</ul>"
+            ].join("")
+        });
     }
 
     return ret;
