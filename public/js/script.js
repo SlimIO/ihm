@@ -6,7 +6,6 @@ window.addEventListener("DOMContentLoaded", function() {
     let ACTUALIZE_BUTT = DOC.getElementById("actualize");
     const W_COLOR = "white";
     const B_COLOR = "black";
-    const MENU_ELEMS = new Set(["label", "menu"])
 
     // Event header buttons
     for (const btn of HEAD_BUTT) {
@@ -51,25 +50,20 @@ window.addEventListener("DOMContentLoaded", function() {
     };
 
     function buildAddon() {
-        const target = DOC.getElementById("board");
-        // Dellete all divs
-        for (let i = 0; i < target.children.length; i++) {
-            if (MENU_ELEMS.has(target.children[i].id)) {
-                continue;
-            }
-            target.removeChild(target.children[i]);
-            i--;
-        }
+        const target = DOC.getElementById("addons-list");
         // Request for build div
         fetch("/build").then(function(res) {
-            const target = DOC.getElementById("board");
             const body = res.json();
+            // Dellete all divs
+            for (let i = 0; i < target.children.length; i++) {
+                target.removeChild(target.children[i]);
+                i--;
+            }
 
             return body;
         }).then(function(body) {
             // Add addons
             const setDiv = DOC.createDocumentFragment();
-
             for (const addon of body) {
                 const newDiv = DOC.createElement('div');
                 newDiv.className = "hori-field addon";
@@ -77,6 +71,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 newDiv.innerHTML = addon.div;
                 setDiv.appendChild(newDiv);
             }
+            
             target.appendChild(setDiv);
         })
     };

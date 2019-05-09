@@ -103,9 +103,19 @@ div#home {
             }
 
         div#home > div#board > div#label {
-            overflow-y: auto;
             font-weight: bold;
             background: linear-gradient(#9eb592, white);
+        }
+
+            div#home > div#board > div#label li{
+                border-bottom: 1px solid #333;
+            }
+        
+        div#home > div#board > div#addons-list {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            overflow: auto;
         }
 
         div#home > div#board > div.addon:hover {
@@ -122,8 +132,8 @@ div#home {
         }
 
         div#home > div#board > div.hori-field li {
-            border-bottom: 1px solid #333;
-            border-right: 1px solid #333;
+            border-bottom: 1px solid #999;
+            border-right: 1px solid #999;
             padding: 10px 10px;
             font-size: 14px;
             display: flex;

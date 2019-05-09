@@ -42,7 +42,6 @@ ihm.on("start", async() => {
             // Add list addon to addonsList
             /** @type {string[]} */
             const addonsList = await ihm.sendOne("gate.list_addons");
-
             // Loop on all addons
             const _p = [];
             for (const addon of addonsList) {
@@ -53,7 +52,6 @@ ihm.on("start", async() => {
             }
             const div = await Promise.all(_p);
             const ret = buildElem(div);
-
             // Send
             send(res, 200, ret);
         })
