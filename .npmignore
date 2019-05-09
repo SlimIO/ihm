@@ -16,3 +16,4 @@ commitlint.config.js
 .travis.yml
 CONTRIBUTING.md
 CHANGELOG.md
+personal/

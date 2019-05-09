@@ -47,12 +47,13 @@ ihm.on("start", async() => {
         .get("/stat", async(req, res) => {
             // eslint-disable-next-line func-names
             // Add list addon to addonsList
+            const _p = [];
             const ret = [];
             const addonsList = await ihm.sendOne("gate.list_addons");
 
             // Addon filter
-            const list = await addonsList
-                .filter((addonName) => addonName !== "Ihm")
+            const list = addonsList
+                .filter((addonName) => addonName !== "ihm")
                 .sort();
 
             // Loop on all addons
