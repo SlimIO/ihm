@@ -31,9 +31,12 @@ ihm.on("start", async() => {
     // Create POLKA server
     server
         .use("css", sirv(join(__dirname, "public", "css")))
+        .use("font", sirv(join(__dirname, "public", "font")))
         .use("img", sirv(join(__dirname, "public", "img")))
         .use("js", sirv(join(__dirname, "public", "js")))
-        .get("/", (req, res) => {
+        .get("/", async(req, res) => {
+            const addonsList = await ihm.sendOne("gate.get_info")
+            console.log(addonsList);
             send(res, 200, views, { "Content-Type": "text/html" });
         })
         .get("/infos", (req, res) => {
