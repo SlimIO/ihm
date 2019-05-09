@@ -1,21 +1,38 @@
 /**
  * @function creaDiv
- * @description Return a div for html file
- * @param {Array} infos Array infos
- * @returns {String}
+ * @desc Return a div for html file
+ * @param {Object[]} infos addons infos
+ * @returns {String[]}
  */
+function buildElem(infos) {
+    const ret = [];
 
-function creaDiv(infos) {
-    // First case to Upper
-    const name = `${infos.name.substring(0, 1).toUpperCase()}${infos.name.substring(1)}`;
+    // Loop on all objects
+    for (const info of infos) {
+        // First case to Upper
+        const name = `${info.name.substring(0, 1).toUpperCase()}${info.name.substring(1)}`;
+        // If description field is null
+        if (!info.description) {
+            info.description = "";
+        }
 
-    return [
-        `<div class="addon" id="${infos.name}">`,
-        `<p>${name}</p>`,
-        "<div class='etat'>",
-        `<div style="color=${color(infos.ready)};">Ready</div>`,
-        `<div style="color=${color(infos.started)};">Started</div>`
-    ].join("");
+        ret.push([
+            `<div class="hori-field addon" id="${info.name}">`,
+            "<ul>",
+            `<li class="field1 name" style="flex-grow:2">${name}</li>`,
+            `<li class="field2 description" style="flex-grow:10">${info.description}</li>`,
+            `<li class="field3 version">${info.version}</li>`,
+            `<li class="field4 containerVersion">${info.containerVersion}</li>`,
+            `<li class="field5 ready" style="font-weight:bold;color:${color(info.ready)}">${info.ready}</li>`,
+            `<li class="field6 started" style="font-weight:bold;color:${color(info.started)}">${info.started}</li>`,
+            `<li class="field7 awake" style="font-weight:bold;color:${color(info.awake)}">${info.awake}</li>`,
+            `<li class="field8 callbacksDescriptor" style="flex-grow:3">${info.callbacksDescriptor}</li>`,
+            "</ul>",
+            "</div>"
+        ].join(""));
+    }
+
+    return ret;
 }
 
 /**
@@ -32,4 +49,4 @@ function color(bool) {
     return "red";
 }
 
-module.exports = creaDiv;
+module.exports = buildElem;

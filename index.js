@@ -10,7 +10,7 @@ const sirv = require("sirv");
 const { yellow, red } = require("kleur");
 
 // Require Internal dependencies
-const creaDiv = require("./src/utils");
+const buildElem = require("./src/utils");
 
 // Constants
 const PORT = process.env.PORT || 8000;
@@ -34,37 +34,25 @@ ihm.on("start", async() => {
         .use("font", sirv(join(__dirname, "public", "font")))
         .use("img", sirv(join(__dirname, "public", "img")))
         .use("js", sirv(join(__dirname, "public", "js")))
-        .get("/", async(req, res) => {
-            const addonsList = await ihm.sendOne("gate.get_info")
-            console.log(addonsList);
+        .get("/", (req, res) => {
             send(res, 200, views, { "Content-Type": "text/html" });
         })
-        .get("/infos", (req, res) => {
-            ihm.sendMessage("events.get_info").subscribe(
-                (data) => {
-                    const datraJSON = JSON.stringify(data);
-                    send(res, 200, datraJSON);
-                }
-            );
-        })
-        .get("/stat", async(req, res) => {
+        .get("/build", async(req, res) => {
             // eslint-disable-next-line func-names
             // Add list addon to addonsList
-            const _p = [];
-            const ret = [];
+            /** @type {string[]} */
             const addonsList = await ihm.sendOne("gate.list_addons");
 
-            // Addon filter
-            const list = addonsList
-                .filter((addonName) => addonName !== "ihm")
-                .sort();
-
             // Loop on all addons
-            for (let idx = 0; idx < list.length; idx++) {
-                const infos = await ihm.sendOne(`${list[idx]}.get_info`);
-                const div = creaDiv(infos);
-                ret[idx] = div;
+            const _p = [];
+            for (const addon of addonsList) {
+                if (addon === "ihm") {
+                    continue;
+                }
+                _p.push(ihm.sendOne(`${addon}.get_info`));
             }
+            const div = await Promise.all(_p);
+            const ret = buildElem(div);
 
             // Send
             send(res, 200, ret);

@@ -72,24 +72,63 @@ div#home {
         border-left: 1px solid #333;
     }
 
+        div#home > div#board > div.menu {
+            overflow-y: auto;
+            font-weight: bold;
+            background: linear-gradient(#c0d3e6, white);
+        }
+
+        div#home > div#board > div.addon ul {
+            height: 50px;
+        }
+
         div#home > div#board > div.hori-field ul {
-            display: flex
+            display: flex;
+            justify-content: center;
         }
 
         div#home > div#board > div.hori-field li {
-            flex-grow: 1;
             border-bottom: 1px solid #333;
             border-right: 1px solid #333;
             padding: 10px 10px;
             font-family: 'Titillium Web', sans-serif;
             font-size: 14px;
+            display: flex;
+            align-items: center;
         }
 
-            div#home > div#board > div.hori-field li.field8 {
-                border-right: 0
+            div#home > div#board > div.hori-field li.field1{
+                width:10%;
             }
 
-            div#home > div#board > div.hori-field li.title {
-                font-weight: bold;
-                background: linear-gradient(#888, white);
+            div#home > div#board > div.hori-field li.field2{
+                width:40%;
+            }
+
+            div#home > div#board > div.hori-field li.field3{
+                width:6%;
+            }
+
+            div#home > div#board > div.hori-field li.field4{
+                width:10%;
+            }
+            
+            div#home > div#board > div.hori-field li.field5{
+                width:6%;
+            }
+
+            div#home > div#board > div.hori-field li.field6{
+                width:6%;
+            }
+
+            div#home > div#board > div.hori-field li.field7{
+                width:6%;
+            }
+
+            div#home > div#board > div.hori-field li.field8{
+                width:16%;
+            }
+
+            div#home > div#board > div.hori-field li:last-child {
+                border-right: 0
             }
