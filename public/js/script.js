@@ -1,9 +1,8 @@
 /* eslint-disable */
 window.addEventListener("DOMContentLoaded", function() {
     // Variables
-    const DOC = window.document;
-    const HEAD_BUTT = DOC.getElementsByClassName("btn");
-    let ACTUALIZE_BUTT = DOC.getElementById("actualize");
+    const HEAD_BUTT = document.getElementsByClassName("btn");
+    let ACTUALIZE_BUTT = document.getElementById("actualize");
     const W_COLOR = "white";
     const B_COLOR = "black";
 
@@ -13,8 +12,16 @@ window.addEventListener("DOMContentLoaded", function() {
             initHead()
             btn.style.boxShadow = "0 0 10px inset #333";
             btn.style.color = W_COLOR;
-            if (btn.id === "home") {
+
+            if (btn.id === "home-btn") {
+                // document.getElementById("alerts").style.display = "none";
+                document.getElementById("home").style.display = "flex";
                 buildAddon();
+            }
+
+            if (btn.id === "alerts-btn") {
+                document.getElementById("home").style.display = "none";
+                // document.getElementById("alerts").style.display = "flex";
             }
         });
 
@@ -27,6 +34,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 btn.style.color = B_COLOR;
             }
         });
+
     };
 
     // Event board buttons
@@ -50,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function() {
     };
 
     function buildAddon() {
-        const target = DOC.getElementById("addons-list");
+        const target = document.getElementById("addons-list");
         // Request for build div
         fetch("/build").then(function(res) {
             const body = res.json();
@@ -63,20 +71,20 @@ window.addEventListener("DOMContentLoaded", function() {
             return body;
         }).then(function(body) {
             // Add addons
-            const setDiv = DOC.createDocumentFragment();
+            const setDiv = document.createDocumentFragment();
             for (const addon of body) {
-                const newDiv = DOC.createElement('div');
+                const newDiv = document.createElement('div');
                 newDiv.className = "hori-field addon";
                 newDiv.id = addon.name
                 newDiv.innerHTML = addon.div;
                 setDiv.appendChild(newDiv);
             }
-            
+
             target.appendChild(setDiv);
         })
     };
 
     // Press home button default
-    document.getElementById("home").click();
+    document.getElementById("home-btn").click();
 
 });
