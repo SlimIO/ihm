@@ -72,7 +72,7 @@ div#home {
         border-left: 1px solid #333;
     }
 
-        div#home > div#board > div.menu {
+        div#home > div#board > div.label {
             overflow-y: auto;
             font-weight: bold;
             background: linear-gradient(#555, white);
@@ -108,30 +108,30 @@ div#home {
             }
 
             div#home > div#board > div.hori-field li.field3{
-                width:6%;
+                width:5%;
             }
 
             div#home > div#board > div.hori-field li.field4{
-                width:10%;
+                width:15%;
             }
             
             div#home > div#board > div.hori-field li.field5{
-                width:6%;
+                width:5%;
                 justify-content: center;
             }
 
             div#home > div#board > div.hori-field li.field6{
-                width:6%;
+                width:5%;
                 justify-content: center;
             }
 
             div#home > div#board > div.hori-field li.field7{
-                width:6%;
+                width:5%;
                 justify-content: center;
             }
 
             div#home > div#board > div.hori-field li.field8{
-                width:16%;
+                width:15%;
             }
 
             div#home > div#board > div.hori-field li:last-child {

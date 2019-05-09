@@ -1,29 +1,30 @@
 /* eslint-disable */
 (function(){
     // Variables
-    const doc = window.document;
-    const buttons = doc.getElementsByClassName("btn");
-    const WColor = "white";
-    const BColor = "black";
+    const DOC = window.document;
+    const BUTTONS = DOC.getElementsByClassName("btn");
+    const W_COLOR = "white";
+    const B_COLOR = "black";
+    const MENU_ELEMS = new Set(["label", "menu"])
 
     // Event header button
-    for (const btn of buttons) {
+    for (const btn of BUTTONS) {
         btn.addEventListener("click", function() {
             initHead()
             btn.style.boxShadow = "0 0 10px inset #333";
-            btn.style.color = WColor;
+            btn.style.color = W_COLOR;
             if (btn.id === "home") {
                 buildAddon();
             }
         });
 
         btn.addEventListener("mouseover", function() {
-            btn.style.color = WColor;
+            btn.style.color = W_COLOR;
         })
 
         btn.addEventListener("mouseout", function() {
             if (btn.style.boxShadow === "") {
-                btn.style.color = BColor;
+                btn.style.color = B_COLOR;
             }
         });
     };
@@ -37,17 +38,17 @@
 
     // Init style header button
     function initHead () {
-        for (const btn of buttons) {
+        for (const btn of BUTTONS) {
             btn.style.boxShadow = "";
-            btn.style.color = BColor;
+            btn.style.color = B_COLOR;
         }
     };
 
     function buildAddon() {
-        const target = doc.getElementById("board");
+        const target = DOC.getElementById("board");
         // Dellete all divs
         for (let i = 0; i < target.children.length; i++) {
-            if (target.children[i].id === "menu") {
+            if (MENU_ELEMS.has(target.children[i].id)) {
                 continue;
             }
             target.removeChild(target.children[i]);
@@ -55,7 +56,7 @@
         }
         // Request for build div
         fetch("/build").then(function(res) {
-            const target = doc.getElementById("board");
+            const target = DOC.getElementById("board");
             const body = res.json();
 
             return body;
