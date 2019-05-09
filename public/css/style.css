@@ -16,6 +16,12 @@ header {
     box-shadow: 0 2px 10px #999;
 }
 
+    header > div#img-slim {
+        width: 350px;
+        height: 100%;
+        border-right: 1px solid black;
+    } 
+
     header > nav {
         flex-grow: 1;
         height: 100%;
@@ -40,17 +46,10 @@ header {
                 font-size: 14px;
             }
 
-            header > nav > div.btn:hover * {
-                color: white;
+            header > nav > div.btn i {
+                font-size: 200%;
             }
 
-
-div#img-slim {
-    width: 350px;
-    height: 100%;
-    border-right: 1px solid black;
-}
-
-.icon-home, .icon-bell {
-    font-size: 200%;
-}   
+            header > nav > div.btn:hover * {
+                color: white;
+            } 

@@ -1,0 +1,28 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "f08ba9f0e8f9b426a92efcaa59c1e932",
+      "css": "reddit-alien",
+      "code": 62081,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "513ac180ff85bd275f2b736720cbbf5e",
+      "css": "home",
+      "code": 59392,
+      "src": "entypo"
+    },
+    {
+      "uid": "2c5335c6e56b876139d7a58ab2f4b2fe",
+      "css": "bell",
+      "code": 59393,
+      "src": "entypo"
+    }
+  ]
+}
