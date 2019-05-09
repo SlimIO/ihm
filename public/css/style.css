@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -42,9 +43,9 @@ header {
         }
 
             header > nav > div.btn p {
-                font-family: 'Gugi', cursive;
                 margin-top: 15px;
                 font-size: 14px;
+                font-weight: bold;
             }
 
             header > nav > div.btn i {
@@ -72,7 +73,13 @@ div#home {
         border-left: 1px solid #333;
     }
 
-        div#home > div#board > div.label {
+        div#home > div#board > div#menu {
+            display: flex;
+            background-color: #e1e1e1;
+            height: 50px;
+        }
+
+        div#home > div#board > div#label {
             overflow-y: auto;
             font-weight: bold;
             background: linear-gradient(#555, white);
@@ -91,7 +98,6 @@ div#home {
             border-bottom: 1px solid #333;
             border-right: 1px solid #333;
             padding: 10px 10px;
-            font-family: 'Titillium Web', sans-serif;
             font-size: 14px;
             display: flex;
             align-items: center;
