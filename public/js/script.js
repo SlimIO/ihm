@@ -12,8 +12,8 @@
             initHead()
             btn.style.boxShadow = "0 0 10px inset #333";
             btn.style.color = WColor;
-            if (btn.id = "home") {
-                
+            if (btn.id === "home") {
+                buildAddon();
             }
         });
 
@@ -43,14 +43,28 @@
         }
     };
 
-    // Request for build div
-    (function buildAddon() {
-        fetch("/build").then(async function(res) {
+    function buildAddon() {
+        const target = doc.getElementById("board");
+        // Dellete all divs
+        for (let i = 0; i < target.children.length; i++) {
+            if (target.children[i].id === "menu") {
+                continue;
+            }
+            target.removeChild(target.children[i]);
+            i--;
+        }
+        // Request for build div
+        fetch("/build").then(function(res) {
             const target = doc.getElementById("board");
-            const body = await res.json();
-            
+            const body = res.json();
+
+            return body;
+        }).then(function(body) {
+            // Add addons
             target.innerHTML += body.join("");
-        });
-    }());
+        })
+    };
+
+    buildAddon();
 
 }());

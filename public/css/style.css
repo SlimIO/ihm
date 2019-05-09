@@ -95,6 +95,8 @@ div#home {
             font-size: 14px;
             display: flex;
             align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
             div#home > div#board > div.hori-field li.field1{
