@@ -22,7 +22,19 @@ header {
         width: 350px;
         height: 100%;
         border-right: 1px solid #333;
+        position: relative;
     } 
+
+        header > div#img-slim img {
+            position: absolute;
+            width: 87px;
+            padding: 10px 10px 10px 50px;
+            left: 6px;
+            top: 6px;
+            box-shadow: 6px 0 4px inset #333;
+            border-radius: 40%
+            /* filter: drop-shadow(0 0 7px #222); */
+        }
 
     header > nav {
         flex-grow: 1;
