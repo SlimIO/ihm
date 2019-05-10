@@ -2,6 +2,7 @@
 window.addEventListener("DOMContentLoaded", function() {
     // Variables
     const HEAD_BUTT = document.getElementsByClassName("btn");
+    const MENU_BUTT = document.getElementsByClassName("btn-menu");
     let ACTUALIZE_BUTT = document.getElementById("actualize");
     const W_COLOR = "white";
     const B_COLOR = "black";
@@ -38,7 +39,30 @@ window.addEventListener("DOMContentLoaded", function() {
 
     };
 
-    // Event board buttons
+    //Event menu buttons - page Alerts
+    for (const btn of MENU_BUTT) {
+        btn.addEventListener("click", function() {
+            initMenu();
+            btn.style.backgroundColor = "#666";
+            btn.style.fontWeight = "bold";
+            btn.style.boxShadow = "0 0 10px inset #333";
+        })
+
+        btn.addEventListener("mouseover", function() {
+            btn.style.fontWeight = "bold";
+            btn.style.backgroundColor = "#666";
+        })
+
+        btn.addEventListener("mouseout", function() {
+            if (btn.style.boxShadow === "") {
+                btn.style.fontWeight = "400";
+                btn.style.backgroundColor = "#777";
+            }
+        });
+    }
+
+
+    // Event board buttons - page Home
     ACTUALIZE_BUTT.addEventListener("click", function(e) {
         buildAddon();
     })
@@ -86,6 +110,15 @@ window.addEventListener("DOMContentLoaded", function() {
         for (const btn of HEAD_BUTT) {
             btn.style.boxShadow = "";
             btn.style.color = B_COLOR;
+        }
+    };
+
+    // Init style menu button
+    function initMenu() {
+        for (const btn of MENU_BUTT) {
+            btn.style.boxShadow = "";
+            btn.style.backgroundColor = "#777";
+            btn.style.fontWeight = "400";
         }
     };
 

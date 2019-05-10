@@ -78,7 +78,7 @@ div#home {
 
         div#home > div#board > div.menu {
             display: flex;
-            background-color: #eee;
+            background-color: #777;
             height: 50px;
             border-bottom: 1px solid #666;
         }
@@ -94,7 +94,7 @@ div#home {
             }
 
             div#home > div#board > div.menu .btn-board:hover {
-                background-color: #666;
+                background-color: #333;
             }
 
             div#home > div#board > div.menu .btn-board:hover i {
@@ -199,3 +199,16 @@ div#alerts {
         border-top: 1px solid #333;
         border-bottom: 1px solid #333;
     }
+
+    div#alerts > div.menu ul {
+        display: flex;
+    }
+
+        div#alerts > div.menu ul li {
+            border-right: 1px solid #333;
+            padding: 0 20px 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
