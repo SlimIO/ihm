@@ -1,0 +1,122 @@
+/* HOME PAGE */
+
+div#home {
+    display: flex;
+    height: 100%;
+    border-top: 1px solid #666;
+}
+
+    div#home > div#infos {
+        width: 250px;
+        height: 100%;
+    }
+
+    div#home > div#board {
+        flex-grow: 1;
+        height: 100%;
+        border-left: thick double #999;
+    }
+
+        div#home > div#board > div.menu {
+            display: flex;
+            background-color: #888;
+            height: 50px;
+            border-bottom: 1px solid #666;
+        }
+
+            div#home > div#board > div.menu .btn-board {
+                border-right: 1px solid #666;
+                height: 100%;
+                width: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+            div#home > div#board > div.menu .btn-board:hover {
+                background-color: rgba(172, 189, 230, 1);
+            }
+
+            div#home > div#board > div.menu .btn-board i {
+                font-size: 150%;
+            }
+
+        div#home > div#board > div#label {
+            font-weight: bold;
+            background: linear-gradient(#acbde6, white);
+        }
+
+            div#home > div#board > div#label li{
+                border-bottom: 1px solid #666;
+            }
+        
+        div#home > div#board > div#addons-list {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            overflow: auto;
+        }
+
+            div#home > div#board > div#addons-list > div.addon:hover {
+                background-color: rgba(172, 189, 230, .3);
+            }
+
+            div#home > div#board > div#addons-list > div.addon ul {
+                height: 50px;
+            }
+
+        div#home > div#board > div.hori-field ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        div#home > div#board > div.hori-field li {
+            border-bottom: 1px solid #999;
+            border-right: 1px solid #999;
+            padding: 10px 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+            div#home > div#board > div.hori-field li.field1{
+                width:10%;
+            }
+
+            div#home > div#board > div.hori-field li.field2{
+                width:40%;
+            }
+
+            div#home > div#board > div.hori-field li.field3{
+                width:5%;
+            }
+
+            div#home > div#board > div.hori-field li.field4{
+                width:15%;
+            }
+            
+            div#home > div#board > div.hori-field li.field5{
+                width:5%;
+                justify-content: center;
+            }
+
+            div#home > div#board > div.hori-field li.field6{
+                width:5%;
+                justify-content: center;
+            }
+
+            div#home > div#board > div.hori-field li.field7{
+                width:5%;
+                justify-content: center;
+            }
+
+            div#home > div#board > div.hori-field li.field8{
+                width:15%;
+            }
+
+            div#home > div#board > div.hori-field li:last-child {
+                border-right: 0
+            }

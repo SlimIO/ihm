@@ -3,16 +3,18 @@ window.addEventListener("DOMContentLoaded", function() {
     // Variables
     const HEAD_BUTT = document.getElementsByClassName("btn");
     const MENU_BUTT = document.getElementsByClassName("btn-menu");
+    const LABELS = document.getElementsByClassName("labels")
     let ACTUALIZE_BUTT = document.getElementById("actualize");
     const W_COLOR = "white";
     const B_COLOR = "black";
 
     // Event header buttons
     for (const btn of HEAD_BUTT) {
+        const div = btn.style;
         btn.addEventListener("click", function() {
             initHead()
-            btn.style.boxShadow = "0 0 10px inset #333";
-            btn.style.color = W_COLOR;
+            div.boxShadow = "0 0 10px inset #333";
+            div.color = W_COLOR;
 
             if (btn.id === "home-btn") {
                 document.getElementById("alerts").style.display = "none";
@@ -23,44 +25,55 @@ window.addEventListener("DOMContentLoaded", function() {
             if (btn.id === "alerts-btn") {
                 document.getElementById("home").style.display = "none";
                 document.getElementById("alerts").style.display = "flex";
-                alerts()
+                document.getElementById("alarms").click();
             }
         });
 
         btn.addEventListener("mouseover", function() {
-            btn.style.color = W_COLOR;
+            div.color = W_COLOR;
         })
 
         btn.addEventListener("mouseout", function() {
-            if (btn.style.boxShadow === "") {
-                btn.style.color = B_COLOR;
+            if (div.boxShadow === "") {
+                div.color = B_COLOR;
             }
         });
 
     };
 
-    //Event menu buttons - page Alerts
+    // Event menu buttons - page Alerts
     for (const btn of MENU_BUTT) {
+        const div = btn.style;
         btn.addEventListener("click", function() {
+            // Button animation
             initMenu();
-            btn.style.backgroundColor = "#666";
-            btn.style.fontWeight = "bold";
-            btn.style.boxShadow = "0 0 10px inset #333";
+            div.backgroundColor = "rgba(172, 189, 230, 1)";
+            div.fontWeight = "bold";
+            div.boxShadow = "0 0 5px inset #444";
+            // Display label;
+            for (const label of LABELS) {
+                if (label.dataset.id === btn.id) {
+                    label.style.display = "flex";
+                    continue;
+                }
+                label.style.display = "none";
+            }
         })
 
         btn.addEventListener("mouseover", function() {
-            btn.style.fontWeight = "bold";
-            btn.style.backgroundColor = "#666";
+            if (div.boxShadow === "") {
+                div.fontWeight = "bold";
+                div.backgroundColor = "#777";
+            }
         })
 
         btn.addEventListener("mouseout", function() {
-            if (btn.style.boxShadow === "") {
-                btn.style.fontWeight = "400";
-                btn.style.backgroundColor = "#777";
+            if (div.boxShadow === "") {
+                div.fontWeight = "400";
+                div.backgroundColor = "#888";
             }
         });
     }
-
 
     // Event board buttons - page Home
     ACTUALIZE_BUTT.addEventListener("click", function(e) {
@@ -74,9 +87,9 @@ window.addEventListener("DOMContentLoaded", function() {
         // });
     }, 500);
 
-    function alerts() {
-        fetch("/alerts");
-    }
+    // function alerts() {
+    //     fetch("/alerts");
+    // }
 
     function buildAddon() {
         const target = document.getElementById("addons-list");
@@ -117,7 +130,7 @@ window.addEventListener("DOMContentLoaded", function() {
     function initMenu() {
         for (const btn of MENU_BUTT) {
             btn.style.boxShadow = "";
-            btn.style.backgroundColor = "#777";
+            btn.style.backgroundColor = "#888";
             btn.style.fontWeight = "400";
         }
     };
