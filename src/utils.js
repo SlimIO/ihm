@@ -1,10 +1,10 @@
 /**
- * @function creaDiv
+ * @function addonInfosBuilder
  * @desc Return a div for html file
  * @param {Object[]} infos addons infos
  * @returns {Object[]}
  */
-function buildElem(infos) {
+function addonInfosBuilder(infos) {
     const ret = [];
 
     // Loop on all objects
@@ -37,6 +37,51 @@ function buildElem(infos) {
 }
 
 /**
+ * @function alarmInfosBuilder
+ * @desc Return a div for html file
+ * @param {Object[]} infos addons infos
+ * @returns {Object[]}
+ */
+function alarmInfosBuilder(infos) {
+    const ret = [];
+    const idx = {
+        0: "Critical",
+        1: "Major",
+        2: "Minor"
+    };
+    const color = {
+        0: "red",
+        1: "orange",
+        2: "green"
+    };
+
+    // No alarms
+    if (infos.length === 0) {
+        return ret;
+    }
+    // Loop an all objects
+    for (const info of infos) {
+
+        ret.push({
+            id: info.uuid,
+            div: [
+                `<li class="alarms1">${info.id}</li>`,
+                `<li class="alarms2">${info.uuid}</li>`,
+                `<li class="alarms3">${info.message}</li>`,
+                `<li class="alarms4" style="color:${color[info.severity]}">${idx[info.severity]}</li>`,
+                `<li class="alarms5">${info.createdAt}</li>`,
+                `<li class="alarms6">${info.updateAt}</li>`,
+                `<li class="alarms7">${info.occurence}</li>`,
+                `<li class="alarms8">${info.correlate_key}</li>`,
+                `<li class="alarms9">${info.entity_id}</li>`
+            ].join("")
+        });
+    }
+
+    return ret;
+}
+
+/**
  * @function color
  * @description Return a color, red or green
  * @param {Boolean} bool A boolean
@@ -58,4 +103,4 @@ function color(bool, getColor) {
     return "<i class=\"icon-cancel\"></i>";
 }
 
-module.exports = buildElem;
+module.exports = { addonInfosBuilder, alarmInfosBuilder };

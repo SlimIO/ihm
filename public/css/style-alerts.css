@@ -32,6 +32,36 @@ div#alerts {
         flex-direction: column;
     }
 
+        div#alerts > div#details ul {
+            display: flex;
+            border-bottom: 1px solid #666;
+            height: 70px;
+            width: 100%
+        }
+
+        div#alerts > div#details ul.infos {
+            cursor: pointer;;
+        }
+
+        div#alerts > div#details ul.infos:hover {
+            background-color: rgba(172, 189, 230, .3);
+        }
+
+        div#alerts > div#details li {
+            display: flex;
+            padding: 10px 10px;
+            font-size: 12px;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 1px solid #666;
+            overflow-x: auto;
+        }
+
+        div#alerts > div#details ul li:last-child {
+            border-right: 0;
+        }
+
     div#alerts > div.labels {
         display: none;
         font-weight: bold;
@@ -54,67 +84,81 @@ div#alerts {
                 border-right: 1px solid #666
             }
 
-            /* ALARMS  */
-
-            div#alerts > div.labels > ul > li.alarms1 {
-                width: 3%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms2 {
-                width: 17%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms3 {
-                width: 25%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms4 {
-                width: 6%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms5 {
-                width: 7%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms6 {
-                width: 7%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms7 {
-                width: 10%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms8 {
-                width: 20%;
-            }
-
-            div#alerts > div.labels > ul > li.alarms9 {
-                width: 5%;
+            div#alerts > div.labels > ul > li:last-child {
                 border-right: 0;
             }
+        
 
-            /* ENTITIES  */
+        /* ALARMS  */
 
-            div#alerts > div.labels > ul > li.entities1 {
-                width: 5%;
-            }
+        div#alerts li.alarms1 {
+            width: 3%;
+            justify-content: center;
+        }
 
-            div#alerts > div.labels > ul > li.entities2 {
-                width: 10%;
-            }
+        div#alerts li.alarms2 {
+            width: 17%;
+            justify-content: center;
+        }
 
-            div#alerts > div.labels > ul > li.entities3 {
-                width: 5%;
-            }
+        div#alerts li.alarms3 {
+            width: 25%;
+        }
 
-            div#alerts > div.labels > ul > li.entities4 {
-                width: 15%;
-            }
+        div#alerts li.alarms4 {
+            width: 6%;
+            font-weight: bold;
+            justify-content: center;
+        }
 
-            div#alerts > div.labels > ul > li.entities5 {
-                width: 50%;
-            }
+        div#alerts li.alarms5 {
+            width: 11%;
+            justify-content: center;
+        }
 
-            div#alerts > div.labels > ul > li.entities6 {
-                width: 15%;
-            }
+        div#alerts li.alarms6 {
+            width: 11%;
+            justify-content: center;
+        }
+
+        div#alerts li.alarms7 {
+            width: 10%;
+            justify-content: center;
+        }
+
+        div#alerts li.alarms8 {
+            width: 12%;
+        }
+
+        div#alerts li.alarms9 {
+            width: 5%;
+            justify-content: center;
+            border-right: 0;
+        }
+
+        /* ENTITIES  */
+
+        div#alerts li.entities1 {
+            width: 5%;
+        }
+
+        div#alerts li.entities2 {
+            width: 10%;
+        }
+
+        div#alerts li.entities3 {
+            width: 5%;
+        }
+
+        div#alerts li.entities4 {
+            width: 15%;
+        }
+
+        div#alerts li.entities5 {
+            width: 50%;
+        }
+
+        div#alerts li.entities6 {
+            width: 15%;
+            border-right: 0;
+        }

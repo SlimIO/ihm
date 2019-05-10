@@ -12,7 +12,7 @@ const sirv = require("sirv");
 const { yellow, red } = require("kleur");
 
 // Require Internal dependencies
-const buildElem = require("./src/utils");
+const { addonInfosBuilder, alarmInfosBuilder } = require("./src/utils");
 
 // Constants
 const PORT = process.env.PORT || 8000;
@@ -37,7 +37,11 @@ ihm.on("awake", () => {
             correlateKey: "test_alarm",
             entity: entityTest
         });
-    }, 1000);
+        new Alarm("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat nobis fugit, dolore nisi quos quibusdam odio rem ipsum itaque maxime perspiciatis pariatur. Corporis facilis nisi exercitationem ipsam pariatur, ab omnis!", {
+            correlateKey: "test_alarm_two",
+            entity: entityTest
+        });
+    }, 3000);
 });
 
 // Catch start event!
@@ -69,14 +73,15 @@ ihm.on("start", async() => {
                 _p.push(ihm.sendOne(`${addon}.get_info`));
             }
             const div = await Promise.all(_p);
-            const ret = buildElem(div);
+            const ret = addonInfosBuilder(div);
             // Send
             send(res, 200, ret);
         })
-        .get("/alerts", async(req, res) => {
-            await ihm.sendOne("socket.start");
-            const alerts = await ihm.sendOne("events.get_alarms");
-            console.log(alerts);
+        .get("/alarms", async(req, res) => {
+            /** @type {Object[]} */
+            const alarms = alarmInfosBuilder(await ihm.sendOne("events.get_alarms"));
+
+            send(res, 200, alarms);
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);

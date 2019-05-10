@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", function() {
             if (btn.id === "home-btn") {
                 document.getElementById("alerts").style.display = "none";
                 document.getElementById("home").style.display = "flex";
-                buildAddon();
+                buildsAddon();
             }
 
             if (btn.id === "alerts-btn") {
@@ -44,6 +44,7 @@ window.addEventListener("DOMContentLoaded", function() {
     // Event menu buttons - page Alerts
     for (const btn of MENU_BUTT) {
         const div = btn.style;
+        const details = document.getElementById("details");
         btn.addEventListener("click", function() {
             // Button animation
             initMenu();
@@ -57,6 +58,14 @@ window.addEventListener("DOMContentLoaded", function() {
                     continue;
                 }
                 label.style.display = "none";
+            }
+            // Delete #details children
+            while (details.firstChild) {
+                details.removeChild(details.firstChild);
+            }
+            // Import alarms
+            if (btn.id === "alarms") {
+                buildsAlarms();
             }
         })
 
@@ -77,7 +86,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Event board buttons - page Home
     ACTUALIZE_BUTT.addEventListener("click", function(e) {
-        buildAddon();
+        buildsAddon();
     })
 
     // Request http in loop
@@ -87,22 +96,18 @@ window.addEventListener("DOMContentLoaded", function() {
         // });
     }, 500);
 
-    // function alerts() {
-    //     fetch("/alerts");
-    // }
-
-    function buildAddon() {
+    // Request for addons
+    function buildsAddon() {
         const target = document.getElementById("addons-list");
         // Request for build div
         fetch("/build").then(function(res) {
-            const body = res.json();
             // Dellete all divs
             for (let i = 0; i < target.children.length; i++) {
                 target.removeChild(target.children[i]);
                 i--;
             }
 
-            return body;
+            return res.json();
         }).then(function(body) {
             // Add addons
             const setDiv = document.createDocumentFragment();
@@ -112,6 +117,28 @@ window.addEventListener("DOMContentLoaded", function() {
                 newDiv.id = addon.name
                 newDiv.innerHTML = addon.div;
                 setDiv.appendChild(newDiv);
+            }
+
+            target.appendChild(setDiv);
+        })
+    };
+
+    // Request for alarms
+    function buildsAlarms() {
+        const target = document.getElementById("details");
+        // Request for build div
+        fetch("/alarms").then(function(res) {
+
+            return res.json();
+        }).then(function(body) {
+            // Add alarms
+            const setDiv = document.createDocumentFragment();
+            for (const alarm of body) {
+                const elem = document.createElement("ul");
+                elem.className = "infos";
+                elem.id = alarm.id;
+                elem.innerHTML = alarm.div;
+                setDiv.appendChild(elem)
             }
 
             target.appendChild(setDiv);
