@@ -57,10 +57,12 @@ header {
                 color: white;
             }
 
+/* HOME PAGE */
+
 div#home {
     display: flex;
     height: 100%;
-    border-top: 1px solid #333;
+    border-top: 1px solid #666;
 }
 
     div#home > div#infos {
@@ -71,18 +73,18 @@ div#home {
     div#home > div#board {
         flex-grow: 1;
         height: 100%;
-        border-left: 1px solid #333;
+        border-left: thick double #999;
     }
 
-        div#home > div#board > div#menu {
+        div#home > div#board > div.menu {
             display: flex;
             background-color: #eee;
             height: 50px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #666;
         }
 
-            div#home > div#board > div#menu .btn-board {
-                border-right: 1px solid #333;
+            div#home > div#board > div.menu .btn-board {
+                border-right: 1px solid #666;
                 height: 100%;
                 width: 50px;
                 display: flex;
@@ -91,25 +93,25 @@ div#home {
                 cursor: pointer;
             }
 
-            div#home > div#board > div#menu .btn-board:hover {
-                background-color: #555;
+            div#home > div#board > div.menu .btn-board:hover {
+                background-color: #666;
             }
 
-            div#home > div#board > div#menu .btn-board:hover i {
+            div#home > div#board > div.menu .btn-board:hover i {
                 color: white
             }
 
-            div#home > div#board > div#menu .btn-board i {
+            div#home > div#board > div.menu .btn-board i {
                 font-size: 150%;
             }
 
         div#home > div#board > div#label {
             font-weight: bold;
-            background: linear-gradient(#9eb592, white);
+            background: linear-gradient(#acbde6, white);
         }
 
             div#home > div#board > div#label li{
-                border-bottom: 1px solid #333;
+                border-bottom: 1px solid #666;
             }
         
         div#home > div#board > div#addons-list {
@@ -119,13 +121,13 @@ div#home {
             overflow: auto;
         }
 
-        div#home > div#board > div.addon:hover {
-            background-color: #eee;
-        }
+            div#home > div#board > div#addons-list > div.addon:hover {
+                background-color: rgba(172, 189, 230, .3);
+            }
 
-        div#home > div#board > div.addon ul {
-            height: 50px;
-        }
+            div#home > div#board > div#addons-list > div.addon ul {
+                height: 50px;
+            }
 
         div#home > div#board > div.hori-field ul {
             display: flex;
@@ -181,3 +183,19 @@ div#home {
             div#home > div#board > div.hori-field li:last-child {
                 border-right: 0
             }
+
+/* ALERTS PAGE */
+
+div#alerts {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+    div#alerts > div.menu {
+        display: flex;
+        background-color: #777;
+        height: 50px;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+    }

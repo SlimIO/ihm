@@ -4,6 +4,8 @@ const { readFile } = require("fs").promises;
 
 // Required Third-Party dependencies
 const Addon = require("@slimio/addon");
+const alert = require("@slimio/alert");
+const metrics = require("@slimio/metrics");
 const polka = require("polka");
 const send = require("@polka/send-type");
 const sirv = require("sirv");
@@ -18,9 +20,25 @@ const VIEWS_DIR = join(__dirname, "views");
 
 // Globlas
 let server;
+let intervalId;
 
 // Create addon
 const ihm = new Addon("ihm");
+const { Entity } = metrics(ihm);
+
+// Create Alarms & entity
+const { Alarm } = alert(ihm);
+const entityTest = new Entity("entityTest", {
+    description: "Hello world!"
+});
+ihm.on("awake", () => {
+    intervalId = setInterval(() => {
+        new Alarm("hello world!", {
+            correlateKey: "test_alarm",
+            entity: entityTest
+        });
+    }, 1000);
+});
 
 // Catch start event!
 ihm.on("start", async() => {
@@ -55,6 +73,11 @@ ihm.on("start", async() => {
             // Send
             send(res, 200, ret);
         })
+        .get("/alerts", async(req, res) => {
+            await ihm.sendOne("socket.start");
+            const alerts = await ihm.sendOne("events.get_alarms");
+            console.log(alerts);
+        })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);
         });
@@ -64,6 +87,7 @@ ihm.on("start", async() => {
 
 ihm.on("stop", async() => {
     server.server.close();
+    clearInterval(intervalId);
     console.log(`${red("Server Ihm close")}`);
 });
 

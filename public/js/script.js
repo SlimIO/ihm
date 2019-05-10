@@ -14,14 +14,15 @@ window.addEventListener("DOMContentLoaded", function() {
             btn.style.color = W_COLOR;
 
             if (btn.id === "home-btn") {
-                // document.getElementById("alerts").style.display = "none";
+                document.getElementById("alerts").style.display = "none";
                 document.getElementById("home").style.display = "flex";
                 buildAddon();
             }
 
             if (btn.id === "alerts-btn") {
                 document.getElementById("home").style.display = "none";
-                // document.getElementById("alerts").style.display = "flex";
+                document.getElementById("alerts").style.display = "flex";
+                alerts()
             }
         });
 
@@ -49,13 +50,9 @@ window.addEventListener("DOMContentLoaded", function() {
         // });
     }, 500);
 
-    // Init style header button
-    function initHead () {
-        for (const btn of HEAD_BUTT) {
-            btn.style.boxShadow = "";
-            btn.style.color = B_COLOR;
-        }
-    };
+    function alerts() {
+        fetch("/alerts");
+    }
 
     function buildAddon() {
         const target = document.getElementById("addons-list");
@@ -82,6 +79,14 @@ window.addEventListener("DOMContentLoaded", function() {
 
             target.appendChild(setDiv);
         })
+    };
+
+    // Init style header button
+    function initHead () {
+        for (const btn of HEAD_BUTT) {
+            btn.style.boxShadow = "";
+            btn.style.color = B_COLOR;
+        }
     };
 
     // Press home button default
