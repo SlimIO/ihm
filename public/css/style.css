@@ -12,10 +12,9 @@ body {
 header {
     height: 120px;
     display: flex;
-    border-bottom: 1px solid #333;
+    border-bottom: thick double #333;
     background-color: #555;
     box-shadow: 0 2px 10px #999;
-    margin-bottom: 15px;
     flex-shrink: 0;
 }
 
