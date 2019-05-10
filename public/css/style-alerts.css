@@ -35,7 +35,7 @@ div#alerts {
         div#alerts > div#details ul {
             display: flex;
             border-bottom: 1px solid #666;
-            height: 70px;
+            height: 50px;
             width: 100%
         }
 
@@ -140,14 +140,16 @@ div#alerts {
 
         div#alerts li.entities1 {
             width: 5%;
+            justify-content: center;
         }
 
         div#alerts li.entities2 {
-            width: 10%;
+            width: 20%;
         }
 
         div#alerts li.entities3 {
             width: 5%;
+            justify-content: center;
         }
 
         div#alerts li.entities4 {
@@ -155,7 +157,7 @@ div#alerts {
         }
 
         div#alerts li.entities5 {
-            width: 50%;
+            width: 40%;
         }
 
         div#alerts li.entities6 {

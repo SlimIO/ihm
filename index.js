@@ -12,7 +12,7 @@ const sirv = require("sirv");
 const { yellow, red } = require("kleur");
 
 // Require Internal dependencies
-const { addonInfosBuilder, alarmInfosBuilder } = require("./src/utils");
+const { addonBuilder, alarmBuilder, entityBuilder } = require("./src/utils");
 
 // Constants
 const PORT = process.env.PORT || 8000;
@@ -59,7 +59,7 @@ ihm.on("start", async() => {
         .get("/", (req, res) => {
             send(res, 200, views, { "Content-Type": "text/html" });
         })
-        .get("/build", async(req, res) => {
+        .get("/addons", async(req, res) => {
             // eslint-disable-next-line func-names
             // Add list addon to addonsList
             /** @type {string[]} */
@@ -73,15 +73,20 @@ ihm.on("start", async() => {
                 _p.push(ihm.sendOne(`${addon}.get_info`));
             }
             const div = await Promise.all(_p);
-            const ret = addonInfosBuilder(div);
+            const ret = addonBuilder(div);
             // Send
             send(res, 200, ret);
         })
         .get("/alarms", async(req, res) => {
             /** @type {Object[]} */
-            const alarms = alarmInfosBuilder(await ihm.sendOne("events.get_alarms"));
+            const alarms = alarmBuilder(await ihm.sendOne("events.get_alarms"));
 
             send(res, 200, alarms);
+        })
+        .get("/entities", async(req, res) => {
+            const entities = entityBuilder(await ihm.sendOne("events.search_entities"));
+
+            send(res, 200, entities);
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);

@@ -58,11 +58,11 @@ div#home {
             overflow: auto;
         }
 
-            div#home > div#board > div#addons-list > div.addon:hover {
+            div#home > div#board > div#addons-list > ul.addon:hover {
                 background-color: rgba(172, 189, 230, .3);
             }
 
-            div#home > div#board > div#addons-list > div.addon ul {
+            div#home > div#board > div#addons-list > ul.addon {
                 height: 50px;
             }
 

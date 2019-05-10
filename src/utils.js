@@ -1,10 +1,10 @@
 /**
- * @function addonInfosBuilder
+ * @function addonBuilder
  * @desc Return a div for html file
  * @param {Object[]} infos addons infos
  * @returns {Object[]}
  */
-function addonInfosBuilder(infos) {
+function addonBuilder(infos) {
     const ret = [];
 
     // Loop on all objects
@@ -19,7 +19,6 @@ function addonInfosBuilder(infos) {
         ret.push({
             name: info.name,
             div: [
-                "<ul>",
                 `<li class="field1 name" style="flex-grow:2">${name}</li>`,
                 `<li class="field2 description" style="flex-grow:10">${info.description}</li>`,
                 `<li class="field3 version">${info.version}</li>`,
@@ -27,8 +26,7 @@ function addonInfosBuilder(infos) {
                 `<li class="field5 ready" style="${color(info.ready, true)}">${color(info.ready)}</li>`,
                 `<li class="field6 started" style="${color(info.started, true)}">${color(info.started)}</li>`,
                 `<li class="field7 awake" style="${color(info.awake, true)}">${color(info.awake)}</li>`,
-                `<li class="field8 callbacksDescriptor" style="flex-grow:3">${info.callbacksDescriptor}</li>`,
-                "</ul>"
+                `<li class="field8 callbacksDescriptor" style="flex-grow:3">${info.callbacksDescriptor}</li>`
             ].join("")
         });
     }
@@ -37,12 +35,12 @@ function addonInfosBuilder(infos) {
 }
 
 /**
- * @function alarmInfosBuilder
+ * @function alarmBuilder
  * @desc Return a div for html file
  * @param {Object[]} infos addons infos
  * @returns {Object[]}
  */
-function alarmInfosBuilder(infos) {
+function alarmBuilder(infos) {
     const ret = [];
     const idx = {
         0: "Critical",
@@ -61,7 +59,6 @@ function alarmInfosBuilder(infos) {
     }
     // Loop an all objects
     for (const info of infos) {
-
         ret.push({
             id: info.uuid,
             div: [
@@ -74,6 +71,37 @@ function alarmInfosBuilder(infos) {
                 `<li class="alarms7">${info.occurence}</li>`,
                 `<li class="alarms8">${info.correlate_key}</li>`,
                 `<li class="alarms9">${info.entity_id}</li>`
+            ].join("")
+        });
+    }
+
+    return ret;
+}
+
+/**
+ * @function entityBuilder
+ * @desc Return a div for html file
+ * @param {Object[]} infos addons infos
+ * @returns {Object[]}
+ */
+function entityBuilder(infos) {
+    const ret = [];
+
+    // No entity
+    if (infos.length === 0) {
+        return ret;
+    }
+    // Loop an all objects
+    for (const info of infos) {
+        ret.push({
+            id: info.uuid,
+            div: [
+                `<li class="entities1">${info.id}</li>`,
+                `<li class="entities2">${info.uuid}</li>`,
+                `<li class="entities3">${info.parent}</li>`,
+                `<li class="entities4">${info.name}</li>`,
+                `<li class="entities5">${info.description}</li>`,
+                `<li class="entities6">${info.createdAt}</li>`
             ].join("")
         });
     }
@@ -103,4 +131,4 @@ function color(bool, getColor) {
     return "<i class=\"icon-cancel\"></i>";
 }
 
-module.exports = { addonInfosBuilder, alarmInfosBuilder };
+module.exports = { addonBuilder, alarmBuilder, entityBuilder };

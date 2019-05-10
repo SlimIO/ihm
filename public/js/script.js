@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", function() {
             if (btn.id === "home-btn") {
                 document.getElementById("alerts").style.display = "none";
                 document.getElementById("home").style.display = "flex";
-                buildsAddon();
+                request("addons", "addons-list", "addon");
             }
 
             if (btn.id === "alerts-btn") {
@@ -65,7 +65,12 @@ window.addEventListener("DOMContentLoaded", function() {
             }
             // Import alarms
             if (btn.id === "alarms") {
-                buildsAlarms();
+                request(btn.id);
+            }
+
+            // Import entities
+            if (btn.id === "entities") {
+                request(btn.id);
             }
         })
 
@@ -86,7 +91,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Event board buttons - page Home
     ACTUALIZE_BUTT.addEventListener("click", function(e) {
-        buildsAddon();
+        request("addons", "addons-list", "hori-field addon");
     })
 
     // Request http in loop
@@ -96,49 +101,27 @@ window.addEventListener("DOMContentLoaded", function() {
         // });
     }, 500);
 
-    // Request for addons
-    function buildsAddon() {
-        const target = document.getElementById("addons-list");
+    // Request for get elements
+    function request(route, id = "details", classN = "infos") {
+        const target = document.getElementById(id);
         // Request for build div
-        fetch("/build").then(function(res) {
-            // Dellete all divs
-            for (let i = 0; i < target.children.length; i++) {
-                target.removeChild(target.children[i]);
-                i--;
+        fetch(`/${route}`).then(function(res) {
+            if (route === "addons") {
+                for (let i = 0; i < target.children.length; i++) {
+                    target.removeChild(target.children[i]);
+                    i--;
+                }
             }
-
             return res.json();
         }).then(function(body) {
-            // Add addons
+            // Add elements
             const setDiv = document.createDocumentFragment();
-            for (const addon of body) {
-                const newDiv = document.createElement('div');
-                newDiv.className = "hori-field addon";
-                newDiv.id = addon.name
-                newDiv.innerHTML = addon.div;
-                setDiv.appendChild(newDiv);
-            }
-
-            target.appendChild(setDiv);
-        })
-    };
-
-    // Request for alarms
-    function buildsAlarms() {
-        const target = document.getElementById("details");
-        // Request for build div
-        fetch("/alarms").then(function(res) {
-
-            return res.json();
-        }).then(function(body) {
-            // Add alarms
-            const setDiv = document.createDocumentFragment();
-            for (const alarm of body) {
-                const elem = document.createElement("ul");
-                elem.className = "infos";
-                elem.id = alarm.id;
-                elem.innerHTML = alarm.div;
-                setDiv.appendChild(elem)
+            for (const elem of body) {
+                const ul = document.createElement("ul");
+                ul.className = classN;
+                ul.id = elem.id;
+                ul.innerHTML = elem.div;
+                setDiv.appendChild(ul)
             }
 
             target.appendChild(setDiv);
