@@ -17,6 +17,7 @@ function addonBuilder(infos) {
         }
 
         ret.push({
+            obj: info,
             name: info.name,
             div: [
                 `<li class="field1 name" style="flex-grow:2">${name}</li>`,
@@ -60,6 +61,7 @@ function alarmBuilder(infos) {
     // Loop an all objects
     for (const info of infos) {
         ret.push({
+            obj: info,
             id: info.uuid,
             div: [
                 `<li class="alarms1">${info.id}</li>`,
@@ -94,6 +96,7 @@ function entityBuilder(infos) {
     // Loop an all objects
     for (const info of infos) {
         ret.push({
+            obj: info,
             id: info.uuid,
             div: [
                 `<li class="entities1">${info.id}</li>`,

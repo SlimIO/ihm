@@ -1,12 +1,15 @@
 /* eslint-disable */
 window.addEventListener("DOMContentLoaded", function() {
-    // Variables
+    // Constantes
     const HEAD_BUTT = document.getElementsByClassName("btn");
     const MENU_BUTT = document.getElementsByClassName("btn-menu");
-    const LABELS = document.getElementsByClassName("labels")
-    let ACTUALIZE_BUTT = document.getElementById("actualize");
+    const LABELS = document.getElementsByClassName("labels");
+    const ACTUALIZE_BUTT = document.getElementById("actualize");
     const W_COLOR = "white";
     const B_COLOR = "black";
+
+    // Globals
+    let intervID;
 
     // Event header buttons
     for (const btn of HEAD_BUTT) {
@@ -26,6 +29,10 @@ window.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("home").style.display = "none";
                 document.getElementById("alerts").style.display = "flex";
                 document.getElementById("alarms").click();
+            }
+
+            if (btn.id === "test") {
+                fetch("/test");
             }
         });
 
@@ -60,17 +67,19 @@ window.addEventListener("DOMContentLoaded", function() {
                 label.style.display = "none";
             }
             // Delete #details children
-            while (details.firstChild) {
-                details.removeChild(details.firstChild);
-            }
+            del(details);
             // Import alarms
             if (btn.id === "alarms") {
                 request(btn.id);
+                clearInterval(intervID);
+                reqLoop(btn.id);
             }
 
             // Import entities
             if (btn.id === "entities") {
                 request(btn.id);
+                clearInterval(intervID);
+                reqLoop(btn.id);
             }
         })
 
@@ -95,13 +104,44 @@ window.addEventListener("DOMContentLoaded", function() {
     })
 
     // Request http in loop
-    const intervID = setInterval(function() {
-        // fetch("/stat").then(async function(res) {
-            
-        // });
-    }, 500);
+    function reqLoop(route) {
+        intervID = setInterval(execute, 500, route);
+    }
 
-    // Request for get elements
+    function execute(route) {
+        fetch(`/${route}`).then(async function(res) {
+            const elements = await res.json();
+
+            // Create a set of the UUID
+            const targets = document.getElementsByClassName("infos");
+            const details = document.getElementById("details");
+            const UUID_SET = new Set();
+            for (const elem of targets) {
+                UUID_SET.add(elem.id);
+            }
+
+            // If new alarms
+            for(const elem of elements) {
+                if (UUID_SET.has(elem.obj.uuid)) {
+                    document.getElementById(elem.obj.uuid).innerHTML = elem.div;
+                    continue;
+                }
+                del(details);
+                await request(route);
+            }
+            
+            return;
+        }).catch(console.error);
+    }
+
+    /**
+     * @function request
+     * @description Request server for get infos
+     * @param {!String} route Route for the server
+     * @param {String} id Id for the div
+     * @param {String} classN Class to add for the new elements
+     * @returns {void}
+     */
     function request(route, id = "details", classN = "infos") {
         const target = document.getElementById(id);
         // Request for build div
@@ -125,7 +165,7 @@ window.addEventListener("DOMContentLoaded", function() {
             }
 
             target.appendChild(setDiv);
-        })
+        }).catch(console.error);
     };
 
     // Init style header button
@@ -144,6 +184,13 @@ window.addEventListener("DOMContentLoaded", function() {
             btn.style.fontWeight = "400";
         }
     };
+
+    // Delete elem children
+    function del(elem) {
+        while (elem.firstChild) {
+            elem.removeChild(elem.firstChild);
+        }
+    }
 
     // Press home button default
     document.getElementById("home-btn").click();

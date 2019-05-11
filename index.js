@@ -37,11 +37,17 @@ ihm.on("awake", () => {
             correlateKey: "test_alarm",
             entity: entityTest
         });
-        new Alarm("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat nobis fugit, dolore nisi quos quibusdam odio rem ipsum itaque maxime perspiciatis pariatur. Corporis facilis nisi exercitationem ipsam pariatur, ab omnis!", {
-            correlateKey: "test_alarm_two",
+        new Alarm("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat nobis fugit", {
+            correlateKey: "test_alarm_three",
             entity: entityTest
         });
-    }, 3000);
+    }, 1000);
+    setTimeout(() => {
+        new Alarm("hello world!", {
+            correlateKey: "test_alarm_five",
+            entity: entityTest
+        });
+    }, 7000);
 });
 
 // Catch start event!
@@ -87,6 +93,10 @@ ihm.on("start", async() => {
             const entities = entityBuilder(await ihm.sendOne("events.search_entities"));
 
             send(res, 200, entities);
+        })
+        .get("/test", async(req, res) => {
+            const ret = await ihm.sendOne("events.remove_alarm");
+            console.log(ret);
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);

@@ -3,7 +3,6 @@
 div#alerts {
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
     div#alerts > div.menu {
@@ -12,6 +11,7 @@ div#alerts {
         height: 50px;
         border-top: 1px solid #333;
         border-bottom: 1px solid #333;
+        flex-shrink: 0;
     }
 
     div#alerts > div.menu ul {
@@ -30,7 +30,14 @@ div#alerts {
     div#alerts > div#details {
         display: flex;
         flex-direction: column;
+        height: 100%;
+        overflow: auto;
+        scrollbar-width: 0;
     }
+
+        div#alerts > div#details::-webkit-scrollbar {
+            width: 0
+        }
 
         div#alerts > div#details ul {
             display: flex;
@@ -40,7 +47,8 @@ div#alerts {
         }
 
         div#alerts > div#details ul.infos {
-            cursor: pointer;;
+            cursor: pointer;
+            flex-shrink: 0
         }
 
         div#alerts > div#details ul.infos:hover {
@@ -71,7 +79,7 @@ div#alerts {
         div#alerts > div.labels > ul {
             display: flex;
             border-bottom: 1px solid #666;
-            width: 100%
+            width: 100%;
         }
 
             div#alerts > div.labels > ul > li {
@@ -98,7 +106,6 @@ div#alerts {
 
         div#alerts li.alarms2 {
             width: 17%;
-            justify-content: center;
         }
 
         div#alerts li.alarms3 {
