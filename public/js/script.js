@@ -131,7 +131,9 @@ window.addEventListener("DOMContentLoaded", function() {
             }
             
             return;
-        }).catch(console.error);
+        }).catch(function() {
+            clearInterval(intervID);
+        });
     }
 
     /**
@@ -161,6 +163,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 ul.className = classN;
                 ul.id = elem.id;
                 ul.innerHTML = elem.div;
+                ulEvent(ul);
                 setDiv.appendChild(ul)
             }
 
@@ -191,6 +194,13 @@ window.addEventListener("DOMContentLoaded", function() {
             elem.removeChild(elem.firstChild);
         }
     }
+
+    // Function Event for <ul> alarm
+    function ulEvent(target) {
+        target.addEventListener("contextmenu", function() {
+            console.log("coucou");
+        })
+}
 
     // Press home button default
     document.getElementById("home-btn").click();
