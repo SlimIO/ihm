@@ -62,7 +62,6 @@ function alarmBuilder(infos) {
     for (const info of infos) {
         ret.push({
             obj: info,
-            id: info.uuid,
             div: [
                 `<li class="alarms1">${info.id}</li>`,
                 `<li class="alarms2">${info.uuid}</li>`,
@@ -97,7 +96,6 @@ function entityBuilder(infos) {
     for (const info of infos) {
         ret.push({
             obj: info,
-            id: info.uuid,
             div: [
                 `<li class="entities1">${info.id}</li>`,
                 `<li class="entities2">${info.uuid}</li>`,

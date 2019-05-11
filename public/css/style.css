@@ -70,21 +70,35 @@ header {
 
 div#ctx-menu {
     position: absolute;
+    display: none;
+    flex-direction: column;
     width: 90px;
-    height: 20px;
     left: 0;
     top: 0;
-    text-align: center;
-    line-height: 20px;
     border-radius: 4px;
-    background-color: #666;
+    background-color: #eee;
     cursor: pointer;
     font-size: 12px;
-    font-weight: 600;
-    border: 1px solid black;
-    display: none;
+    font-weight: 400;
+    border: 1px solid #666;
 }
 
-    div#ctx-menu:hover {
-        background-color: #888;
+    div#ctx-menu p:first-child {
+        background-color: #222;
+        font-weight: 500;
+        color: #eee;
+    } 
+
+    div#ctx-menu p {
+        padding: 10px 10px;
+        border-bottom: 1px solid #999;
+        text-align: center;
+    }
+
+    div#ctx-menu p:hover:not(:first-child) {
+        background-color: #ccc;
+    }
+
+    div#ctx-menu p:last-child {
+        border-bottom: 0;
     }

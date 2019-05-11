@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const MENU_BUTT = document.getElementsByClassName("btn-menu");
     const LABELS = document.getElementsByClassName("labels");
     const ACTUALIZE_BUTT = document.getElementById("actualize");
+    const ctxMenu = document.getElementById("ctx-menu");
     const W_COLOR = "white";
     const B_COLOR = "black";
 
@@ -105,8 +106,13 @@ window.addEventListener("DOMContentLoaded", function() {
     })
 
     // Event context menu (remove alarms)
-    document.getElementById("ctx-menu").addEventListener("mouseout", function() {
+    ctxMenu.addEventListener("mouseleave", function(event) {
         this.style.display = "none";
+        document.getElementById(ulID).style.backgroundColor = "";
+    })
+    ctxMenu.addEventListener("click", function(event) {
+        this.style.display = "none";
+        document.getElementById(ulID).style.backgroundColor = "";
     })
 
     // Request http in loop
@@ -123,7 +129,7 @@ window.addEventListener("DOMContentLoaded", function() {
             const details = document.getElementById("details");
             const UUID_SET = new Set();
             for (const elem of targets) {
-                UUID_SET.add(elem.id);
+                UUID_SET.add(elem.obj.uuid);
             }
 
             // If new alarms
@@ -167,7 +173,8 @@ window.addEventListener("DOMContentLoaded", function() {
             for (const elem of body) {
                 const ul = document.createElement("ul");
                 ul.className = classN;
-                ul.id = elem.id;
+                ul.id = elem.obj.uuid;
+                ul.dataset.id = elem.obj.id
                 ul.innerHTML = elem.div;
                 ulEvent(ul);
                 setDiv.appendChild(ul)
@@ -205,11 +212,12 @@ window.addEventListener("DOMContentLoaded", function() {
     function ulEvent(target) {
         target.addEventListener("contextmenu", function(event) {
             const { clientX, clientY } = event;
-            const ctxMenu = document.getElementById("ctx-menu");
             ulID = target.id;
-            ctxMenu.style.display = "block";
+            target.style.backgroundColor = "rgba(172, 189, 230, .3)";
+            ctxMenu.style.display = "flex";
             ctxMenu.style.left = `${clientX - 10}px`;
             ctxMenu.style.top = `${clientY - 10}px`;
+            ctxMenu.children[0].innerHTML = `ID N° ${target.dataset.id}`;
         })
     }
 
