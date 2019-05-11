@@ -7,6 +7,7 @@ body {
 body {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 header {
@@ -66,3 +67,24 @@ header {
             header > nav > div.btn:hover * {
                 color: white;
             }
+
+div#ctx-menu {
+    position: absolute;
+    width: 90px;
+    height: 20px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: #666;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid black;
+    display: none;
+}
+
+    div#ctx-menu:hover {
+        background-color: #888;
+    }

@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Globals
     let intervID;
+    let ulID = "";
 
     // Event header buttons
     for (const btn of HEAD_BUTT) {
@@ -101,6 +102,11 @@ window.addEventListener("DOMContentLoaded", function() {
     // Event board buttons - page Home
     ACTUALIZE_BUTT.addEventListener("click", function(e) {
         request("addons", "addons-list", "hori-field addon");
+    })
+
+    // Event context menu (remove alarms)
+    document.getElementById("ctx-menu").addEventListener("mouseout", function() {
+        this.style.display = "none";
     })
 
     // Request http in loop
@@ -197,10 +203,15 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Function Event for <ul> alarm
     function ulEvent(target) {
-        target.addEventListener("contextmenu", function() {
-            console.log("coucou");
+        target.addEventListener("contextmenu", function(event) {
+            const { clientX, clientY } = event;
+            const ctxMenu = document.getElementById("ctx-menu");
+            ulID = target.id;
+            ctxMenu.style.display = "block";
+            ctxMenu.style.left = `${clientX - 10}px`;
+            ctxMenu.style.top = `${clientY - 10}px`;
         })
-}
+    }
 
     // Press home button default
     document.getElementById("home-btn").click();
