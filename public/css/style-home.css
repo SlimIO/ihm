@@ -20,14 +20,14 @@ div#home {
         div#home > div#board > div.menu {
             display: flex;
             background-color: #888;
-            height: 50px;
+            height: 30px;
             border-bottom: 1px solid #666;
         }
 
             div#home > div#board > div.menu .btn-board {
                 border-right: 1px solid #666;
                 height: 100%;
-                width: 50px;
+                width: 30px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -39,7 +39,7 @@ div#home {
             }
 
             div#home > div#board > div.menu .btn-board i {
-                font-size: 150%;
+                font-size: 120%;
             }
 
         div#home > div#board > div#label {
@@ -63,7 +63,7 @@ div#home {
             }
 
             div#home > div#board > div#addons-list > ul.addon {
-                height: 50px;
+                flex-basis: 25px;
             }
 
         div#home > div#board > div.hori-field ul {

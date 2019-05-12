@@ -8,7 +8,7 @@ div#alerts {
     div#alerts > div.menu {
         display: flex;
         background-color: #888;
-        height: 50px;
+        height: 30px;
         border-top: 1px solid #333;
         border-bottom: 1px solid #333;
         flex-shrink: 0;
@@ -42,13 +42,12 @@ div#alerts {
         div#alerts > div#details ul {
             display: flex;
             border-bottom: 1px solid #666;
-            height: 50px;
+            flex-basis: 25px;
             width: 100%
         }
 
         div#alerts > div#details ul.infos {
             cursor: pointer;
-            flex-shrink: 0
         }
 
         div#alerts > div#details ul.infos:hover {
