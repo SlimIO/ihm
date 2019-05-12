@@ -73,7 +73,7 @@ window.addEventListener("DOMContentLoaded", function() {
             // Import alarms
             if (btn.id === "alarms") {
                 request(btn.id);
-                clearInterval(intervID);
+                // clearInterval(intervID);
                 reqLoop(btn.id);
             }
 
@@ -129,7 +129,7 @@ window.addEventListener("DOMContentLoaded", function() {
             const details = document.getElementById("details");
             const UUID_SET = new Set();
             for (const elem of targets) {
-                UUID_SET.add(elem.obj.uuid);
+                UUID_SET.add(elem.id);
             }
 
             // If new alarms
