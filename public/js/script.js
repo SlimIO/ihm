@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", function() {
             if (btn.id === "home-btn") {
                 document.getElementById("alerts").style.display = "none";
                 document.getElementById("home").style.display = "flex";
-                request("addons", "addons-list", "addon");
+                request("addons", "addons-list");
             }
 
             if (btn.id === "alerts-btn") {
@@ -102,18 +102,32 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Event board buttons - page Home
     ACTUALIZE_BUTT.addEventListener("click", function(e) {
-        request("addons", "addons-list", "hori-field addon");
+        request("addons", "addons-list");
     })
 
     // Event context menu (remove alarms)
-    ctxMenu.addEventListener("mouseleave", function(event) {
+    ctxMenu.addEventListener("mouseleave", function(e) {
+        const target = document.getElementById(ulID);
         this.style.display = "none";
-        document.getElementById(ulID).style.backgroundColor = "";
+        if (target) {
+            document.getElementById(ulID).style.backgroundColor = "";
+        }
     })
-    ctxMenu.addEventListener("click", function(event) {
-        this.style.display = "none";
-        document.getElementById(ulID).style.backgroundColor = "";
-    })
+    for (const child of ctxMenu.children) {
+        child.addEventListener("click", function() {
+            // Hide local ul parent
+            this.parentNode.style.display = "none";
+            // Remove alarm
+            if (child.id === "remove") {
+                clearInterval(intervID);
+                // Id <ul> line --> remove <ul> local
+                const ulToDel = document.getElementById(child.dataset.id);
+                document.getElementById("details").removeChild(ulToDel);
+                // Remove alarm in the server
+                fetch("remove")
+            }
+        })
+    }
 
     // Request http in loop
     function reqLoop(route) {
@@ -153,31 +167,31 @@ window.addEventListener("DOMContentLoaded", function() {
      * @description Request server for get infos
      * @param {!String} route Route for the server
      * @param {String} id Id for the div
-     * @param {String} classN Class to add for the new elements
      * @returns {void}
      */
-    function request(route, id = "details", classN = "infos") {
+    function request(route, id = "details") {
         const target = document.getElementById(id);
         // Request for build div
-        fetch(`/${route}`).then(function(res) {
+        fetch(`/${route}`).then(async function(res) {
             if (route === "addons") {
                 for (let i = 0; i < target.children.length; i++) {
                     target.removeChild(target.children[i]);
                     i--;
                 }
             }
-            return res.json();
+            return [await res.json(), route];
         }).then(function(body) {
             // Add elements
             const setDiv = document.createDocumentFragment();
-            for (const elem of body) {
+            for (const elem of body[0]) {
                 const ul = document.createElement("ul");
-                ul.className = classN;
+                ul.className = `infos ${body[1]}`;
                 ul.id = elem.obj.uuid;
-                ul.dataset.id = elem.obj.id
+                ul.dataset.id = elem.obj.id;
+                ul.dataset.cid = elem.obj.correlate_key;
                 ul.innerHTML = elem.div;
                 ulEvent(ul);
-                setDiv.appendChild(ul)
+                setDiv.appendChild(ul);
             }
 
             target.appendChild(setDiv);
@@ -208,16 +222,17 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Function Event for <ul> alarm
+    // Function Event for tools <ul> alarm
     function ulEvent(target) {
-        target.addEventListener("contextmenu", function(event) {
-            const { clientX, clientY } = event;
+        target.addEventListener("contextmenu", function(e) {
+            const { clientX, clientY } = e;
             ulID = target.id;
             target.style.backgroundColor = "rgba(172, 189, 230, .3)";
             ctxMenu.style.display = "flex";
             ctxMenu.style.left = `${clientX - 10}px`;
             ctxMenu.style.top = `${clientY - 10}px`;
             ctxMenu.children[0].innerHTML = `ID N° ${target.dataset.id}`;
+            ctxMenu.children[1].dataset.id = target.id;
         })
     }
 
