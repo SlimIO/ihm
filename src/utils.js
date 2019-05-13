@@ -63,15 +63,15 @@ function alarmBuilder(infos) {
         ret.push({
             obj: info,
             div: [
-                `<li class="alarms1">${info.id}</li>`,
-                `<li class="alarms2">${info.uuid}</li>`,
-                `<li class="alarms3">${info.message}</li>`,
-                `<li class="alarms4" style="color:${color[info.severity]}">${idx[info.severity]}</li>`,
-                `<li class="alarms5">${info.createdAt}</li>`,
-                `<li class="alarms6">${info.updateAt}</li>`,
-                `<li class="alarms7">${info.occurence}</li>`,
-                `<li class="alarms8">${info.correlate_key}</li>`,
-                `<li class="alarms9">${info.entity_id}</li>`
+                `<li class="alarm1">${info.id}</li>`,
+                `<li class="alarm2">${info.uuid}</li>`,
+                `<li class="alarm3">${info.message}</li>`,
+                `<li class="alarm4" style="color:${color[info.severity]}">${idx[info.severity]}</li>`,
+                `<li class="alarm5">${info.createdAt}</li>`,
+                `<li class="alarm6">${info.updateAt}</li>`,
+                `<li class="alarm7">${info.occurence}</li>`,
+                `<li class="alarm8">${info.correlate_key}</li>`,
+                `<li class="alarm9">${info.entity_id}</li>`
             ].join("")
         });
     }

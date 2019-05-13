@@ -98,45 +98,45 @@ div#alerts {
 
         /* ALARMS  */
 
-        div#alerts li.alarms1 {
+        div#alerts li.alarm1 {
             width: 3%;
             justify-content: center;
         }
 
-        div#alerts li.alarms2 {
+        div#alerts li.alarm2 {
             width: 17%;
         }
 
-        div#alerts li.alarms3 {
+        div#alerts li.alarm3 {
             width: 25%;
         }
 
-        div#alerts li.alarms4 {
+        div#alerts li.alarm4 {
             width: 6%;
             font-weight: bold;
             justify-content: center;
         }
 
-        div#alerts li.alarms5 {
+        div#alerts li.alarm5 {
             width: 11%;
             justify-content: center;
         }
 
-        div#alerts li.alarms6 {
+        div#alerts li.alarm6 {
             width: 11%;
             justify-content: center;
         }
 
-        div#alerts li.alarms7 {
+        div#alerts li.alarm7 {
             width: 10%;
             justify-content: center;
         }
 
-        div#alerts li.alarms8 {
+        div#alerts li.alarm8 {
             width: 12%;
         }
 
-        div#alerts li.alarms9 {
+        div#alerts li.alarm9 {
             width: 5%;
             justify-content: center;
             border-right: 0;

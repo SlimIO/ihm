@@ -10,6 +10,7 @@ const polka = require("polka");
 const send = require("@polka/send-type");
 const sirv = require("sirv");
 const { yellow, red } = require("kleur");
+const { urlencoded } = require("body-parser");
 
 // Require Internal dependencies
 const { addonBuilder, alarmBuilder, entityBuilder } = require("./src/utils");
@@ -62,6 +63,7 @@ ihm.on("start", async() => {
         .use("font", sirv(join(__dirname, "public", "font")))
         .use("img", sirv(join(__dirname, "public", "img")))
         .use("js", sirv(join(__dirname, "public", "js")))
+        .use(urlencoded({ extended: false }))
         .get("/", (req, res) => {
             send(res, 200, views, { "Content-Type": "text/html" });
         })
@@ -83,7 +85,7 @@ ihm.on("start", async() => {
             // Send
             send(res, 200, ret);
         })
-        .get("/alarms", async(req, res) => {
+        .get("/alarm", async(req, res) => {
             /** @type {Object[]} */
             const alarms = alarmBuilder(await ihm.sendOne("events.get_alarms"));
 
@@ -97,6 +99,10 @@ ihm.on("start", async() => {
         .get("/test", async(req, res) => {
             const ret = await ihm.sendOne("events.remove_alarm");
             console.log(ret);
+        })
+        .post("/remove", async(req, res) => {
+            const ret = await ihm.sendOne(`events.remove_${req.body.type}`, [`2#${req.body.cid}`]);
+            send(res, 200);
         })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);

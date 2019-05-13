@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", function() {
             if (btn.id === "alerts-btn") {
                 document.getElementById("home").style.display = "none";
                 document.getElementById("alerts").style.display = "flex";
-                document.getElementById("alarms").click();
+                document.getElementById("alarm").click();
             }
 
             if (btn.id === "test") {
@@ -71,7 +71,7 @@ window.addEventListener("DOMContentLoaded", function() {
             // Delete #details children
             del(details);
             // Import alarms
-            if (btn.id === "alarms") {
+            if (btn.id === "alarm") {
                 request(btn.id);
                 // clearInterval(intervID);
                 reqLoop(btn.id);
@@ -115,16 +115,29 @@ window.addEventListener("DOMContentLoaded", function() {
     })
     for (const child of ctxMenu.children) {
         child.addEventListener("click", function() {
-            // Hide local ul parent
+            // Hide context menu
             this.parentNode.style.display = "none";
             // Remove alarm
             if (child.id === "remove") {
                 clearInterval(intervID);
-                // Id <ul> line --> remove <ul> local
                 const ulToDel = document.getElementById(child.dataset.id);
-                document.getElementById("details").removeChild(ulToDel);
-                // Remove alarm in the server
-                fetch("remove")
+                const CID = ulToDel.dataset.cid;
+                // If alarm or others
+                const typeToDel = ulToDel.className.replace("infos ", "");
+                const init = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    body: `type=${typeToDel}&cid=${CID}`
+                }
+
+                fetch("/remove", init).then(async() => {
+                    // Id <ul> line --> remove <ul> local
+                    // document.getElementById("details").removeChild(ulToDel);
+                    // Remove alarm in the server
+                    console.log("Element remove :)")
+                })
             }
         })
     }
@@ -135,7 +148,7 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     function execute(route) {
-        fetch(`/${route}`).then(async function(res) {
+        fetch(`/${route}`).then(async(res) => {
             const elements = await res.json();
 
             // Create a set of the UUID
@@ -172,7 +185,7 @@ window.addEventListener("DOMContentLoaded", function() {
     function request(route, id = "details") {
         const target = document.getElementById(id);
         // Request for build div
-        fetch(`/${route}`).then(async function(res) {
+        fetch(`/${route}`).then(async(res) => {
             if (route === "addons") {
                 for (let i = 0; i < target.children.length; i++) {
                     target.removeChild(target.children[i]);
