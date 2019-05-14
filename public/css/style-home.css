@@ -16,7 +16,6 @@ div#home {
         flex-grow: 1;
         height: 100%;
         border-left: 1px solid #444;
-        box-sizing: border-box;
     }
 
         div#home > div#board > div.menu {
@@ -24,6 +23,7 @@ div#home {
             background-color: #444;
             height: 30px;
             border-bottom: 1px solid #666;
+            border-left: 1px solid #666
         }
 
             div#home > div#board > div.menu .btn-board {
@@ -38,7 +38,7 @@ div#home {
             }
 
             div#home > div#board > div.menu .btn-board:hover {
-                background-color: rgba(172, 189, 230, 1);
+                color: #dfdfdf;
             }
 
             div#home > div#board > div.menu .btn-board i {
@@ -62,12 +62,14 @@ div#home {
             overflow: auto;
         }
 
-            div#home > div#board > div#addons-list > ul.addon:hover {
-                background-color: rgba(172, 189, 230, .3);
+        
+            div#home > div#board > div#addons-list > ul.addons {
+                border: 0;
+                flex-basis: 25px;
             }
 
-            div#home > div#board > div#addons-list > ul.addon {
-                flex-basis: 25px;
+            div#home > div#board > div#addons-list > ul.addons:hover {
+                background-color: #444;
             }
 
         div#home > div#board > div.hori-field ul {
@@ -76,8 +78,8 @@ div#home {
         }
 
         div#home > div#board > div.hori-field li {
-            border-bottom: 1px solid #999;
-            border-right: 1px solid #999;
+            border-bottom: 1px solid #666;
+            border-left: 1px solid #666;
             padding: 10px 10px;
             font-size: 14px;
             display: flex;
@@ -91,11 +93,12 @@ div#home {
             }
 
             div#home > div#board > div.hori-field li.field2{
-                width:40%;
+                width:5%;
+                justify-content: center;
             }
 
             div#home > div#board > div.hori-field li.field3{
-                width:5%;
+                width:55%;
             }
 
             div#home > div#board > div.hori-field li.field4{
@@ -103,24 +106,5 @@ div#home {
             }
             
             div#home > div#board > div.hori-field li.field5{
-                width:5%;
-                justify-content: center;
-            }
-
-            div#home > div#board > div.hori-field li.field6{
-                width:5%;
-                justify-content: center;
-            }
-
-            div#home > div#board > div.hori-field li.field7{
-                width:5%;
-                justify-content: center;
-            }
-
-            div#home > div#board > div.hori-field li.field8{
                 width:15%;
-            }
-
-            div#home > div#board > div.hori-field li:last-child {
-                border-right: 0
             }

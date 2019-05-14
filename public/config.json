@@ -41,6 +41,12 @@
       "css": "ccw",
       "code": 59396,
       "src": "entypo"
+    },
+    {
+      "uid": "c76b7947c957c9b78b11741173c8349b",
+      "css": "attention",
+      "code": 59397,
+      "src": "fontawesome"
     }
   ]
 }

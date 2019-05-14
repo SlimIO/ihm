@@ -20,14 +20,11 @@ function addonBuilder(infos) {
             obj: info,
             name: info.name,
             div: [
-                `<li class="field1 name" style="flex-grow:2">${name}</li>`,
-                `<li class="field2 description" style="flex-grow:10">${info.description}</li>`,
-                `<li class="field3 version">${info.version}</li>`,
-                `<li class="field4 containerVersion">${info.containerVersion}</li>`,
-                `<li class="field5 ready" style="${color(info.ready, true)}">${color(info.ready)}</li>`,
-                `<li class="field6 started" style="${color(info.started, true)}">${color(info.started)}</li>`,
-                `<li class="field7 awake" style="${color(info.awake, true)}">${color(info.awake)}</li>`,
-                `<li class="field8 callbacksDescriptor" style="flex-grow:3">${info.callbacksDescriptor}</li>`
+                `<li class="field1">${name}</li>`,
+                `<li class="field2" style="${state(info, "style")}" title="${state(info, "title")}">${state(info, "state")}</li>`,
+                `<li class="field3">${info.description}</li>`,
+                `<li class="field4">${info.version}</li>`,
+                `<li class="field5">${info.containerVersion}</li>`
             ].join("")
         });
     }
@@ -111,25 +108,47 @@ function entityBuilder(infos) {
 }
 
 /**
- * @function color
+ * @function state
  * @description Return a color, red or green
- * @param {Boolean} bool A boolean
- * @param {Boolean} getColor A boolean
+ * @param {Object} info A boolean
+ * @param {String} type A boolean
  * @returns {String}
  */
-function color(bool, getColor) {
-    if (getColor) {
-        if (bool) {
-            return "font-weight:bold;color:green";
-        }
+function state(info, type) {
+    let str = "";
 
-        return "font-weight:bold;color:red";
-    }
-    if (bool) {
-        return "<i class=\"icon-ok\"></i>";
+    switch (type) {
+        case "title":
+            str = `Started = ${info.started}, Ready = ${info.ready}`;
+            break;
+
+        case "state":
+            if (info.ready && info.started) {
+                str = "<i class=\"icon-ok\"></i>";
+            }
+            if (!info.ready && info.started) {
+                str = "<i class=\"icon-attention\"></i>";
+            }
+            if (!info.started) {
+                str = "<i class=\"icon-cancel\"></i>";
+            }
+            break;
+        case "style":
+            if (info.ready && info.started) {
+                str = "color:green";
+            }
+            if (!info.ready && info.started) {
+                str = "color:orange";
+            }
+            if (!info.started) {
+                str = "color:red";
+            }
+            break;
+        default:
+            break;
     }
 
-    return "<i class=\"icon-cancel\"></i>";
+    return str;
 }
 
 module.exports = { addonBuilder, alarmBuilder, entityBuilder };

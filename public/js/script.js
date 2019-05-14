@@ -13,7 +13,6 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Event header buttons
     for (const btn of HEAD_BUTT) {
-        const div = btn.style;
         btn.addEventListener("click", function() {
             initHead()
             btn.classList.add("click");

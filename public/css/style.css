@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    background-color:#999;
 }
 
 header {
@@ -28,7 +29,7 @@ header {
 
         header > div#img-slim img {
             width: 100px;
-            filter: drop-shadow(0 0 5px #111)
+            filter: drop-shadow(0 0 7px #444)
         }
 
     header > nav {
