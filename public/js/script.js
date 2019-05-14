@@ -208,7 +208,7 @@ window.addEventListener("DOMContentLoaded", function() {
     // Init style header button
     function initHead () {
         for (const btn of HEAD_BUTT) {
-            btn.classList.remove("click", "mouseover");
+            btn.classList.remove("click", "mouse-over");
         }
     };
 

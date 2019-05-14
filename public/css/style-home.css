@@ -9,17 +9,19 @@ div#home {
     div#home > div#infos {
         width: 250px;
         height: 100%;
+        background-color: #333;
     }
 
     div#home > div#board {
         flex-grow: 1;
         height: 100%;
-        border-left: thick double #999;
+        border-left: 1px solid #444;
+        box-sizing: border-box;
     }
 
         div#home > div#board > div.menu {
             display: flex;
-            background-color: #888;
+            background-color: #444;
             height: 30px;
             border-bottom: 1px solid #666;
         }
@@ -32,6 +34,7 @@ div#home {
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
+                color: #888
             }
 
             div#home > div#board > div.menu .btn-board:hover {
@@ -44,11 +47,12 @@ div#home {
 
         div#home > div#board > div#label {
             font-weight: bold;
-            background: linear-gradient(#acbde6, white);
+            background-color: #333
         }
 
             div#home > div#board > div#label li{
                 border-bottom: 1px solid #666;
+                color: #777;
             }
         
         div#home > div#board > div#addons-list {

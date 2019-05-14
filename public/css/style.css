@@ -13,9 +13,9 @@ body {
 header {
     height: 120px;
     display: flex;
-    border-bottom: thick double #333;
+    border-bottom: 1px solid #333;
     background-color: #222;
-    box-shadow: 0 2px 8px black;
+    box-shadow: 0 2px 8px #111;
     flex-shrink: 0;
     align-items: center;
     z-index: 1;
@@ -38,7 +38,7 @@ header {
     }
 
     header > nav > div#home-btn {
-        border-left: thick double #333;
+        border-left: 1px solid #333;
     }
 
         header > nav > div.btn {
