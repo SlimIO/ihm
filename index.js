@@ -10,7 +10,7 @@ const polka = require("polka");
 const send = require("@polka/send-type");
 const sirv = require("sirv");
 const { yellow, red } = require("kleur");
-const { urlencoded } = require("body-parser");
+const { json } = require("body-parser");
 
 // Require Internal dependencies
 const { addonBuilder, alarmBuilder, entityBuilder } = require("./src/utils");
@@ -59,11 +59,8 @@ ihm.on("start", async() => {
 
     // Create POLKA server
     server
-        .use("css", sirv(join(__dirname, "public", "css")))
-        .use("font", sirv(join(__dirname, "public", "font")))
-        .use("img", sirv(join(__dirname, "public", "img")))
-        .use("js", sirv(join(__dirname, "public", "js")))
-        .use(urlencoded({ extended: false }))
+        .use(sirv(join(__dirname, "public")))
+        .use(json({ type: "application/json" }))
         .get("/", (req, res) => {
             send(res, 200, views, { "Content-Type": "text/html" });
         })
@@ -101,7 +98,8 @@ ihm.on("start", async() => {
             console.log(ret);
         })
         .post("/remove", async(req, res) => {
-            const ret = await ihm.sendOne(`events.remove_${req.body.type}`, [`2#${req.body.cid}`]);
+            // const ret = await ihm.sendOne(`events.remove_${req.body.type}`, [`2#${req.body.cid}`]);
+            console.log(req.body);
             send(res, 200);
         })
         .listen(PORT, () => {

@@ -6,8 +6,6 @@ window.addEventListener("DOMContentLoaded", function() {
     const LABELS = document.getElementsByClassName("labels");
     const ACTUALIZE_BUTT = document.getElementById("actualize");
     const ctxMenu = document.getElementById("ctx-menu");
-    const W_COLOR = "white";
-    const B_COLOR = "black";
 
     // Globals
     let intervID;
@@ -18,8 +16,7 @@ window.addEventListener("DOMContentLoaded", function() {
         const div = btn.style;
         btn.addEventListener("click", function() {
             initHead()
-            div.boxShadow = "0 0 10px inset #333";
-            div.color = W_COLOR;
+            btn.classList.add("click");
 
             if (btn.id === "home-btn") {
                 document.getElementById("alerts").style.display = "none";
@@ -39,12 +36,12 @@ window.addEventListener("DOMContentLoaded", function() {
         });
 
         btn.addEventListener("mouseover", function() {
-            div.color = W_COLOR;
+            btn.classList.add("mouse-over");
         })
 
         btn.addEventListener("mouseout", function() {
-            if (div.boxShadow === "") {
-                div.color = B_COLOR;
+            if (!btn.classList.contains("click")) {
+                btn.classList.remove("mouse-over")
             }
         });
 
@@ -127,9 +124,9 @@ window.addEventListener("DOMContentLoaded", function() {
                 const init = {
                     method: "POST",
                     headers: {
-                        'Content-Type':'application/x-www-form-urlencoded'
+                        "Content-Type": "application/json"
                     },
-                    body: `type=${typeToDel}&cid=${CID}`
+                    body: { type: typeToDel, cid: CID }
                 }
 
                 fetch("/remove", init).then(async() => {
@@ -154,10 +151,7 @@ window.addEventListener("DOMContentLoaded", function() {
             // Create a set of the UUID
             const targets = document.getElementsByClassName("infos");
             const details = document.getElementById("details");
-            const UUID_SET = new Set();
-            for (const elem of targets) {
-                UUID_SET.add(elem.id);
-            }
+            const UUID_SET = new Set([...targets].map((elem) => elem.id));
 
             // If new alarms
             for(const elem of elements) {
@@ -214,8 +208,7 @@ window.addEventListener("DOMContentLoaded", function() {
     // Init style header button
     function initHead () {
         for (const btn of HEAD_BUTT) {
-            btn.style.boxShadow = "";
-            btn.style.color = B_COLOR;
+            btn.classList.remove("click", "mouseover");
         }
     };
 

@@ -14,7 +14,7 @@ header {
     height: 120px;
     display: flex;
     border-bottom: thick double #333;
-    background-color: #555;
+    background-color: #222;
     box-shadow: 0 2px 8px black;
     flex-shrink: 0;
     align-items: center;
@@ -51,8 +51,24 @@ header {
             flex-direction: column;
             justify-content: center;
             cursor: pointer;
+            background-color: #222;
+            color: #777;
         }
 
+        /* JS CLASS */
+        header > nav > div.mouse-over {
+            color: #999;
+            background-color: #333;
+        }
+
+        header > nav > div.click {
+            box-shadow: 0 0 6px inset #111;
+            background-color: #333;
+            color: #999;
+        }
+
+
+        
             header > nav > div.btn p {
                 margin-top: 15px;
                 font-size: 14px;
@@ -61,10 +77,6 @@ header {
 
             header > nav > div.btn i {
                 font-size: 200%;
-            }
-
-            header > nav > div.btn:hover * {
-                color: white;
             }
 
 div#ctx-menu {
