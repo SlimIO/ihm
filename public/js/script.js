@@ -23,14 +23,14 @@ window.addEventListener("DOMContentLoaded", function() {
             btn.classList.add("click");
 
             if (btn.id === "home-btn") {
-                ALERTS.style.display = "none";
-                HOME.style.display = "flex";
+                ALERTS.classList.add("display-none");
+                HOME.classList.remove("display-none");
                 request("addons", "addons-list");
             }
 
             if (btn.id === "alerts-btn") {
-                HOME.style.display = "none";
-                ALERTS.style.display = "flex";
+                ALERTS.classList.remove("display-none");
+                HOME.classList.add("display-none");
                 ALARM.click();
             }
 

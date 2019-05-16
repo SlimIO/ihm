@@ -1,23 +1,23 @@
 /* HOME PAGE */
 
-div#home {
+div.home {
     display: flex;
     height: 100%;
     border-top: 1px solid #666;
 }
 
-    div#home > div#infos {
+    div.home > div#infos {
         width: 250px;
         height: 100%;
         background-color: #333;
     }
 
-    div#home > div#board {
+    div.home > div#board {
         flex-grow: 1;
         height: 100%;
     }
 
-        div#home > div#board > div.menu {
+        div.home > div#board > div.menu {
             display: flex;
             background-color: #444;
             height: 30px;
@@ -25,7 +25,7 @@ div#home {
             border-left: 1px solid #666
         }
 
-            div#home > div#board > div.menu .btn-board {
+            div.home > div#board > div.menu .btn-board {
                 border-right: 1px solid #666;
                 height: 100%;
                 width: 30px;
@@ -36,25 +36,25 @@ div#home {
                 color: #888
             }
 
-            div#home > div#board > div.menu .btn-board:hover {
+            div.home > div#board > div.menu .btn-board:hover {
                 color: #dfdfdf;
             }
 
-            div#home > div#board > div.menu .btn-board i {
+            div.home > div#board > div.menu .btn-board i {
                 font-size: 120%;
             }
 
-        div#home > div#board > div#label {
+        div.home > div#board > div#label {
             font-weight: bold;
             background-color: #333
         }
 
-            div#home > div#board > div#label li{
+            div.home > div#board > div#label li{
                 border-bottom: 1px solid #666;
                 color: #777;
             }
         
-        div#home > div#board > div#addons-list {
+        div.home > div#board > div#addons-list {
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -62,21 +62,21 @@ div#home {
         }
 
         
-            div#home > div#board > div#addons-list > ul.addons {
+            div.home > div#board > div#addons-list > ul.addons {
                 border: 0;
                 flex-basis: 25px;
             }
 
-            div#home > div#board > div#addons-list > ul.addons:hover {
+            div.home > div#board > div#addons-list > ul.addons:hover {
                 background-color: #444;
             }
 
-        div#home > div#board > div.hori-field ul {
+        div.home > div#board > div.hori-field ul {
             display: flex;
             justify-content: center;
         }
 
-        div#home > div#board > div.hori-field li {
+        div.home > div#board > div.hori-field li {
             border-bottom: 1px solid #999;
             border-left: 1px solid #999;
             padding: 10px 10px;
@@ -87,23 +87,23 @@ div#home {
             overflow: hidden;
         }
 
-            div#home > div#board > div.hori-field li.field1{
+            div.home > div#board > div.hori-field li.field1{
                 width:10%;
             }
 
-            div#home > div#board > div.hori-field li.field2{
+            div.home > div#board > div.hori-field li.field2{
                 width:5%;
                 justify-content: center;
             }
 
-            div#home > div#board > div.hori-field li.field3{
+            div.home > div#board > div.hori-field li.field3{
                 width:55%;
             }
 
-            div#home > div#board > div.hori-field li.field4{
+            div.home > div#board > div.hori-field li.field4{
                 width:15%;
             }
             
-            div#home > div#board > div.hori-field li.field5{
+            div.home > div#board > div.hori-field li.field5{
                 width:15%;
             }
