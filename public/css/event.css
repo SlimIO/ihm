@@ -1,11 +1,11 @@
 /* JS CLASS */
 
-header > nav > div.mouse-over {
+header > nav > div.h-mouse-over {
     color: #999;
     background-color: #333;
 }
 
-header > nav > div.click {
+header > nav > div.h-click {
     box-shadow: 0 0 6px inset #111;
     background-color: #333;
     color: #999;
@@ -20,3 +20,14 @@ header > nav > div.click {
     header > nav > div.btn i {
         font-size: 200%;
     }
+
+div#alerts > div.menu ul li.m-mouse-over {
+    color: #dfdfdf;
+    background-color: #555;
+}
+
+div#alerts > div.menu ul li.m-click {
+    color: #dfdfdf;
+    background-color: #666;
+    box-shadow: 0 0 8px inset #333;
+}

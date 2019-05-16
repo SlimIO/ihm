@@ -20,17 +20,17 @@ window.addEventListener("DOMContentLoaded", function() {
     for (const btn of HEAD_BUTT) {
         btn.addEventListener("click", function() {
             initHead()
-            btn.classList.add("click");
+            btn.classList.add("h-click");
 
             if (btn.id === "home-btn") {
-                ALERTS.classList.add("display-none");
-                HOME.classList.remove("display-none");
+                ALERTS.style.display = "none";
+                HOME.style.display = "flex";
                 request("addons", "addons-list");
             }
 
             if (btn.id === "alerts-btn") {
-                ALERTS.classList.remove("display-none");
-                HOME.classList.add("display-none");
+                HOME.style.display = "none";
+                ALERTS.style.display = "flex";
                 ALARM.click();
             }
 
@@ -40,12 +40,12 @@ window.addEventListener("DOMContentLoaded", function() {
         });
 
         btn.addEventListener("mouseover", function() {
-            btn.classList.add("mouse-over");
+            btn.classList.add("h-mouse-over");
         })
 
         btn.addEventListener("mouseout", function() {
-            if (!btn.classList.contains("click")) {
-                btn.classList.remove("mouse-over")
+            if (!btn.classList.contains("h-click")) {
+                btn.classList.remove("h-mouse-over")
             }
         });
 
@@ -53,13 +53,10 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Event menu buttons - page Alerts
     for (const btn of MENU_BUTT) {
-        const div = btn.style;
         btn.addEventListener("click", function() {
             // Button animation
             initMenu();
-            div.backgroundColor = "rgba(172, 189, 230, 1)";
-            div.fontWeight = "bold";
-            div.boxShadow = "0 0 5px inset #444";
+            btn.classList.add("m-click");
             // Display label;
             for (const label of LABELS) {
                 if (label.dataset.id === btn.id) {
@@ -86,16 +83,12 @@ window.addEventListener("DOMContentLoaded", function() {
         })
 
         btn.addEventListener("mouseover", function() {
-            if (div.boxShadow === "") {
-                div.fontWeight = "bold";
-                div.backgroundColor = "#777";
-            }
+            btn.classList.add("m-mouse-over");
         })
 
         btn.addEventListener("mouseout", function() {
-            if (div.boxShadow === "") {
-                div.fontWeight = "400";
-                div.backgroundColor = "#888";
+            if (!btn.classList.contains("m-click")) {
+                btn.classList.remove("m-mouse-over");
             }
         });
     }
@@ -198,16 +191,14 @@ window.addEventListener("DOMContentLoaded", function() {
     // Init style header button
     function initHead () {
         for (const btn of HEAD_BUTT) {
-            btn.classList.remove("click", "mouse-over");
+            btn.classList.remove("h-click", "h-mouse-over");
         }
     };
 
     // Init style menu button
     function initMenu() {
         for (const btn of MENU_BUTT) {
-            btn.style.boxShadow = "";
-            btn.style.backgroundColor = "#888";
-            btn.style.fontWeight = "400";
+            btn.classList.remove("m-click", "m-mouse-over");
         }
     };
 

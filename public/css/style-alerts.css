@@ -1,33 +1,33 @@
 /* ALERTS PAGE */
 
-div.alerts {
+div#alerts {
     display: flex;
     flex-direction: column;
 }
 
-    div.alerts > div.menu {
+    div#alerts > div.menu {
         display: flex;
-        background-color: #888;
-        height: 30px;
-        border-top: 1px solid #333;
-        border-bottom: 1px solid #333;
+        background-color: #444;
+        height: 40px;
+        border-bottom: 1px solid #666;
         flex-shrink: 0;
     }
 
-    div.alerts > div.menu ul {
+    div#alerts > div.menu ul {
         display: flex;
     }
 
-        div.alerts > div.menu ul li {
+        div#alerts > div.menu ul li {
             border-right: 1px solid #333;
             padding: 0 20px 0 20px;
+            color: #999;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
         }
 
-    div.alerts > div#details {
+    div#alerts > div#details {
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -35,26 +35,26 @@ div.alerts {
         scrollbar-width: 0;
     }
 
-        div.alerts > div#details::-webkit-scrollbar {
+        div#alerts > div#details::-webkit-scrollbar {
             width: 0
         }
 
-        div.alerts > div#details ul {
+        div#alerts > div#details ul {
             display: flex;
             border-bottom: 1px solid #666;
             flex-basis: 25px;
             width: 100%
         }
 
-        div.alerts > div#details ul.infos {
+        div#alerts > div#details ul.infos {
             cursor: pointer;
         }
 
-        div.alerts > div#details ul.infos:hover {
+        div#alerts > div#details ul.infos:hover {
             background-color: rgba(172, 189, 230, .3);
         }
 
-        div.alerts > div#details li {
+        div#alerts > div#details li {
             display: flex;
             padding: 10px 10px;
             font-size: 12px;
@@ -65,78 +65,79 @@ div.alerts {
             overflow-x: auto;
         }
 
-        div.alerts > div#details ul li:last-child {
+        div#alerts > div#details ul li:last-child {
             border-right: 0;
         }
 
-    div.alerts > div.labels {
+    div#alerts > div.labels {
         display: none;
         font-weight: bold;
-        background: linear-gradient(#acbde6, white);
+        background-color: #333;
     }
 
-        div.alerts > div.labels > ul {
+        div#alerts > div.labels > ul {
             display: flex;
             border-bottom: 1px solid #666;
             width: 100%;
         }
 
-            div.alerts > div.labels > ul > li {
+            div#alerts > div.labels > ul > li {
                 display: flex;
                 padding: 10px 10px;
                 font-size: 14px;
                 align-items: center;
                 white-space: nowrap;
                 overflow: hidden;
+                color: #777;
                 border-right: 1px solid #666
             }
 
-            div.alerts > div.labels > ul > li:last-child {
+            div#alerts > div.labels > ul > li:last-child {
                 border-right: 0;
             }
         
 
         /* ALARMS  */
 
-        div.alerts li.alarm1 {
+        div#alerts li.alarm1 {
             width: 3%;
             justify-content: center;
         }
 
-        div.alerts li.alarm2 {
+        div#alerts li.alarm2 {
             width: 17%;
         }
 
-        div.alerts li.alarm3 {
+        div#alerts li.alarm3 {
             width: 25%;
         }
 
-        div.alerts li.alarm4 {
+        div#alerts li.alarm4 {
             width: 6%;
             font-weight: bold;
             justify-content: center;
         }
 
-        div.alerts li.alarm5 {
+        div#alerts li.alarm5 {
             width: 11%;
             justify-content: center;
         }
 
-        div.alerts li.alarm6 {
+        div#alerts li.alarm6 {
             width: 11%;
             justify-content: center;
         }
 
-        div.alerts li.alarm7 {
+        div#alerts li.alarm7 {
             width: 10%;
             justify-content: center;
         }
 
-        div.alerts li.alarm8 {
+        div#alerts li.alarm8 {
             width: 12%;
         }
 
-        div.alerts li.alarm9 {
+        div#alerts li.alarm9 {
             width: 5%;
             justify-content: center;
             border-right: 0;
@@ -144,29 +145,29 @@ div.alerts {
 
         /* ENTITIES  */
 
-        div.alerts li.entities1 {
+        div#alerts li.entities1 {
             width: 5%;
             justify-content: center;
         }
 
-        div.alerts li.entities2 {
+        div#alerts li.entities2 {
             width: 20%;
         }
 
-        div.alerts li.entities3 {
+        div#alerts li.entities3 {
             width: 5%;
             justify-content: center;
         }
 
-        div.alerts li.entities4 {
+        div#alerts li.entities4 {
             width: 15%;
         }
 
-        div.alerts li.entities5 {
+        div#alerts li.entities5 {
             width: 40%;
         }
 
-        div.alerts li.entities6 {
+        div#alerts li.entities6 {
             width: 15%;
             border-right: 0;
         }
