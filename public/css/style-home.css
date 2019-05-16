@@ -15,7 +15,6 @@ div#home {
     div#home > div#board {
         flex-grow: 1;
         height: 100%;
-        border-left: 1px solid #444;
     }
 
         div#home > div#board > div.menu {
@@ -78,8 +77,8 @@ div#home {
         }
 
         div#home > div#board > div.hori-field li {
-            border-bottom: 1px solid #666;
-            border-left: 1px solid #666;
+            border-bottom: 1px solid #999;
+            border-left: 1px solid #999;
             padding: 10px 10px;
             font-size: 14px;
             display: flex;

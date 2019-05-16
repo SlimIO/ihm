@@ -42,10 +42,15 @@ ihm.on("awake", () => {
             correlateKey: "test_alarm_three",
             entity: entityTest
         });
-    }, 1000);
+    }, 10000);
     setTimeout(() => {
         new Alarm("hello world!", {
             correlateKey: "test_alarm_five",
+            entity: entityTest
+        });
+
+        new Alarm("hello world!", {
+            correlateKey: "test_alarm_six",
             entity: entityTest
         });
     }, 7000);
@@ -61,6 +66,11 @@ ihm.on("start", async() => {
     server
         .use(sirv(join(__dirname, "public")))
         .use(json({ type: "application/json" }))
+        .post("/remove", async(req, res) => {
+            await ihm.sendOne(`events.remove_${req.body.type}`, [`2#${req.body.cid}`]);
+
+            send(res, 200);
+        })
         .get("/", (req, res) => {
             send(res, 200, views, { "Content-Type": "text/html" });
         })
@@ -97,15 +107,10 @@ ihm.on("start", async() => {
             const ret = await ihm.sendOne("events.remove_alarm");
             console.log(ret);
         })
-        .post("/remove", async(req, res) => {
-            // const ret = await ihm.sendOne(`events.remove_${req.body.type}`, [`2#${req.body.cid}`]);
-            console.log(req.body);
-            send(res, 200);
-        })
         .listen(PORT, () => {
             console.log(`Connect to : ${yellow(`http://localhost:${PORT}`)}`);
         });
-    // Tell the core that your addon is ready!
+
     ihm.ready();
 });
 

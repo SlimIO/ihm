@@ -97,12 +97,12 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     // Event board buttons - page Home
-    ACTUALIZE_BUTT.addEventListener("click", function(e) {
+    ACTUALIZE_BUTT.addEventListener("click", function() {
         request("addons", "addons-list");
     })
 
     // Event context menu (remove alarms)
-    ctxMenu.addEventListener("mouseleave", function(e) {
+    ctxMenu.addEventListener("mouseleave", function() {
         const target = document.getElementById(ulID);
         this.style.display = "none";
         if (target) {
@@ -125,14 +125,13 @@ window.addEventListener("DOMContentLoaded", function() {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: { type: typeToDel, cid: CID }
+                    body: JSON.stringify({ type: typeToDel, cid: CID })
                 }
 
-                fetch("/remove", init).then(async() => {
+                fetch("/remove", init).then(function() {
                     // Id <ul> line --> remove <ul> local
-                    // document.getElementById("details").removeChild(ulToDel);
+                    document.getElementById("details").removeChild(ulToDel);
                     // Remove alarm in the server
-                    console.log("Element remove :)")
                 })
             }
         })
@@ -145,6 +144,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
     function execute(route) {
         fetch(`/${route}`).then(async(res) => {
+            if (res.status !== 200) {
+                throw new Error(`Connexion failed. ${res.status} : ${res.statusText}`)
+            }
             const elements = await res.json();
 
             // Create a set of the UUID
@@ -158,12 +160,12 @@ window.addEventListener("DOMContentLoaded", function() {
                     document.getElementById(elem.obj.uuid).innerHTML = elem.div;
                     continue;
                 }
-                del(details);
-                await request(route);
+                details.appendChild(htmlFragment([[elem]]));
+                console.log(elem);
             }
             
             return;
-        }).catch(function() {
+        }).catch(function(err) {
             clearInterval(intervID);
         });
     }
@@ -188,19 +190,7 @@ window.addEventListener("DOMContentLoaded", function() {
             return [await res.json(), route];
         }).then(function(body) {
             // Add elements
-            const setDiv = document.createDocumentFragment();
-            for (const elem of body[0]) {
-                const ul = document.createElement("ul");
-                ul.className = `infos ${body[1]}`;
-                ul.id = elem.obj.uuid;
-                ul.dataset.id = elem.obj.id;
-                ul.dataset.cid = elem.obj.correlate_key;
-                ul.innerHTML = elem.div;
-                ulEvent(ul);
-                setDiv.appendChild(ul);
-            }
-
-            target.appendChild(setDiv);
+            target.appendChild(htmlFragment(body));
         }).catch(console.error);
     };
 
@@ -225,6 +215,24 @@ window.addEventListener("DOMContentLoaded", function() {
         while (elem.firstChild) {
             elem.removeChild(elem.firstChild);
         }
+    }
+
+    // Create a fragment html
+    function htmlFragment(body) {
+        console.log(body);
+        const setDiv = document.createDocumentFragment();
+        for (const elem of body[0]) {
+            const ul = document.createElement("ul");
+            ul.className = `infos ${body[1]}`;
+            ul.id = elem.obj.uuid || elem.obj.name;
+            ul.dataset.id = elem.obj.id || elem.obj.uid;
+            ul.dataset.cid = elem.obj.correlate_key || "0";
+            ul.innerHTML = elem.div;
+            ulEvent(ul);
+            setDiv.appendChild(ul);
+        }
+
+        return setDiv;
     }
 
     // Function Event for tools <ul> alarm
