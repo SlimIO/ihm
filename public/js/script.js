@@ -5,7 +5,12 @@ window.addEventListener("DOMContentLoaded", function() {
     const MENU_BUTT = document.getElementsByClassName("btn-menu");
     const LABELS = document.getElementsByClassName("labels");
     const ACTUALIZE_BUTT = document.getElementById("actualize");
-    const ctxMenu = document.getElementById("ctx-menu");
+    const CTX_MENU = document.getElementById("ctx-menu");
+    const ALERTS = document.getElementById("alerts");
+    const HOME = document.getElementById("home");
+    const ALARM = document.getElementById("alarm");
+    const DETAILS = document.getElementById("details");
+    const INFOS = document.getElementsByClassName("infos");
 
     // Globals
     let intervID;
@@ -18,15 +23,15 @@ window.addEventListener("DOMContentLoaded", function() {
             btn.classList.add("click");
 
             if (btn.id === "home-btn") {
-                document.getElementById("alerts").style.display = "none";
-                document.getElementById("home").style.display = "flex";
+                ALERTS.style.display = "none";
+                HOME.style.display = "flex";
                 request("addons", "addons-list");
             }
 
             if (btn.id === "alerts-btn") {
-                document.getElementById("home").style.display = "none";
-                document.getElementById("alerts").style.display = "flex";
-                document.getElementById("alarm").click();
+                HOME.style.display = "none";
+                ALERTS.style.display = "flex";
+                ALARM.click();
             }
 
             if (btn.id === "test") {
@@ -49,7 +54,6 @@ window.addEventListener("DOMContentLoaded", function() {
     // Event menu buttons - page Alerts
     for (const btn of MENU_BUTT) {
         const div = btn.style;
-        const details = document.getElementById("details");
         btn.addEventListener("click", function() {
             // Button animation
             initMenu();
@@ -64,8 +68,8 @@ window.addEventListener("DOMContentLoaded", function() {
                 }
                 label.style.display = "none";
             }
-            // Delete #details children
-            del(details);
+            // Delete #DETAILS children
+            del(DETAILS);
             // Import alarms
             if (btn.id === "alarm") {
                 request(btn.id);
@@ -102,14 +106,14 @@ window.addEventListener("DOMContentLoaded", function() {
     })
 
     // Event context menu (remove alarms)
-    ctxMenu.addEventListener("mouseleave", function() {
+    CTX_MENU.addEventListener("mouseleave", function() {
         const target = document.getElementById(ulID);
         this.style.display = "none";
         if (target) {
             document.getElementById(ulID).style.backgroundColor = "";
         }
     })
-    for (const child of ctxMenu.children) {
+    for (const child of CTX_MENU.children) {
         child.addEventListener("click", function() {
             // Hide context menu
             this.parentNode.style.display = "none";
@@ -130,7 +134,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
                 fetch("/remove", init).then(function() {
                     // Id <ul> line --> remove <ul> local
-                    document.getElementById("details").removeChild(ulToDel);
+                    DETAILS.removeChild(ulToDel);
                     // Remove alarm in the server
                 })
             }
@@ -139,7 +143,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Request http in loop
     function reqLoop(route) {
-        intervID = setInterval(execute, 500, route);
+        intervID = setInterval(execute, 1000, route);
     }
 
     function execute(route) {
@@ -150,9 +154,7 @@ window.addEventListener("DOMContentLoaded", function() {
             const elements = await res.json();
 
             // Create a set of the UUID
-            const targets = document.getElementsByClassName("infos");
-            const details = document.getElementById("details");
-            const UUID_SET = new Set([...targets].map((elem) => elem.id));
+            const UUID_SET = new Set([...INFOS].map((elem) => elem.id));
 
             // If new alarms
             for(const elem of elements) {
@@ -160,8 +162,7 @@ window.addEventListener("DOMContentLoaded", function() {
                     document.getElementById(elem.obj.uuid).innerHTML = elem.div;
                     continue;
                 }
-                details.appendChild(htmlFragment([[elem]]));
-                console.log(elem);
+                DETAILS.appendChild(htmlFragment([[elem]]));
             }
             
             return;
@@ -219,7 +220,6 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // Create a fragment html
     function htmlFragment(body) {
-        console.log(body);
         const setDiv = document.createDocumentFragment();
         for (const elem of body[0]) {
             const ul = document.createElement("ul");
@@ -241,11 +241,11 @@ window.addEventListener("DOMContentLoaded", function() {
             const { clientX, clientY } = e;
             ulID = target.id;
             target.style.backgroundColor = "rgba(172, 189, 230, .3)";
-            ctxMenu.style.display = "flex";
-            ctxMenu.style.left = `${clientX - 10}px`;
-            ctxMenu.style.top = `${clientY - 10}px`;
-            ctxMenu.children[0].innerHTML = `ID N° ${target.dataset.id}`;
-            ctxMenu.children[1].dataset.id = target.id;
+            CTX_MENU.style.display = "flex";
+            CTX_MENU.style.left = `${clientX - 10}px`;
+            CTX_MENU.style.top = `${clientY - 10}px`;
+            CTX_MENU.children[0].innerHTML = `ID N° ${target.dataset.id}`;
+            CTX_MENU.children[1].dataset.id = target.id;
         })
     }
 
