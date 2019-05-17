@@ -9,9 +9,6 @@ const send = require("@polka/send-type");
 const sirv = require("sirv");
 const { json } = require("body-parser");
 
-// Require Internal dependencies
-const { addonBuilder, alarmBuilder, entityBuilder } = require("./utils");
-
 // Constants
 const VIEWS_DIR = join(__dirname, "..", "views");
 
@@ -54,12 +51,12 @@ function exportServer(ihm) {
         })
         .get("/alarm", async(req, res) => {
             /** @type {Object[]} */
-            const alarms = alarmBuilder(await ihm.sendOne("events.get_alarms"));
+            const alarms = await ihm.sendOne("events.get_alarms");
 
             send(res, 200, alarms);
         })
         .get("/entities", async(req, res) => {
-            const entities = entityBuilder(await ihm.sendOne("events.search_entities"));
+            const entities = await ihm.sendOne("events.search_entities");
 
             send(res, 200, entities);
         })

@@ -4,13 +4,14 @@ window.addEventListener("DOMContentLoaded", function() {
     const HEAD_BUTT = document.getElementsByClassName("btn");
     const MENU_BUTT = document.getElementsByClassName("btn-menu");
     const LABELS = document.getElementsByClassName("labels");
+    const INFOS = document.getElementsByClassName("infos");
     const ACTUALIZE_BUTT = document.getElementById("actualize");
     const CTX_MENU = document.getElementById("ctx-menu");
     const ALERTS = document.getElementById("alerts");
     const HOME = document.getElementById("home");
     const ALARM = document.getElementById("alarm");
     const DETAILS = document.getElementById("details");
-    const INFOS = document.getElementsByClassName("infos");
+    const ADDN_LIST = document.getElementById("addons-list")
 
     // Globals
     let intervID;
@@ -19,13 +20,13 @@ window.addEventListener("DOMContentLoaded", function() {
     // Event header buttons
     for (const btn of HEAD_BUTT) {
         btn.addEventListener("click", function() {
-            initHead()
+            initElem("h")
             btn.classList.add("h-click");
 
             if (btn.id === "home-btn") {
                 ALERTS.style.display = "none";
                 HOME.style.display = "flex";
-                request("addons", "addons-list");
+                getInfos("addons");
             }
 
             if (btn.id === "alerts-btn") {
@@ -55,7 +56,7 @@ window.addEventListener("DOMContentLoaded", function() {
     for (const btn of MENU_BUTT) {
         btn.addEventListener("click", function() {
             // Button animation
-            initMenu();
+            initElem("m");
             btn.classList.add("m-click");
             // Display label;
             for (const label of LABELS) {
@@ -164,34 +165,104 @@ window.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    function request(route, id = "details") {
-        const target = document.getElementById(id);
-        // Request for build div
-        fetch(`/${route}`).then(async(res) => {
-            if (route === "addons") {
-                for (let i = 0; i < target.children.length; i++) {
-                    target.removeChild(target.children[i]);
-                    i--;
-                }
+    // Request for all infos type (addon, alarms etc..)
+    function getInfos(nameElem, target) {
+        fetch(`/${nameElem}`).then(async(body) => {
+            // Array addon's infos
+            const nameElemInfos = await body.json();
+            // Create fragment
+            const setUl = document.createDocumentFragment();
+            // Del all elements html in addon-list
+            del(target);
+            // Create all elements
+            for (const info of nameElemInfos) {
+                // Add ul to the fragment
+                setUl.appendChild(createUl(nameElem, info));
             }
-            return [await res.json(), route];
-        }).then(function(body) {
-            // Add elements
-            target.appendChild(htmlFragment(body));
-        }).catch(console.error);
-    };
+
+            ADDN_LIST.appendChild(setUl);
+        });
+    }
+
+    function createUl(nameElem, info) {
+        // Create ul element
+        const ul = document.createElement("ul");
+        // Switch on nameElem (addon, alarm etc..)
+        switch (nameElem) {
+            case "addons":
+                        // First case to Upper
+                const name = `${info.name.substring(0, 1).toUpperCase()}${info.name.substring(1)}`;
+                // If description field is null
+                if (!info.description) {
+                    info.description = "";
+                }
+                ul.className = "infos addons";
+                ul.id = info.name;
+                ul.dataset.id = info.uid;
+                ul.innerHTML = [
+                    `<li class="field1">${name}</li>`,
+                    `<li class="field2" style="${state(info, "style")}" title="${state(info, "title")}">${state(info, "state")}</li>`,
+                    `<li class="field3">${info.description}</li>`,
+                    `<li class="field4">${info.version}</li>`,
+                    `<li class="field5">${info.containerVersion}</li>`
+                ].join("")
+                break;
+            case "alarms":
+            
+            break;
+            case "entities":
+                
+            break;
+        
+            default:
+                break;
+        }
+
+        return ul;
+    }
+
+    // Create state addon for getAddons function
+    function state(info, type) {
+        let str = "";
+    
+        switch (type) {
+            case "title":
+                str = `Started = ${info.started}, Ready = ${info.ready}`;
+                break;
+    
+            case "state":
+                if (info.ready && info.started) {
+                    str = "<i class=\"icon-ok\"></i>";
+                }
+                if (!info.ready && info.started) {
+                    str = "<i class=\"icon-attention\"></i>";
+                }
+                if (!info.started) {
+                    str = "<i class=\"icon-cancel\"></i>";
+                }
+                break;
+            case "style":
+                if (info.ready && info.started) {
+                    str = "color:green";
+                }
+                if (!info.ready && info.started) {
+                    str = "color:orange";
+                }
+                if (!info.started) {
+                    str = "color:red";
+                }
+                break;
+            default:
+                break;
+        }
+    
+        return str;
+    }
 
     // Init style header button
-    function initHead () {
+    function initElem (elem) {
         for (const btn of HEAD_BUTT) {
-            btn.classList.remove("h-click", "h-mouse-over");
-        }
-    };
-
-    // Init style menu button
-    function initMenu() {
-        for (const btn of MENU_BUTT) {
-            btn.classList.remove("m-click", "m-mouse-over");
+            btn.classList.remove(`${elem}-click`, `${elem}-mouse-over`);
         }
     };
 
@@ -202,39 +273,10 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Build addon elements
-    function addonBuilder(infos) {
-        const ret = [];
-    
-        // Loop on all objects
-        for (const info of infos) {
-            // First case to Upper
-            const name = `${info.name.substring(0, 1).toUpperCase()}${info.name.substring(1)}`;
-            // If description field is null
-            if (!info.description) {
-                info.description = "";
-            }
-    
-            ret.push({
-                obj: info,
-                name: info.name,
-                div: [
-                    `<li class="field1">${name}</li>`,
-                    `<li class="field2" style="${state(info, "style")}" title="${state(info, "title")}">${state(info, "state")}</li>`,
-                    `<li class="field3">${info.description}</li>`,
-                    `<li class="field4">${info.version}</li>`,
-                    `<li class="field5">${info.containerVersion}</li>`
-                ].join("")
-            });
-        }
-    
-        return ret;
-    }
-
     // Create a fragment html
     function htmlFragment(body) {
         const setDiv = document.createDocumentFragment();
-        for (const elem of body[0]) {
+        for (const elem of body) {
             const ul = document.createElement("ul");
             ul.className = `infos ${body[1]}`;
             ul.id = elem.obj.uuid || elem.obj.name;

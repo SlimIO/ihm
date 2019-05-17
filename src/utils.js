@@ -107,48 +107,5 @@ function entityBuilder(infos) {
     return ret;
 }
 
-/**
- * @function state
- * @description Return a color, red or green
- * @param {Object} info A boolean
- * @param {String} type A boolean
- * @returns {String}
- */
-function state(info, type) {
-    let str = "";
-
-    switch (type) {
-        case "title":
-            str = `Started = ${info.started}, Ready = ${info.ready}`;
-            break;
-
-        case "state":
-            if (info.ready && info.started) {
-                str = "<i class=\"icon-ok\"></i>";
-            }
-            if (!info.ready && info.started) {
-                str = "<i class=\"icon-attention\"></i>";
-            }
-            if (!info.started) {
-                str = "<i class=\"icon-cancel\"></i>";
-            }
-            break;
-        case "style":
-            if (info.ready && info.started) {
-                str = "color:green";
-            }
-            if (!info.ready && info.started) {
-                str = "color:orange";
-            }
-            if (!info.started) {
-                str = "color:red";
-            }
-            break;
-        default:
-            break;
-    }
-
-    return str;
-}
 
 module.exports = { addonBuilder, alarmBuilder, entityBuilder };
