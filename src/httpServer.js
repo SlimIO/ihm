@@ -48,8 +48,7 @@ function exportServer(ihm) {
                 }
                 _p.push(ihm.sendOne(`${addon}.get_info`));
             }
-            const div = await Promise.all(_p);
-            const ret = addonBuilder(div);
+            const ret = await Promise.all(_p);
             // Send
             send(res, 200, ret);
         })

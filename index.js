@@ -4,7 +4,6 @@ const alert = require("@slimio/alert");
 const metrics = require("@slimio/metrics");
 const { yellow, red } = require("kleur");
 
-
 // Globlas
 let intervalId;
 
@@ -21,6 +20,7 @@ const { Alarm } = alert(ihm);
 const entityTest = new Entity("entityTest", {
     description: "Hello world!"
 });
+
 ihm.on("awake", () => {
     intervalId = setInterval(() => {
         new Alarm("hello world!", {
@@ -53,6 +53,7 @@ ihm.on("start", async() => {
     ihm.ready();
 });
 
+// Catch stop event
 ihm.on("stop", async() => {
     server.server.close();
     clearInterval(intervalId);
