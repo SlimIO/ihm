@@ -41,7 +41,7 @@ div#alerts {
 
         div#alerts > div#details ul {
             display: flex;
-            border-bottom: 1px solid #666;
+            border-bottom: 1px solid #999;
             flex-basis: 25px;
             width: 100%
         }
@@ -51,7 +51,8 @@ div#alerts {
         }
 
         div#alerts > div#details ul.infos:hover {
-            background-color: rgba(172, 189, 230, .3);
+            background-color: #333;
+            color: wheat
         }
 
         div#alerts > div#details li {
@@ -61,7 +62,7 @@ div#alerts {
             align-items: center;
             white-space: nowrap;
             overflow: hidden;
-            border-right: 1px solid #666;
+            border-right: 1px solid #999;
             overflow-x: auto;
         }
 

@@ -1,32 +1,22 @@
 /* JS CLASS */
 
-header > nav > div.h-mouse-over {
+.h-mouse-over {
     color: #999;
-    background-color: #333;
+    background-color: #555;
 }
 
-header > nav > div.h-click {
+.h-click {
     box-shadow: 0 0 6px inset #111;
     background-color: #333;
     color: #999;
 }
 
-    header > nav > div.btn p {
-        margin-top: 15px;
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    header > nav > div.btn i {
-        font-size: 200%;
-    }
-
-div#alerts > div.menu ul li.m-mouse-over {
+.m-mouse-over {
     color: #dfdfdf;
     background-color: #555;
 }
 
-div#alerts > div.menu ul li.m-click {
+.m-click {
     color: #dfdfdf;
     background-color: #666;
     box-shadow: 0 0 8px inset #333;
