@@ -1,38 +1,4 @@
 /**
- * @function addonBuilder
- * @desc Return a div for html file
- * @param {Object[]} infos addons infos
- * @returns {Object[]}
- */
-function addonBuilder(infos) {
-    const ret = [];
-
-    // Loop on all objects
-    for (const info of infos) {
-        // First case to Upper
-        const name = `${info.name.substring(0, 1).toUpperCase()}${info.name.substring(1)}`;
-        // If description field is null
-        if (!info.description) {
-            info.description = "";
-        }
-
-        ret.push({
-            obj: info,
-            name: info.name,
-            div: [
-                `<li class="field1">${name}</li>`,
-                `<li class="field2" style="${state(info, "style")}" title="${state(info, "title")}">${state(info, "state")}</li>`,
-                `<li class="field3">${info.description}</li>`,
-                `<li class="field4">${info.version}</li>`,
-                `<li class="field5">${info.containerVersion}</li>`
-            ].join("")
-        });
-    }
-
-    return ret;
-}
-
-/**
  * @function alarmBuilder
  * @desc Return a div for html file
  * @param {Object[]} infos addons infos

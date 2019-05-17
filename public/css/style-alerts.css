@@ -41,29 +41,34 @@ div#alerts {
 
         div#alerts > div#details ul {
             display: flex;
-            border-bottom: 1px solid #999;
             flex-basis: 25px;
             width: 100%
         }
 
         div#alerts > div#details ul.infos {
             cursor: pointer;
+            border-bottom: 1px solid #f6f1e8;
         }
 
         div#alerts > div#details ul.infos:hover {
             background-color: #555;
+            border-bottom: 1px solid #999;
             color: wheat
         }
 
-        div#alerts > div#details li {
+        div#alerts > div#details ul.infos li {
             display: flex;
             padding: 10px 10px;
             font-size: 12px;
             align-items: center;
             white-space: nowrap;
             overflow: hidden;
-            border-right: 1px solid #999;
+            border-right: 1px solid #f6f1e8;
             overflow-x: auto;
+        }
+
+        div#alerts > div#details ul.infos li:hover {
+            border-right: 1px solid #999;
         }
 
         div#alerts > div#details ul li:last-child {
@@ -89,7 +94,7 @@ div#alerts {
                 align-items: center;
                 white-space: nowrap;
                 overflow: hidden;
-                color: #777;
+                color: #999;
                 border-right: 1px solid #666
             }
 

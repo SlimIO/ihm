@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color:#f5e9d3;
+    background-color:#f6f1e8;
 }
 
 header {
@@ -70,10 +70,9 @@ div#ctx-menu {
     position: absolute;
     display: none;
     flex-direction: column;
-    width: 90px;
-    left: 0;
-    top: 0;
-    border-radius: 4px;
+    width: 120px;
+    left: 500px;
+    top: 500px;
     background-color: #eee;
     cursor: pointer;
     font-size: 12px;
@@ -86,12 +85,11 @@ div#ctx-menu {
         background-color: #222;
         font-weight: 500;
         color: #eee;
+        text-align: center;
     } 
 
     div#ctx-menu p {
         padding: 5px 10px;
-        border-bottom: 1px solid #999;
-        text-align: center;
     }
 
     div#ctx-menu p:hover:not(:first-child) {
