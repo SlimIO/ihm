@@ -72,14 +72,14 @@ window.addEventListener("DOMContentLoaded", function() {
             if (btn.id === "alarm") {
                 request(btn.id);
                 // clearInterval(intervID);
-                reqLoop(btn.id);
+                // reqLoop(btn.id);
             }
 
             // Import entities
             if (btn.id === "entities") {
                 request(btn.id);
                 clearInterval(intervID);
-                reqLoop(btn.id);
+                // reqLoop(btn.id);
             }
         })
 
@@ -168,6 +168,9 @@ window.addEventListener("DOMContentLoaded", function() {
     // Request for all infos type (addon, alarms etc..)
     function getInfos(nameElem, target) {
         fetch(`/${nameElem}`).then(async(body) => {
+            if (body.length === 0) {
+                // PLOUF
+            }
             // Array addon's infos
             const nameElemInfos = await body.json();
             // Create fragment
@@ -181,22 +184,25 @@ window.addEventListener("DOMContentLoaded", function() {
             }
 
             ADDN_LIST.appendChild(setUl);
-        });
+        }).catch(() => {
+            // PLOUF
+        })
     }
 
     function createUl(nameElem, info) {
         // Create ul element
         const ul = document.createElement("ul");
+        ul.className = "infos"
         // Switch on nameElem (addon, alarm etc..)
         switch (nameElem) {
-            case "addons":
-                        // First case to Upper
+            case "addons": {
+                // First case to Upper
                 const name = `${info.name.substring(0, 1).toUpperCase()}${info.name.substring(1)}`;
                 // If description field is null
                 if (!info.description) {
                     info.description = "";
                 }
-                ul.className = "infos addons";
+                ul.classList.add("addons");
                 ul.id = info.name;
                 ul.dataset.id = info.uid;
                 ul.innerHTML = [
@@ -207,8 +213,34 @@ window.addEventListener("DOMContentLoaded", function() {
                     `<li class="field5">${info.containerVersion}</li>`
                 ].join("")
                 break;
-            case "alarms":
-            
+            }
+            case "alarms": {
+                const idx = {
+                    0: "Critical",
+                    1: "Major",
+                    2: "Minor"
+                };
+                const color = {
+                    0: "red",
+                    1: "orange",
+                    2: "green"
+                };
+                ul.id = info.uuid;
+                ul.dataset.id = info.id;
+                ul.dataset.cid = info.correlate_key;
+                ul.innerHTML = [
+                    `<li class="alarm1">${info.id}</li>`,
+                    `<li class="alarm2">${info.uuid}</li>`,
+                    `<li class="alarm3">${info.message}</li>`,
+                    `<li class="alarm4" style="color:${color[info.severity]}">${idx[info.severity]}</li>`,
+                    `<li class="alarm5">${info.createdAt}</li>`,
+                    `<li class="alarm6">${info.updateAt}</li>`,
+                    `<li class="alarm7">${info.occurence}</li>`,
+                    `<li class="alarm8">${info.correlate_key}</li>`,
+                    `<li class="alarm9">${info.entity_id}</li>`
+                ].join("");
+                ulEvent(ul);
+            }
             break;
             case "entities":
                 
@@ -271,23 +303,6 @@ window.addEventListener("DOMContentLoaded", function() {
         while (elem.firstChild) {
             elem.removeChild(elem.firstChild);
         }
-    }
-
-    // Create a fragment html
-    function htmlFragment(body) {
-        const setDiv = document.createDocumentFragment();
-        for (const elem of body) {
-            const ul = document.createElement("ul");
-            ul.className = `infos ${body[1]}`;
-            ul.id = elem.obj.uuid || elem.obj.name;
-            ul.dataset.id = elem.obj.id || elem.obj.uid;
-            ul.dataset.cid = elem.obj.correlate_key || "0";
-            ul.innerHTML = elem.div;
-            ulEvent(ul);
-            setDiv.appendChild(ul);
-        }
-
-        return setDiv;
     }
 
     // Function Event for tools <ul> alarm
