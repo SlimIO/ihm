@@ -1,15 +1,9 @@
-// Required Node.js dependencies
-const { join } = require("path");
-
 // Required Third-Party dependencies
 const Addon = require("@slimio/addon");
 const alert = require("@slimio/alert");
 const metrics = require("@slimio/metrics");
 const { yellow, red } = require("kleur");
 
-// Constants
-const PORT = process.env.PORT || 8000;
-const server = require("./src/httpServer");
 
 // Globlas
 let intervalId;
@@ -17,6 +11,10 @@ let intervalId;
 // Create addon
 const ihm = new Addon("ihm");
 const { Entity } = metrics(ihm);
+
+// Constants
+const PORT = process.env.PORT || 8000;
+const server = require("./src/httpServer")(ihm);
 
 // Create Alarms & entity
 const { Alarm } = alert(ihm);
