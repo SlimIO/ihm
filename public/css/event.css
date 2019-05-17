@@ -11,13 +11,13 @@ header > nav > div.header-click {
     color: wheat;
 }
 
-.menu-mouse-over {
+div#alerts > div.menu ul li.menu-mouse-over {
     color: #dfdfdf;
     background-color: #555;
 }
 
-.menu-click {
-    color: #dfdfdf;
+div#alerts > div.menu ul li.menu-click {
+    color: wheat;
     background-color: #666;
     box-shadow: 0 0 8px inset #333;
 }

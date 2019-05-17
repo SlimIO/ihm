@@ -74,8 +74,8 @@ div#home {
 
             
             div#home > div#board > div#addons-list > ul.addons li {
-                border-bottom: 1px solid #f6efe1;
-                border-left: 1px solid #f6efe1;
+                border-bottom: 1px solid #f6f1e8;
+                border-left: 1px solid #f6f1e8;
             }
 
             div#home > div#board > div#addons-list > ul.addons:hover li {
