@@ -51,7 +51,7 @@ div#home {
 
             div#home > div#board > div#label li{
                 border-bottom: 1px solid #666;
-                color: #777;
+                color: #999;
             }
         
         div#home > div#board > div#addons-list {
@@ -72,14 +72,25 @@ div#home {
                 color: wheat;
             }
 
+            
+            div#home > div#board > div#addons-list > ul.addons li {
+                border-bottom: 1px solid #f5e9d3;
+                border-left: 1px solid #f5e9d3;
+            }
+
+            div#home > div#board > div#addons-list > ul.addons:hover li {
+                border-bottom: 1px solid #999;
+                border-left: 1px solid #999;
+            }
+
         div#home > div#board > div.hori-field ul {
             display: flex;
             justify-content: center;
         }
 
         div#home > div#board > div.hori-field li {
-            border-bottom: 1px solid #999;
-            border-left: 1px solid #999;
+            border-bottom: 1px solid #666;
+            border-left: 1px solid #666;
             padding: 10px 10px;
             font-size: 14px;
             display: flex;
