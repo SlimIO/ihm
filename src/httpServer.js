@@ -3,7 +3,6 @@ const { join } = require("path");
 const { readFile } = require("fs").promises;
 
 // Require Third-Party dependencies
-const Addon = require("@slimio/addon");
 const polka = require("polka");
 const send = require("@polka/send-type");
 const sirv = require("sirv");

@@ -20,13 +20,13 @@ window.addEventListener("DOMContentLoaded", function() {
     // Event header buttons
     for (const btn of HEAD_BUTT) {
         btn.addEventListener("click", function() {
-            initElem("h")
-            btn.classList.add("h-click");
+            initElem("header", HEAD_BUTT)
+            btn.classList.add("header-click");
 
             if (btn.id === "home-btn") {
                 ALERTS.style.display = "none";
                 HOME.style.display = "flex";
-                getInfos("addons");
+                getInfos("addons", ADDN_LIST);
             }
 
             if (btn.id === "alerts-btn") {
@@ -41,12 +41,12 @@ window.addEventListener("DOMContentLoaded", function() {
         });
 
         btn.addEventListener("mouseover", function() {
-            btn.classList.add("h-mouse-over");
+            btn.classList.add("header-mouse-over");
         })
 
         btn.addEventListener("mouseout", function() {
-            if (!btn.classList.contains("h-click")) {
-                btn.classList.remove("h-mouse-over")
+            if (!btn.classList.contains("header-click")) {
+                btn.classList.remove("header-mouse-over")
             }
         });
 
@@ -56,8 +56,8 @@ window.addEventListener("DOMContentLoaded", function() {
     for (const btn of MENU_BUTT) {
         btn.addEventListener("click", function() {
             // Button animation
-            initElem("m");
-            btn.classList.add("m-click");
+            initElem("menu", MENU_BUTT);
+            btn.classList.add("menu-click");
             // Display label;
             for (const label of LABELS) {
                 if (label.dataset.id === btn.id) {
@@ -66,11 +66,9 @@ window.addEventListener("DOMContentLoaded", function() {
                 }
                 label.style.display = "none";
             }
-            // Delete #DETAILS children
-            del(DETAILS);
             // Import alarms
             if (btn.id === "alarm") {
-                request(btn.id);
+                getInfos("alarms", DETAILS);
                 // clearInterval(intervID);
                 // reqLoop(btn.id);
             }
@@ -84,12 +82,12 @@ window.addEventListener("DOMContentLoaded", function() {
         })
 
         btn.addEventListener("mouseover", function() {
-            btn.classList.add("m-mouse-over");
+            btn.classList.add("menu-mouse-over");
         })
 
         btn.addEventListener("mouseout", function() {
-            if (!btn.classList.contains("m-click")) {
-                btn.classList.remove("m-mouse-over");
+            if (!btn.classList.contains("menu-click")) {
+                btn.classList.remove("menu-mouse-over");
             }
         });
     }
@@ -292,8 +290,8 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     // Init style header button
-    function initElem (elem) {
-        for (const btn of HEAD_BUTT) {
+    function initElem (elem, target) {
+        for (const btn of target) {
             btn.classList.remove(`${elem}-click`, `${elem}-mouse-over`);
         }
     };
