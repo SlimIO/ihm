@@ -181,7 +181,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 setUl.appendChild(createUl(nameElem, info));
             }
 
-            ADDN_LIST.appendChild(setUl);
+            target.appendChild(setUl);
         }).catch(() => {
             // PLOUF
         })
@@ -308,7 +308,7 @@ window.addEventListener("DOMContentLoaded", function() {
         target.addEventListener("contextmenu", function(e) {
             const { clientX, clientY } = e;
             ulID = target.id;
-            target.style.backgroundColor = "rgba(172, 189, 230, .3)";
+            target.style.backgroundColor = "#555";
             CTX_MENU.style.display = "flex";
             CTX_MENU.style.left = `${clientX - 10}px`;
             CTX_MENU.style.top = `${clientY - 10}px`;

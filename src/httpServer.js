@@ -48,7 +48,7 @@ function exportServer(ihm) {
             // Send
             send(res, 200, ret);
         })
-        .get("/alarm", async(req, res) => {
+        .get("/alarms", async(req, res) => {
             /** @type {Object[]} */
             const alarms = await ihm.sendOne("events.get_alarms");
 

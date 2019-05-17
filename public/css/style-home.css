@@ -68,8 +68,8 @@ div#home {
             }
 
             div#home > div#board > div#addons-list > ul.addons:hover {
-                background-color: #444;
-                /* color: wheat; */
+                background-color: #555;
+                color: wheat;
             }
 
         div#home > div#board > div.hori-field ul {
