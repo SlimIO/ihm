@@ -1,13 +1,13 @@
 // Required Third-Party Dependencies
 const Addon = require("@slimio/addon");
 
-// Require Internal Dependencies
-const httpServer = require("./src/httpServer")(ihm);
-
 // Create addon
 const ihm = new Addon("ihm")
     .lockOn("gate")
     .lockOn("events");
+
+// Require Internal Dependencies
+const httpServer = require("./src/httpServer")(ihm);
 
 // CONSTANTS
 const PORT = process.env.PORT || 8000;

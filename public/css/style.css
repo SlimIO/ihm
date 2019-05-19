@@ -58,6 +58,7 @@ body > section {
         flex-direction: column;
         padding: 10px 0;
         align-items: center;
+        transition: all 0.2s linear;
     }
 
     body > section > nav.open {
@@ -86,14 +87,17 @@ nav > hr {
     border: none;
 }
 
+nav.open > hr {
+    width: 90%;
+}
+
 nav:not(.open) > .menu {
     width: 35px;
     justify-content: center;
 }
 
 nav.open > .menu {
-    width: 90%;
-    border-radius: 40px;
+    width: 85%;
     padding: 0 10px;
 }
 
@@ -105,21 +109,19 @@ nav > .menu {
     cursor: pointer;
     border-radius: 3px;
     box-sizing: border-box;
+    transition: all 0.2s linear;
 }
     nav:not(.open) > .menu > p {
         display: none;
     }
     nav > .menu.active {
-        background: rgb(96,108,136);
-        background: -moz-radial-gradient(center, ellipse cover,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%);
-        background: -webkit-radial-gradient(center, ellipse cover,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
-        background: radial-gradient(ellipse at center,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=1 );
+        background: #FFF;
+        color: #212121;
     }
     nav > .menu + .menu {
         margin-top: 10px;
     }
-    nav > .menu:not(.active):hover {
+    nav > .menu:not(.disable):not(.active):hover {
         background: #ECEFF1;
         color: #37474F;
     }
