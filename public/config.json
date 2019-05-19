@@ -7,64 +7,40 @@
   "ascent": 850,
   "glyphs": [
     {
-      "uid": "f08ba9f0e8f9b426a92efcaa59c1e932",
-      "css": "reddit-alien",
-      "code": 62081,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "513ac180ff85bd275f2b736720cbbf5e",
-      "css": "home",
-      "code": 59392,
-      "src": "entypo"
-    },
-    {
-      "uid": "2c5335c6e56b876139d7a58ab2f4b2fe",
-      "css": "bell",
-      "code": 59393,
-      "src": "entypo"
-    },
-    {
-      "uid": "5211af474d3a9848f67f945e2ccaf143",
-      "css": "cancel",
-      "code": 59395,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "465bb89b6f204234e5787c326b4ae54c",
-      "css": "ccw",
+      "uid": "7222571caa5c15f83dcfd447c58d68d9",
+      "css": "search",
       "code": 59396,
       "src": "entypo"
     },
     {
-      "uid": "c76b7947c957c9b78b11741173c8349b",
-      "css": "attention",
-      "code": 59397,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "12f4ece88e46abd864e40b35e05b11cd",
-      "css": "ok",
-      "code": 59394,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "599d6c088f4a1c64611b989459d65f6b",
-      "css": "lightbulb",
-      "code": 59398,
-      "src": "elusive"
-    },
-    {
-      "uid": "c8585e1e5b0467f28b70bce765d5840c",
-      "css": "docs",
-      "code": 61637,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "3327862df439988139b61814143b7a42",
-      "css": "cancel-circled",
-      "code": 59399,
+      "uid": "w3nzesrlbezu6f30q7ytyq919p6gdlb6",
+      "css": "home",
+      "code": 59392,
       "src": "typicons"
+    },
+    {
+      "uid": "uaps3vfayj05q7h4rvb10m890xvaequb",
+      "css": "bell",
+      "code": 59393,
+      "src": "modernpics"
+    },
+    {
+      "uid": "fc94b92194752796654c96c7b7dccebb",
+      "css": "cog",
+      "code": 59394,
+      "src": "iconic"
+    },
+    {
+      "uid": "c311c48d79488965b0fab7f9cd12b6b5",
+      "css": "left-open",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "749e7d90a9182938180f1d2d8c33584e",
+      "css": "right-open",
+      "code": 59397,
+      "src": "entypo"
     }
   ]
 }

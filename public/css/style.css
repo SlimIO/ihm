@@ -1,6 +1,5 @@
-html,
-body {
-    height: 100%;
+html, body {
+    height: 100vh;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -8,94 +7,128 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color:#f6f1e8;
+    background: rgb(55,71,79);
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(55,71,79,1) 0%, rgba(33,33,33,1) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(55,71,79,1) 0%,rgba(33,33,33,1) 100%);
+    background: radial-gradient(ellipse at center,  rgba(55,71,79,1) 0%,rgba(33,33,33,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37474f', endColorstr='#212121',GradientType=1 );
 }
 
-header {
-    height: 120px;
-    display: flex;
-    border-bottom: 1px solid #333;
-    background-color: #222;
-    box-shadow: 0 2px 8px #111;
+body > header {
+    height: 60px;
     flex-shrink: 0;
-    align-items: center;
-    z-index: 1;
+    display: flex;
 }
-
-    header > div#img-slim {
-        width: 250px;
-        text-align: center;
-    } 
-
-        header > div#img-slim img {
-            width: 100px;
-            filter: drop-shadow(0 0 7px #444)
-        }
-
-    header > nav {
-        flex-grow: 1;
-        height: 100%;
+    body > header > div.img {
+        width: 60px;
         display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
-    header > nav > div#home-btn {
-        border-left: 1px solid #333;
-    }
-
-        header > nav > div.btn {
-            width: 120px;
-            height: 100%;
-            border-right: 1px solid #333;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            cursor: pointer;
-            background-color: #222;
-            color: #777;
+        body > header > div.img img {
+            width: 40px;
         }
 
-            header > nav > div.btn p {
-                margin-top: 15px;
-                font-size: 14px;
-                font-weight: bold;
-            }
-        
-            header > nav > div.btn i {
-                font-size: 200%;
-            }
+    body > header > div.info {
+        color: #FFF;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        justify-content: center;
+        text-shadow: 1px 1px 3px black;
+    }
+        body > header > div.info p {
+            font-weight: 700;
+        }
+        body > header > div.info span {
+            font-size: 12px;
+            font-style: italic;
+        }
 
-div#ctx-menu {
-    position: absolute;
-    display: none;
-    flex-direction: column;
-    width: 120px;
-    left: 500px;
-    top: 500px;
-    background-color: #eee;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 400;
-    border: 1px solid #666;
-    box-shadow: 0 0 8px #333;
+body > section {
+    flex-grow: 1;
+    display: flex;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+    body > section > nav {
+        width: 60px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        align-items: center;
+    }
+
+    body > section > nav.open {
+        width: 160px;
+    }
+
+    body > section > main {
+        flex-grow: 1;
+        background: rgb(255,255,255);
+        background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(207,216,220,1) 100%);
+        background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(207,216,220,1) 100%);
+        background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(207,216,220,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cfd8dc',GradientType=1 );
+        box-sizing: border-box;
+        border-left: 2px solid #212121;
+        border-top: 2px solid #212121;
+        overflow: hidden;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+nav > hr {
+    width: 75%;
+    height: 1px;
+    background: #455A64;
+    border: none;
 }
 
-    div#ctx-menu p:first-child {
-        background-color: #222;
-        font-weight: 500;
-        color: #eee;
-        text-align: center;
-    } 
+nav:not(.open) > .menu {
+    width: 35px;
+    justify-content: center;
+}
 
-    div#ctx-menu p {
-        padding: 5px 10px;
+nav.open > .menu {
+    width: 90%;
+    border-radius: 40px;
+    padding: 0 10px;
+}
+
+nav > .menu {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    cursor: pointer;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+    nav:not(.open) > .menu > p {
+        display: none;
+    }
+    nav > .menu.active {
+        background: rgb(96,108,136);
+        background: -moz-radial-gradient(center, ellipse cover,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%);
+        background: -webkit-radial-gradient(center, ellipse cover,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
+        background: radial-gradient(ellipse at center,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=1 );
+    }
+    nav > .menu + .menu {
+        margin-top: 10px;
+    }
+    nav > .menu:not(.active):hover {
+        background: #ECEFF1;
+        color: #37474F;
     }
 
-    div#ctx-menu p:hover:not(:first-child) {
-        background-color: #ccc;
+    nav > .menu p {
+        margin-left: 10px;
+        font-weight: 300;
+        font-size: 14px;
     }
-
-    div#ctx-menu p:last-child {
-        border-bottom: 0;
+    nav > .menu i {
+        font-size: 18px;
     }

@@ -5,109 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="../public/css/fontello.css">
-    <link rel="stylesheet" href="../public/css/reset.css">
-    <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="stylesheet" href="../public/css/style-home.css">
-    <link rel="stylesheet" href="../public/css/style-alerts.css">
-    <link rel="stylesheet" href="../public/css/event.css">
-
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style-home.css">
-    <link rel="stylesheet" href="css/style-alerts.css">
-    <link rel="stylesheet" href="css/event.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+    <script src="js/master.js" defer></script>
     <title>IHM</title>
 </head>
-<body oncontextmenu="return false">
+<body>
     <header>
-        <div id="img-slim">
-            <img src="../public/img/logo.png" alt="">
-            <img src="img/logo.png" alt="">
+        <div class="img">
+            <img src="img/logo.png" alt="logo">
         </div>
+        <div class="info">
+            <p>DESKTOP-UHHC0KF</p>
+            <span>Windows_NT</span>
+        </div>
+    </header>
+    <section>
         <nav>
-            <div class="btn" id="home-btn">
+            <div class="menu not-clickable" id="search">
+                <i class="icon-search"></i>
+            </div>
+            <div class="menu not-clickable" id="pannel">
+                <i class="icon-left-open"></i>
+            </div>
+            <hr>
+            <div class="menu active">
                 <i class="icon-home"></i>
-                <p>HOME</p>
+                <p>Home</p>
             </div>
-            <div class="btn" id="alerts-btn">
+            <div class="menu">
                 <i class="icon-bell"></i>
-                <p>ALERTS</p>
+                <p>Alerts</p>
             </div>
-            <div class="btn" id="test">
-                <p>TEST</p>
+            <div class="menu">
+                <i class="icon-cog"></i>
+                <p>Configure</p>
             </div>
         </nav>
-    </header>
-    <div id="ctx-menu">
-        <p id="ul-id"></p>
-        <p id="remove"> <i class="icon-cancel-circled"></i> Remove</p>
-        <p id="copy"><i class="icon-docs"></i> Copy</p>
-        <p>Tools 2</p>
-        <p>Tools 3</p>
-        <p>Tools 4</p>
-    </div>
-    <!-- home page -->
-    <div id="home">
-        <div id="infos"></div>
-        <div id="board">
-            <div class="menu">
-                <div class="btn-board" id="actualize" title="Actualize">
-                        <i class="icon-ccw"></i>
-                </div>
-            </div>
-            <div class="hori-field" id="label">
-                <ul>
-                    <li class="field1" title="Name">Name :</li>
-                    <li class="field2" title="State">State :</li>
-                    <li class="field3" title="Description">Description :</li>
-                    <li class="field4" title="Version">Version :</li>
-                    <li class="field5" title="Container Version">Container Version :</li>
-                </ul>
-            </div>
-            <div id="addons-list" class="hori-field">
-
-            </div>
-        </div>
-    </div>
-
-    <!-- alert page -->
-    <div id="alerts">
-        <div class="menu">
-            <ul>
-                <li class="btn-menu" id="alarm">Alarms</li>
-                <li class="btn-menu" id="entities">Entities</li>
-            </ul>
-        </div>
-        <div class="labels" data-id="alarm">
-            <ul>
-                <li title="ID" class="alarm1">ID :</li>
-                <li title="UUID" class="alarm2">UUID :</li>
-                <li title="Message" class="alarm3">Message :</li>
-                <li title="Severity" class="alarm4">Severity :</li>
-                <li title="Created at" class="alarm5">Created at :</li>
-                <li title="Update at" class="alarm6">Update at :</li>
-                <li title="Occurence(s)" class="alarm7">Occurence :</li>
-                <li title="Correlate key" class="alarm8">Correlate key :</li>
-                <li title="Entity ID" class="alarm9">Entity ID :</li>
-            </ul>
-        </div>
-        <div class="labels" data-id="entities">
-            <ul>
-                <li title="ID" class="entities1">ID :</li>
-                <li title="UUID" class="entities2">UUID :</li>
-                <li title="Parent" class="entities3">Parent :</li>
-                <li title="Name" class="entities4">Name :</li>
-                <li title="Description" class="entities5">Description :</li>
-                <li title="Created at" class="entities6">Created at :</li>
-            </ul>
-        </div>
-        <div id="details">
-        </div>
-    </div>
-    <script src="../public/js/script.js"></script>
-    <script src="js/script.js"></script>
+        <main></main>
+    </section>
 </body>
 </html>
