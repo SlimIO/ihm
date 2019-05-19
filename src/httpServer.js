@@ -12,7 +12,12 @@ const bodyParser = require("body-parser");
 const PUBLIC_DIR = join(__dirname, "..", "public");
 const VIEWS_DIR = join(__dirname, "..", "views");
 
-// Create POLKA server
+/**
+ * @func exportServer
+ * @desc Export Polka HTTP Server to the ihm Addon
+ * @param {!Addon} ihm ihm addon
+ * @returns {any}
+ */
 function exportServer(ihm) {
     const httpServer = polka();
     httpServer.use(sirv(PUBLIC_DIR, { dev: true }));
