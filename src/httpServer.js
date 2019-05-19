@@ -6,9 +6,9 @@ const { readFile } = require("fs").promises;
 const polka = require("polka");
 const send = require("@polka/send-type");
 const sirv = require("sirv");
-const { json } = require("body-parser");
+const bodyParser = require("body-parser");
 
-// Constants
+// CONSTANTS
 const PUBLIC_DIR = join(__dirname, "..", "public");
 const VIEWS_DIR = join(__dirname, "..", "views");
 
@@ -16,7 +16,7 @@ const VIEWS_DIR = join(__dirname, "..", "views");
 function exportServer(ihm) {
     const httpServer = polka();
     httpServer.use(sirv(PUBLIC_DIR, { dev: true }));
-    httpServer.use(json({ type: "application/json" }));
+    httpServer.use(bodyParser.json({ type: "application/json" }));
 
     httpServer.get("/", async(req, res) => {
         try {
