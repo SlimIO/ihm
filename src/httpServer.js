@@ -31,6 +31,18 @@ function exportServer(ihm) {
         }
     });
 
+    httpServer.get("/module/:name", async(req, res) => {
+        try {
+            const moduleName = req.params.name;
+
+            const buf = await readFile(join(VIEWS_DIR, "modules", `${moduleName}.html`));
+            send(res, 200, buf.toString(), { "Content-Type": "text/html" });
+        }
+        catch (err) {
+            send(res, 500, err.message);
+        }
+    });
+
     httpServer.get("/addons", async(req, res) => {
         try {
             /** @type {string[]} */

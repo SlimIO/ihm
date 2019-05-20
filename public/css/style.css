@@ -67,17 +67,7 @@ body > section {
 
     body > section > main {
         flex-grow: 1;
-        background: rgb(255,255,255);
-        background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(207,216,220,1) 100%);
-        background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(207,216,220,1) 100%);
-        background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(207,216,220,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cfd8dc',GradientType=1 );
-        box-sizing: border-box;
-        border-left: 2px solid #212121;
-        border-top: 2px solid #212121;
-        overflow: hidden;
-        border-radius: 5px;
-        padding: 10px;
+        display: flex;
     }
 
 nav > hr {

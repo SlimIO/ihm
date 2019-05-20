@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+    border-radius: 4px;
+    border: 2px solid #37474F;
+    overflow: hidden;
+    font-size: 13px;
+    box-shadow: 1px 1px 10px rgba(30, 30, 30, 0.2);
+}
+    table > thead {
+        background: #546E7A;
+        flex-shrink: 0;
+        font-weight: bold;
+        color: #FFF;
+    }
+        table > thead tr th {
+            height: 25px;
+            line-height: 25px;
+        }
+        table > thead tr th + th {
+            border-left: 2px solid #37474F;
+        }
+
+    table > tbody {
+        background: #607D8B;
+    }
+        table > tbody > tr td {
+            height: 20px;
+            line-height: 20px;
+            padding: 0 10px;
+            border-top: 2px solid #37474F;
+            color: #FFF;
+        }
+        table > tbody > tr td.center {
+            text-align: center;
+        }

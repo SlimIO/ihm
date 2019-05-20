@@ -1,0 +1,7 @@
+section#addons {
+    width: 50%;
+}
+    section#addons > h1 {
+        margin-bottom: 10px;
+        background: red;
+    }
