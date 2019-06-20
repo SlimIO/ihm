@@ -10,7 +10,11 @@
         "coverage": "nyc npm test",
         "report": "nyc report --reporter=html"
     },
-    "keywords": [],
+    "keywords": [
+        "SlimIO",
+        "interface",
+        "ihm"
+    ],
     "author": "SlimIO",
     "license": "MIT",
     "description": "Interface HTML/CSS for addons",
