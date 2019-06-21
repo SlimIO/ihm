@@ -30,14 +30,14 @@ async function loadPage(name) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("open-nav-btn").addEventListener("click", navEventOpen);
-    {
-        const activeMenu = document.querySelector(".menu.active");
-        loadPage(activeMenu.getAttribute("data-menu")).catch(console.error);
+    // document.getElementById("open-nav-btn").addEventListener("click", navEventOpen);
+    // {
+    //     const activeMenu = document.querySelector(".menu.active");
+    //     loadPage(activeMenu.getAttribute("data-menu")).catch(console.error);
 
-        const listOfMenus = document.querySelectorAll(".menu:not(.disable)");
-        for (const menu of listOfMenus) {
-            menu.addEventListener("click", menuEventClick);
-        }
-    }
+    //     const listOfMenus = document.querySelectorAll(".menu:not(.disable)");
+    //     for (const menu of listOfMenus) {
+    //         menu.addEventListener("click", menuEventClick);
+    //     }
+    // }
 });

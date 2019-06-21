@@ -8,45 +8,38 @@
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/table.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
     <script src="js/master.js" defer></script>
     <title>IHM</title>
 </head>
 <body>
-    <header>
-        <div class="img">
-            <img src="img/logo.png" alt="logo">
-        </div>
-        <div class="info">
-            <p>DESKTOP-UHHC0KF</p>
-            <span>Windows_NT</span>
-        </div>
-    </header>
-    <section>
-        <nav>
-            <div class="menu disable" id="search">
-                <i class="icon-search"></i>
-            </div>
-            <div class="menu disable" id="open-nav-btn">
-                <i class="icon-right-open"></i>
-            </div>
-            <hr>
-            <div class="menu active" data-menu="home">
+    <nav>
+        <section class="top_btn">
+
+        </section>
+        <section class="agent_info">
+
+        </section>
+        <ul class="menu">
+            <li class="active">
                 <i class="icon-home"></i>
-                <p>Home</p>
-            </div>
-            <div class="menu" data-menu="alert">
+                <p>Dashboard</p>
+            </li>
+            <li>
                 <i class="icon-bell"></i>
-                <p>Alerts</p>
-            </div>
-            <div class="menu" data-menu="configure">
-                <i class="icon-cog"></i>
-                <p>Configure</p>
-            </div>
-        </nav>
-        <main></main>
-    </section>
+                <p>Alarms Console</p>
+            </li>
+            <li>
+                <i class="icon-chart-bar"></i>
+                <p>Metrics</p>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <header>
+            <input type="text" id="search_bar" placeholder="Search">
+        </header>
+        <section id="view"></section>
+    </main>
 </body>
 </html>
