@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
     <script src="js/master.js" defer></script>
     <title>IHM</title>
@@ -15,10 +16,32 @@
 <body>
     <nav>
         <section class="top_btn">
-
+            <div class="bull"><i class="icon-reply"></i></div>
+            <div class="bull"><i class="icon-cog"></i></div>
         </section>
         <section class="agent_info">
-
+            <h1><img src="img/logo.png" alt="SlimIO" /> SlimIO</h1>
+            <h2>Server-name</h2>
+            <ul class="agent_descriptors">
+                <li>x86</li>
+                <li>Windows</li>
+                <li>1.36</li>
+            </ul>
+            <p>Activity Overview</p>
+            <div class="overview">
+                <div>
+                    <div class="bull"><i class="icon-bell"></i></div>
+                    <p>43</p>
+                </div>
+                <div>
+                    <div class="bull"><i class="icon-database"></i></div>
+                    <p>10</p>
+                </div>
+                <div>
+                    <div class="bull"><i class="icon-chart-area"></i></div>
+                    <p>143</p>
+                </div>
+            </div>
         </section>
         <ul class="menu">
             <li class="active">
@@ -26,7 +49,7 @@
                 <p>Dashboard</p>
             </li>
             <li>
-                <i class="icon-bell"></i>
+                <i class="icon-bell-alt"></i>
                 <p>Alarms Console</p>
             </li>
             <li>
@@ -37,9 +60,49 @@
     </nav>
     <main>
         <header>
-            <input type="text" id="search_bar" placeholder="Search">
+            <section id="search_bar">
+                <i class="icon-search"></i>
+                <input type="text" placeholder="Search">
+                <div class="bull"><i class="icon-right"></i></div>
+            </section>
         </header>
-        <section id="view"></section>
+        <section id="view">
+            <div class="title">
+                <i class="icon-home"></i>
+                <p>Dashboard</p>
+                <div class="extendable-bull"><i class="icon-pencil"></i><p>Edit mode</p></div>
+            </div>
+            <section id="dashboard">
+                <section class="tilefix">
+                    <section class="tile">
+                        <section class="title">
+                            <i class="icon-cubes"></i>
+                            <p>Addons</p>
+                            <ul>
+                                <li><i class="icon-arrows-cw"></i></li>
+                                <li><i class="icon-cancel"></i></li>
+                            </ul>
+                        </section>
+                        <section class="content"></section>
+                    </section>
+                    <section class="tile mini">
+                        <section class="title">
+                            <i class="icon-bell"></i>
+                            <p>Last alarms</p>
+                            <ul>
+                                <li><i class="icon-eye"></i></li>
+                                <li><i class="icon-cancel"></i></li>
+                            </ul>
+                        </section>
+                        <section class="content"></section>
+                    </section>
+                    <section class="tile edit">
+                        <i class="icon-plus"></i>
+                        <p>Add a new tile</p>
+                    </section>
+                </section>
+            </section>
+        </section>
     </main>
 </body>
 </html>
