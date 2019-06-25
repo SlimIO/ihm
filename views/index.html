@@ -15,18 +15,16 @@
 </head>
 <body>
     <nav>
-        <section class="top_btn">
-            <div class="bull"><i class="icon-reply"></i></div>
-            <div class="bull"><i class="icon-cog"></i></div>
-        </section>
         <section class="agent_info">
             <h1><img src="img/logo.png" alt="SlimIO" /> SlimIO</h1>
-            <h2>Server-name</h2>
+            <hr />
+            <h2>[[=z.serverName]]</h2>
             <ul class="agent_descriptors">
-                <li>x86</li>
-                <li>Windows</li>
-                <li>1.36</li>
+                <li>[[=z.descriptors.arch]]</li>
+                <li>[[=z.descriptors.type]]</li>
+                <li>[[=z.descriptors.release]]</li>
             </ul>
+            <hr />
             <p>Activity Overview</p>
             <div class="overview">
                 <div>
@@ -34,7 +32,7 @@
                     <p>43</p>
                 </div>
                 <div>
-                    <div class="bull"><i class="icon-database"></i></div>
+                    <div class="bull"><i class="icon-cubes"></i></div>
                     <p>10</p>
                 </div>
                 <div>
@@ -44,65 +42,33 @@
             </div>
         </section>
         <ul class="menu">
-            <li class="active">
+            <li class="active" data-menu="dashboard">
                 <i class="icon-home"></i>
                 <p>Dashboard</p>
             </li>
-            <li>
+            <li data-menu="alarmconsole">
                 <i class="icon-bell-alt"></i>
                 <p>Alarms Console</p>
             </li>
-            <li>
-                <i class="icon-chart-bar"></i>
+            <li data-menu="metrics">
+                <i class="icon-chart-line"></i>
                 <p>Metrics</p>
             </li>
         </ul>
+        <section class="bottom_btn">
+            <div class="bull"><i class="icon-reply"></i></div>
+            <div class="bull"><i class="icon-cog"></i></div>
+        </section>
     </nav>
     <main>
         <header>
             <section id="search_bar">
                 <i class="icon-search"></i>
                 <input type="text" placeholder="Search">
-                <div class="bull"><i class="icon-right"></i></div>
+                <div class="bull"><i class="icon-help"></i></div>
             </section>
         </header>
-        <section id="view">
-            <div class="title">
-                <i class="icon-home"></i>
-                <p>Dashboard</p>
-                <div class="extendable-bull"><i class="icon-pencil"></i><p>Edit mode</p></div>
-            </div>
-            <section id="dashboard">
-                <section class="tilefix">
-                    <section class="tile">
-                        <section class="title">
-                            <i class="icon-cubes"></i>
-                            <p>Addons</p>
-                            <ul>
-                                <li><i class="icon-arrows-cw"></i></li>
-                                <li><i class="icon-cancel"></i></li>
-                            </ul>
-                        </section>
-                        <section class="content"></section>
-                    </section>
-                    <section class="tile mini">
-                        <section class="title">
-                            <i class="icon-bell"></i>
-                            <p>Last alarms</p>
-                            <ul>
-                                <li><i class="icon-eye"></i></li>
-                                <li><i class="icon-cancel"></i></li>
-                            </ul>
-                        </section>
-                        <section class="content"></section>
-                    </section>
-                    <section class="tile edit">
-                        <i class="icon-plus"></i>
-                        <p>Add a new tile</p>
-                    </section>
-                </section>
-            </section>
-        </section>
+        <section id="view"></section>
     </main>
 </body>
 </html>

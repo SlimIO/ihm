@@ -6,10 +6,29 @@ const { readFile } = require("fs").promises;
 const polka = require("polka");
 const send = require("@polka/send-type");
 const sirv = require("sirv");
+const zup = require("zup");
 
 // CONSTANTS
 const PUBLIC_DIR = join(__dirname, "..", "public");
 const VIEWS_DIR = join(__dirname, "..", "views");
+
+async function getActivityOverview(ihm) {
+    const [entity, desc] = await Promise.all([
+        ihm.sendOne("events.get_entity_by_id", [1]),
+        ihm.sendOne("events.get_descriptors", [1])
+    ]);
+
+    const descriptors = desc.reduce((prev, curr) => {
+        prev[curr.key] = curr.value;
+
+        return prev;
+    }, {});
+
+    return {
+        serverName: entity.name,
+        descriptors
+    };
+}
 
 /**
  * @func exportServer
@@ -23,8 +42,12 @@ function exportServer(ihm) {
 
     httpServer.get("/", async(req, res) => {
         try {
-            const views = await readFile(join(VIEWS_DIR, "index.html"), { encoding: "utf8" });
-            send(res, 200, views, { "Content-Type": "text/html" });
+            const [views, data] = await Promise.all([
+                readFile(join(VIEWS_DIR, "index.html"), "utf-8"),
+                getActivityOverview(ihm)
+            ]);
+
+            send(res, 200, zup(views)(data), { "Content-Type": "text/html" });
         }
         catch (err) {
             send(res, 500, err.message);

@@ -58,7 +58,7 @@ section#dashboard {
                 transition: 0.2s all linear;
             }
                 section#dashboard section.tile > .title > ul li:hover {
-                    color: #0277BD;
+                    color: var(--secondary-color);
                     cursor: pointer;
                     box-shadow: 1px 1px 10px #CFD8DC inset;
                 }
@@ -79,7 +79,7 @@ section#dashboard {
         text-shadow: 1px 1px 10px rgba(129, 212, 250, 0.45);
     }
         section#dashboard section.tile.edit:hover {
-            border-color: #0277BD;
-            color: #0277BD;
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
             cursor: pointer;
         }

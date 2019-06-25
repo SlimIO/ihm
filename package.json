@@ -22,7 +22,8 @@
         "@polka/send-type": "^0.5.2",
         "@slimio/addon": "^0.17.1",
         "polka": "^0.5.2",
-        "sirv": "^0.4.0"
+        "sirv": "^0.4.0",
+        "zup": "0.0.1"
     },
     "devDependencies": {
         "@commitlint/cli": "^7.5.2",
