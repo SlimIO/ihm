@@ -13,9 +13,10 @@ const PUBLIC_DIR = join(__dirname, "..", "public");
 const VIEWS_DIR = join(__dirname, "..", "views");
 
 async function getActivityOverview(ihm) {
-    const [entity, desc] = await Promise.all([
+    const [entity, desc, summary] = await Promise.all([
         ihm.sendOne("events.get_entity_by_id", [1]),
-        ihm.sendOne("events.get_descriptors", [1])
+        ihm.sendOne("events.get_descriptors", [1]),
+        ihm.sendOne("events.summary_stats")
     ]);
 
     const descriptors = desc.reduce((prev, curr) => {
@@ -26,7 +27,8 @@ async function getActivityOverview(ihm) {
 
     return {
         serverName: entity.name,
-        descriptors
+        descriptors,
+        summary
     };
 }
 
