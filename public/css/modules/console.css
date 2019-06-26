@@ -1,0 +1,16 @@
+div.widgets {
+    height: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+    div.widgets > div.graph {
+        flex-basis: 400px;
+        flex-grow: 1;
+    }
+
+div.console {
+    background: red;
+    flex-grow: 1;
+    margin-top: 15px;
+}

@@ -21,10 +21,54 @@ async function dashboard() {
         row.insertCell(4).appendChild(document.createTextNode(start));
         row.insertCell(5).appendChild(document.createTextNode(stop));
     }
+
+    // Chart test
+    const ctx = document.getElementById("test").getContext("2d");
+    new Chart(ctx, {
+        // The type of chart we want to create
+        type: "pie",
+
+        // The data for our dataset
+        data: {
+            labels: ["User", "Nice", "Sys", "IRQ", "Idle"],
+            datasets: [{
+                data: [15, 20, 30, 2, 48],
+                backgroundColor: ["#06F", "#81C784", "#FFCA28", "#E53935", "#CFD8DC"]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
 }
 
 async function alarmconsole() {
     console.log("alarmconsole js code!");
+    const ctx = document.getElementById("myChart").getContext("2d");
+    new Chart(ctx, {
+        // The type of chart we want to create
+        type: "line",
+
+        // The data for our dataset
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "My First dataset",
+                backgroundColor: "rgb(255, 99, 132)",
+                borderColor: "rgb(255, 99, 132)",
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
 }
 
 async function metrics() {
