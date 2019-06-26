@@ -3,6 +3,16 @@
     --secondary-color: #0277BD;
 }
 
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
 html, body {
     height: 100vh;
     font-family: 'Roboto', sans-serif;

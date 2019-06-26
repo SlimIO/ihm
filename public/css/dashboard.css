@@ -66,6 +66,8 @@ section#dashboard {
     section#dashboard section.tile > .content {
         flex-grow: 1;
         box-shadow: 1px 1px 10px #EEE inset;
+        display: flex;
+        flex-direction: column;
     }
 
     section#dashboard section.tile.edit {

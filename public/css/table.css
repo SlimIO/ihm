@@ -1,0 +1,39 @@
+table {
+    border-spacing: 0px;
+    animation: fadeIn 0.5s;
+    margin: 0;
+}
+    table > thead {
+        background: var(--primary-color);
+        color: #FFF;
+    }
+        table > thead th {
+            height: 27px;
+            font-size: 18px;
+            line-height: 27px;
+            text-align: left;
+            padding: 0 10px;
+            font-weight: bold;
+            font-variant: small-caps;
+        }
+        table > thead th.min {
+            text-align: center;
+            width: 120px;
+        }
+
+    table > tbody {
+    }
+        table > tbody tr.hidden {
+            display: none;
+        }
+
+        table > tbody tr td {
+            height: 35px;
+            line-height: 35px;
+            padding: 0 10px;
+            color: #607D8B;
+            border-bottom: 2px solid rgba(207, 216, 220, 0.5);
+        }
+        table > tbody tr td.center {
+            text-align: center;
+        }
