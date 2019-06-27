@@ -1,19 +1,4 @@
-section#dashboard {
-    flex-grow: 1;
-    margin-top: 15px;
-    display: flex;
-}
-
-section#dashboard > section.tilefix {
-    margin-left: -15px;
-    margin-top: -15px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1;
-    align-content: flex-start;
-}
-
-section#dashboard dashboard-widget {
+dashboard-widget {
     height: 350px;
     flex-grow: 1;
     flex-basis: 700px;
@@ -25,16 +10,19 @@ section#dashboard dashboard-widget {
     overflow: hidden;
     box-sizing: border-box;
 }
-    section#dashboard dashboard-widget.size-low {
+    dashboard-widget.size-low {
         flex-basis: 350px;
     }
+    dashboard-widget.highlight {
+        border: 2px dashed var(--primary-color);
+    }
 
-section#dashboard .widget-add {
+.widget-add {
     height: 350px;
     flex-grow: 1;
     margin-left: 15px;
     margin-top: 15px;
-    display: flex;
+    display: none;
     border-radius: 6px;
     box-sizing: border-box;
     flex-basis: 350px;
@@ -46,7 +34,7 @@ section#dashboard .widget-add {
     font-size: 26px;
     text-shadow: 1px 1px 10px rgba(129, 212, 250, 0.45);
 }
-    section#dashboard .widget-add:hover {
+    .widget-add:hover {
         border-color: var(--secondary-color);
         color: var(--secondary-color);
         cursor: pointer;

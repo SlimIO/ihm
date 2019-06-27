@@ -20,7 +20,8 @@ function createChart(canvasId, config = {}) {
         // Configuration options go here
         options: Object.assign({
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: true,
+            aspectRatio: 1.5
         }, options)
     });
 }

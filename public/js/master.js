@@ -1,6 +1,12 @@
 async function dashboard() {
+    const editModeBtn = document.getElementById("edit_mode_btn");
+    editModeBtn.addEventListener("click", () => {
+        const widgetAdd = document.querySelector(".widget-add");
+        widgetAdd.style.display = "flex";
+    });
+
     const addons = await fetch("/addons").then((raw) => raw.json());
-    console.log(addons);
+    // console.log(addons);
 
     const addonsTable = document.querySelector("#addons_table > tbody");
     for (const addon of addons) {
@@ -41,6 +47,42 @@ async function dashboard() {
             }]
         }
     });
+
+    let dragged = null;
+    const widgets = document.querySelectorAll("dashboard-widget");
+    for (const widget of widgets) {
+        widget.addEventListener("dragstart", (event) => {
+            dragged = event.target;
+        });
+
+        widget.addEventListener("dragover", (event) => event.preventDefault());
+
+        widget.addEventListener("dragenter", (event) => {
+            if (event.target.tagName === "DASHBOARD-WIDGET" && dragged !== event.target) {
+                event.target.classList.add("highlight");
+            }
+        });
+
+        widget.addEventListener("dragleave", (event) => {
+            if (event.target.tagName === "DASHBOARD-WIDGET") {
+                event.target.classList.remove("highlight");
+            }
+        });
+
+        widget.addEventListener("drop", (event) => {
+            event.preventDefault();
+            if (event.target.tagName === "DASHBOARD-WIDGET" && dragged !== event.target) {
+                const container = dragged.parentNode;
+
+                event.target.classList.remove("highlight");
+                const currIndex = Array.prototype.indexOf.call(container.children, dragged);
+                const nextIndex = Array.prototype.indexOf.call(container.children, event.target);
+
+                container.removeChild(dragged);
+                container.insertBefore(dragged, currIndex > nextIndex ? event.target : event.target.nextSibling);
+            }
+        });
+    }
 }
 
 async function alarmconsole() {
@@ -89,12 +131,9 @@ async function alarmconsole() {
     });
 }
 
-async function metrics() {
-    console.log("metrics js code!");
-}
 
 let activePage = null;
-const pageExecutor = { dashboard, alarmconsole, metrics };
+const pageExecutor = { dashboard, alarmconsole };
 
 async function loadPage(name) {
     const mainElement = document.getElementById("view");

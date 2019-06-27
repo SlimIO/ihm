@@ -1,6 +1,8 @@
 :root {
     --primary-color: #009688;
     --secondary-color: #0277BD;
+    --primary-background: #ECEFF1;
+    --secondary-background: rgba(207, 216, 220, 0.5);
 }
 
 @-webkit-keyframes fadeIn {
@@ -28,8 +30,10 @@ body {
 hr {
     height: 2px;
     border: none;
-    background: rgba(207, 216, 220, 0.5);
+    background: var(--secondary-background);
     width: 90%;
+    padding: 0;
+    margin: 10px auto;
 }
 
 div.extendable-bull {
@@ -87,7 +91,7 @@ nav {
         align-items: center;
         padding: 0 15px;
         justify-content: flex-end;
-        background: rgba(207, 216, 220, 0.5);
+        background: var(--secondary-background);
     }
         nav > section.bottom_btn > div + div {
             margin-left: 15px;
@@ -215,7 +219,7 @@ main {
     }
         main > header > #search_bar {
             padding: 0 15px;
-            background: rgba(207, 216, 220, 0.5);
+            background: var(--secondary-background);
             display: flex;
             align-items: center;
         }
@@ -270,3 +274,19 @@ main {
             main > section#view > div.title > div.extendable-bull {
                 margin-left: auto;
             }
+
+        main > section#view > section.grow {
+            flex-grow: 1;
+            margin-top: 15px;
+            display: flex;
+        }
+
+            main > section#view > section.grow > section.fix {
+                margin-left: -15px;
+                margin-top: -15px;
+                display: flex;
+                flex-wrap: wrap;
+                flex-grow: 1;
+                align-content: flex-start;
+            }
+

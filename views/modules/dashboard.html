@@ -1,12 +1,12 @@
 <div class="title">
     <i class="icon-home"></i>
     <p>Dashboard</p>
-    <div class="extendable-bull"><i class="icon-pencil"></i><p>Edit mode</p></div>
+    <div class="extendable-bull" id="edit_mode_btn"><i class="icon-pencil"></i><p>Edit mode</p></div>
 </div>
 
-<section id="dashboard">
-    <section class="tilefix">
-        <dashboard-widget name="Addons" icon="icon-cubes">
+<section class="grow">
+    <section class="fix">
+        <dashboard-widget name="Addons" icon="icon-cubes" draggable="true">
             <table id="addons_table">
                 <thead>
                     <tr>
@@ -23,9 +23,9 @@
             </table>
         </dashboard-widget>
 
-        <dashboard-widget name="Last Alarms" icon="icon-bell" class="size-low"></dashboard-widget>
+        <dashboard-widget name="Last Alarms" icon="icon-bell" class="size-low" draggable="true"></dashboard-widget>
 
-        <dashboard-widget name="CPU Usage" icon="icon-chart-bar" class="size-low">
+        <dashboard-widget name="CPU Usage" icon="icon-chart-bar" class="size-low" draggable="true">
             <canvas id="test"></canvas>
         </dashboard-widget>
 
@@ -45,7 +45,7 @@
         <p class="widget-name"></p>
         <ul>
             <li><i class="icon-eye"></i></li>
-            <li><i class="icon-cancel"></i></li>
+            <!-- <li><i class="icon-cancel"></i></li> -->
         </ul>
     </section>
     <section class="content">
