@@ -5,15 +5,13 @@ async function dashboard() {
     const addonsTable = document.querySelector("#addons_table > tbody");
     for (const addon of addons) {
         const row = addonsTable.insertRow();
-        const start = new Date(addon.lastStart).toISOString();
-        const stop = addon.lastStop === null ? "N/A" : new Date(addon.lastStop).toISOString();
+
+        const start = formatDate(addon.lastStart);
+        const stop = addon.lastStop === null ? "N/A" : formatDate(addon.lastStop);
 
         const stateTd = row.insertCell(0);
-        const stateBull = document.createElement("div");
-        stateBull.classList.add("state");
-        const iElement = document.createElement("i");
-        iElement.classList.add("icon-ok");
-        stateBull.appendChild(iElement);
+        const stateBull = createFastElement("div", { classList: ["state"] });
+        stateBull.appendChild(createFastElement("i", { classList: ["icon-ok"] }));
         stateTd.appendChild(stateBull);
 
         row.insertCell(1).appendChild(document.createTextNode(addon.name));
@@ -27,38 +25,27 @@ async function dashboard() {
 
         row.insertCell(4).appendChild(document.createTextNode(start));
         row.insertCell(5).appendChild(document.createTextNode(stop));
+
+        const gearTd = row.insertCell(6);
+        gearTd.appendChild(createFastElement("i", { classList: ["icon-cog"] }));
     }
 
     // Chart test
-    const ctx = document.getElementById("test").getContext("2d");
-    new Chart(ctx, {
-        // The type of chart we want to create
+    createChart("test", {
         type: "pie",
-
-        // The data for our dataset
         data: {
             labels: ["User", "Nice", "Sys", "IRQ", "Idle"],
             datasets: [{
                 data: [15, 20, 30, 2, 48],
                 backgroundColor: ["#06F", "#81C784", "#FFCA28", "#E53935", "#CFD8DC"]
             }]
-        },
-
-        // Configuration options go here
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
         }
     });
 }
 
 async function alarmconsole() {
-    const ctxSev = document.getElementById("severities").getContext("2d");
-    new Chart(ctxSev, {
-        // The type of chart we want to create
+    createChart("severities", {
         type: "bar",
-
-        // The data for our dataset
         data: {
             labels: ["Critical", "Major", "Minor"],
             datasets: [{
@@ -66,8 +53,6 @@ async function alarmconsole() {
                 backgroundColor: ["#E53935", "#FFC107", "#03A9F4"]
             }]
         },
-
-        // Configuration options go here
         options: {
             legend: {
                 display: false
@@ -75,9 +60,7 @@ async function alarmconsole() {
             title: {
                 display: true,
                 text: "Alarm Severities"
-            },
-            responsive: true,
-            maintainAspectRatio: false
+            }
         }
     });
 
@@ -113,25 +96,6 @@ async function metrics() {
 let activePage = null;
 const pageExecutor = { dashboard, alarmconsole, metrics };
 
-function menuEventClick() {
-    const currPage = this.getAttribute("data-menu");
-    if (currPage === activePage) {
-        return;
-    }
-    const activeMenu = document.querySelector(`.menu > li[data-menu='${activePage}']`);
-    activeMenu.classList.remove("active");
-    this.classList.add("active");
-
-    loadPage(currPage).catch(console.error);
-}
-
-function setUrl(name) {
-    const currUrl = new URL(window.location);
-    currUrl.searchParams.delete("page");
-    currUrl.searchParams.set("page", name);
-    window.history.pushState("page", "Title", currUrl.href);
-}
-
 async function loadPage(name) {
     const mainElement = document.getElementById("view");
 
@@ -146,22 +110,49 @@ async function loadPage(name) {
         }
     }
 
-    setUrl(name);
+    // Setup new URL location
+    const currUrl = new URL(window.location);
+    currUrl.searchParams.delete("page");
+    currUrl.searchParams.set("page", name);
+    window.history.pushState("page", "Title", currUrl.href);
     activePage = name;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const currPage = new URL(window.location).searchParams.get("page");
+//
+// Main page Javascript handler
+//
+document.addEventListener("DOMContentLoaded", async() => {
+    // Load current module
+    try {
+        const currPage = new URL(window.location).searchParams.get("page");
 
-    if (currPage === null) {
-        loadPage("dashboard").catch(console.error);
+        if (currPage === null) {
+            await loadPage("dashboard");
+        }
+        else {
+            const menu = document.querySelector(`.menu > li[data-menu='${currPage}']`);
+            menu.classList.add("active");
+            await loadPage(currPage);
+        }
     }
-    else {
-        const menu = document.querySelector(`.menu > li[data-menu='${currPage}']`);
-        menu.classList.add("active");
+    catch (err) {
+        console.error(err);
+    }
+
+    // Add Scoped menuEventClick (the goal is to GC the function at the end of the scope).
+    function menuEventClick() {
+        const currPage = this.getAttribute("data-menu");
+        if (currPage === activePage) {
+            return;
+        }
+        const activeMenu = document.querySelector(`.menu > li[data-menu='${activePage}']`);
+        activeMenu.classList.remove("active");
+        this.classList.add("active");
+
         loadPage(currPage).catch(console.error);
     }
 
+    // Add navigation events
     const listOfMenus = document.querySelectorAll(".menu > li:not(.disabled)");
     for (const menu of listOfMenus) {
         menu.addEventListener("click", menuEventClick);

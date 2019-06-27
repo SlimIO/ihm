@@ -3,85 +3,51 @@ section#dashboard {
     margin-top: 15px;
     display: flex;
 }
-    section#dashboard > section.tilefix {
-        margin-left: -15px;
-        margin-top: -15px;
-        display: flex;
-        flex-wrap: wrap;
-        flex-grow: 1;
-        align-content: flex-start;
-    }
 
-    section#dashboard section.tile {
-        height: 350px;
-        flex-grow: 1;
-        flex-basis: 700px;
-        margin-left: 15px;
-        margin-top: 15px;
-        display: flex;
-        flex-direction: column;
-        border-radius: 6px;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-    section#dashboard section.tile.mini {
+section#dashboard > section.tilefix {
+    margin-left: -15px;
+    margin-top: -15px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-content: flex-start;
+}
+
+section#dashboard dashboard-widget {
+    height: 350px;
+    flex-grow: 1;
+    flex-basis: 700px;
+    margin-left: 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+    section#dashboard dashboard-widget.size-low {
         flex-basis: 350px;
     }
-    section#dashboard section.tile > .title {
-        height: 50px;
-        background: #ECEFF1;
-        display: flex;
-        flex-shrink: 0;
-        color: #455A64;
-        padding-left: 15px;
-        align-items: center;
-        font-size: 24px;
-        border-bottom: 2px solid #FFF;
-    }
-        section#dashboard section.tile > .title > p {
-            font-weight: 300;
-            margin-left: 10px;
-            font-size: 20px;
-            font-variant-caps: titling-caps;
-        }
-        section#dashboard section.tile > .title > ul {
-            margin-left: auto;
-            display: flex;
-            height: inherit;
-        }
-            section#dashboard section.tile > .title > ul li {
-                width: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-left: 2px solid #FFF;
-                transition: 0.2s all linear;
-            }
-                section#dashboard section.tile > .title > ul li:hover {
-                    color: var(--secondary-color);
-                    cursor: pointer;
-                    box-shadow: 1px 1px 10px #CFD8DC inset;
-                }
 
-    section#dashboard section.tile > .content {
-        flex-grow: 1;
-        box-shadow: 1px 1px 10px #EEE inset;
-        display: flex;
-        flex-direction: column;
+section#dashboard .widget-add {
+    height: 350px;
+    flex-grow: 1;
+    margin-left: 15px;
+    margin-top: 15px;
+    display: flex;
+    border-radius: 6px;
+    box-sizing: border-box;
+    flex-basis: 350px;
+    border: 2px dashed #B0BEC5;
+    color: #90A4AE;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 26px;
+    text-shadow: 1px 1px 10px rgba(129, 212, 250, 0.45);
+}
+    section#dashboard .widget-add:hover {
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+        cursor: pointer;
     }
-
-    section#dashboard section.tile.edit {
-        flex-basis: 350px;
-        border: 2px dashed #B0BEC5;
-        color: #90A4AE;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        font-size: 26px;
-        text-shadow: 1px 1px 10px rgba(129, 212, 250, 0.45);
-    }
-        section#dashboard section.tile.edit:hover {
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-            cursor: pointer;
-        }

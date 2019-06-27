@@ -3,60 +3,52 @@
     <p>Dashboard</p>
     <div class="extendable-bull"><i class="icon-pencil"></i><p>Edit mode</p></div>
 </div>
+
 <section id="dashboard">
     <section class="tilefix">
-        <section class="tile">
-            <section class="title">
-                <i class="icon-cubes"></i>
-                <p>Addons</p>
-                <ul>
-                    <li><i class="icon-arrows-cw"></i></li>
-                    <li><i class="icon-cancel"></i></li>
-                </ul>
-            </section>
-            <section class="content">
-                <table id="addons_table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>name</th>
-                            <th class="min">version</th>
-                            <th class="min">addon version</th>
-                            <th>last start</th>
-                            <th>last stop</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </section>
-        </section>
-        <section class="tile mini">
-            <section class="title">
-                <i class="icon-bell"></i>
-                <p>Last alarms</p>
-                <ul>
-                    <li><i class="icon-resize-full"></i></li>
-                    <li><i class="icon-cancel"></i></li>
-                </ul>
-            </section>
-            <section class="content"></section>
-        </section>
-        <section class="tile mini">
-            <section class="title">
-                <i class="icon-chart-bar"></i>
-                <p>CPU Usage</p>
-                <ul>
-                    <li><i class="icon-eye"></i></li>
-                    <li><i class="icon-cancel"></i></li>
-                </ul>
-            </section>
-            <section class="content" style="padding: 10px;">
-                <canvas id="test"></canvas>
-            </section>
-        </section>
-        <section class="tile edit">
+        <dashboard-widget name="Addons" icon="icon-cubes">
+            <table id="addons_table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>name</th>
+                        <th class="min">version</th>
+                        <th class="min">addon version</th>
+                        <th>last start</th>
+                        <th>last stop</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </dashboard-widget>
+
+        <dashboard-widget name="Last Alarms" icon="icon-bell" class="size-low"></dashboard-widget>
+
+        <dashboard-widget name="CPU Usage" icon="icon-chart-bar" class="size-low">
+            <canvas id="test"></canvas>
+        </dashboard-widget>
+
+        <section class="widget-add">
             <i class="icon-plus"></i>
             <p>Add widget</p>
         </section>
     </section>
 </section>
+
+<template id="widget_template">
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/widgets/default.css">
+
+    <section class="title">
+        <i class="widget-icon"></i>
+        <p class="widget-name"></p>
+        <ul>
+            <li><i class="icon-eye"></i></li>
+            <li><i class="icon-cancel"></i></li>
+        </ul>
+    </section>
+    <section class="content">
+        <slot></slot>
+    </section>
+</template>
