@@ -8,7 +8,14 @@ async function dashboard() {
         const start = new Date(addon.lastStart).toISOString();
         const stop = addon.lastStop === null ? "N/A" : new Date(addon.lastStop).toISOString();
 
-        row.insertCell(0);
+        const stateTd = row.insertCell(0);
+        const stateBull = document.createElement("div");
+        stateBull.classList.add("state");
+        const iElement = document.createElement("i");
+        iElement.classList.add("icon-ok");
+        stateBull.appendChild(iElement);
+        stateTd.appendChild(stateBull);
+
         row.insertCell(1).appendChild(document.createTextNode(addon.name));
         const tdVer = row.insertCell(2);
         tdVer.classList.add("center");
@@ -46,25 +53,53 @@ async function dashboard() {
 }
 
 async function alarmconsole() {
-    console.log("alarmconsole js code!");
-    const ctx = document.getElementById("myChart").getContext("2d");
-    new Chart(ctx, {
+    const ctxSev = document.getElementById("severities").getContext("2d");
+    new Chart(ctxSev, {
         // The type of chart we want to create
-        type: "line",
+        type: "bar",
 
         // The data for our dataset
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: ["Critical", "Major", "Minor"],
             datasets: [{
-                label: "My First dataset",
-                backgroundColor: "rgb(255, 99, 132)",
-                borderColor: "rgb(255, 99, 132)",
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: [2, 10, 24],
+                backgroundColor: ["#E53935", "#FFC107", "#03A9F4"]
             }]
         },
 
         // Configuration options go here
         options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Alarm Severities"
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    const ctxOvertime = document.getElementById("overtime").getContext("2d");
+    new Chart(ctxOvertime, {
+        // The type of chart we want to create
+        type: "line",
+
+        // The data for our dataset
+        datasets: {
+            data: []
+        },
+
+        // Configuration options go here
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Alarm Count"
+            },
             responsive: true,
             maintainAspectRatio: false
         }
@@ -90,6 +125,13 @@ function menuEventClick() {
     loadPage(currPage).catch(console.error);
 }
 
+function setUrl(name) {
+    const currUrl = new URL(window.location);
+    currUrl.searchParams.delete("page");
+    currUrl.searchParams.set("page", name);
+    window.history.pushState("page", "Title", currUrl.href);
+}
+
 async function loadPage(name) {
     const mainElement = document.getElementById("view");
 
@@ -104,17 +146,24 @@ async function loadPage(name) {
         }
     }
 
+    setUrl(name);
     activePage = name;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    {
-        const activeMenu = document.querySelector(".menu > li.active");
-        loadPage(activeMenu.getAttribute("data-menu")).catch(console.error);
+    const currPage = new URL(window.location).searchParams.get("page");
 
-        const listOfMenus = document.querySelectorAll(".menu > li:not(.disabled)");
-        for (const menu of listOfMenus) {
-            menu.addEventListener("click", menuEventClick);
-        }
+    if (currPage === null) {
+        loadPage("dashboard").catch(console.error);
+    }
+    else {
+        const menu = document.querySelector(`.menu > li[data-menu='${currPage}']`);
+        menu.classList.add("active");
+        loadPage(currPage).catch(console.error);
+    }
+
+    const listOfMenus = document.querySelectorAll(".menu > li:not(.disabled)");
+    for (const menu of listOfMenus) {
+        menu.addEventListener("click", menuEventClick);
     }
 });

@@ -1,3 +1,15 @@
+table .state {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #7CB342;
+    color: #FFF;
+    font-size: 14px;
+}
+
 table {
     border-spacing: 0px;
     animation: fadeIn 0.5s;
@@ -21,17 +33,16 @@ table {
             width: 120px;
         }
 
-    table > tbody {
+    table > tbody tr {
+        height: 35px;
     }
-        table > tbody tr.hidden {
-            display: none;
-        }
+    table > tbody tr.hidden {
+        display: none;
+    }
 
         table > tbody tr td {
-            height: 35px;
-            line-height: 35px;
-            padding: 0 10px;
             color: #607D8B;
+            padding: 5px 10px;
             border-bottom: 2px solid rgba(207, 216, 220, 0.5);
         }
         table > tbody tr td.center {
