@@ -36,19 +36,19 @@
     </div>
 </div>
 
-<template id="widget_template">
+<template id="widget">
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/widgets/default.css">
 
-    <section class="title">
+    <header>
         <i class="widget-icon"></i>
         <p class="widget-name"></p>
         <ul>
             <li><i class="icon-eye"></i></li>
             <!-- <li><i class="icon-cancel"></i></li> -->
         </ul>
-    </section>
-    <section class="content">
+    </header>
+    <div class="content">
         <slot></slot>
-    </section>
+    </div>
 </template>

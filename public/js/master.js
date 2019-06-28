@@ -1,3 +1,6 @@
+// TODO: Remove executors... (they are not good for flexibility).
+// Keep it simple
+
 async function dashboard() {
     const editModeBtn = document.getElementById("edit_mode_btn");
     editModeBtn.addEventListener("click", () => {
@@ -130,7 +133,6 @@ async function alarmconsole() {
         }
     });
 }
-
 
 let activePage = null;
 const pageExecutor = { dashboard, alarmconsole };

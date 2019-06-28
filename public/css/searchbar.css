@@ -1,0 +1,31 @@
+.icon-search {
+    font-size: 24px;
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+input {
+    border: none;
+    outline: none;
+    width: 250px;
+    height: 58px;
+    background: none;
+    font-size: 18px;
+    color: #455A64;
+}
+input::placeholder {
+    color: var(--primary-color);
+}
+
+.help-btn {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 30px;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

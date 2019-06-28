@@ -1,4 +1,4 @@
-.title {
+header {
     height: 50px;
     background: #ECEFF1;
     display: flex;
@@ -9,18 +9,18 @@
     font-size: 24px;
     border-bottom: 2px solid #FFF;
 }
-    .title > p {
+    header > p {
         font-weight: 300;
         margin-left: 10px;
         font-size: 20px;
         font-variant-caps: titling-caps;
     }
-    .title > ul {
+    header > ul {
         margin-left: auto;
         display: flex;
         height: inherit;
     }
-        .title > ul li {
+        header > ul li {
             width: 50px;
             display: flex;
             align-items: center;
@@ -28,7 +28,7 @@
             border-left: 2px solid #FFF;
             transition: 0.2s all linear;
         }
-            .title > ul li:hover {
+            header > ul li:hover {
                 color: var(--secondary-color);
                 cursor: pointer;
                 box-shadow: 1px 1px 10px #CFD8DC inset;

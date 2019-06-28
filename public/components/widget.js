@@ -9,7 +9,7 @@ class Widget extends HTMLElement {
     constructor() {
         super();
 
-        const tmpl = document.getElementById("widget_template");
+        const tmpl = document.getElementById("widget");
         const clone = tmpl.content.cloneNode(true);
 
         // Hydrate template

@@ -180,18 +180,23 @@ section.sidebar > nav {
         transition: 0.2s background linear;
         text-shadow: 1px 1px 2px #FFF;
     }
-    section.sidebar > nav ul li:not(.active):hover {
-        cursor: pointer;
-        background: #E1F5FE;
-        color: #01579B;
-    }
+        section.sidebar > nav ul li:not(.active):not(.disabled):hover {
+            cursor: pointer;
+            background: #E1F5FE;
+            color: #01579B;
+        }
         section.sidebar > nav ul li > p {
             margin-left: 25px;
         }
+
     section.sidebar > nav ul li.active {
         background: #E0F2F1;
         color: var(--primary-color);
         border-right: 4px solid var(--primary-color);
+    }
+
+    section.sidebar > nav ul li.disabled {
+        opacity: 0.3;
     }
 
 section.sidebar > footer {
@@ -216,7 +221,7 @@ main {
     flex-direction: column;
 }
 
-main > section.topbar {
+main > .topbar {
     height: 60px;
     flex-shrink: 0;
     background: rgb(242,242,242);
@@ -226,35 +231,12 @@ main > section.topbar {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#ffffff',GradientType=1 );
     display: flex;
 }
-    main > section.topbar > #search_bar {
+    main > .topbar > search-bar {
         padding: 0 15px;
         background: var(--secondary-background);
         display: flex;
         align-items: center;
     }
-        main > section.topbar > #search_bar > i {
-            font-size: 24px;
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
-        main > section.topbar > #search_bar > input {
-            border: none;
-            outline: none;
-            width: 250px;
-            height: 58px;
-            background: none;
-            font-size: 18px;
-            color: #455A64;
-        }
-        main > section.topbar > #search_bar > input::placeholder {
-            color: var(--primary-color);
-        }
-        main > section.topbar > #search_bar > div.bull {
-            margin-left: 10px;
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-            background: none;
-        }
 
 main > section#view {
     flex-grow: 1;

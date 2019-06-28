@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- Headers -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -14,8 +16,10 @@
 <script src="js/utils.js" defer></script>
 <script src="lib/chart.js" defer></script>
 <script src="components/widget.js" defer></script>
+<script src="components/searchbar.js" defer></script>
 <title>IHM - [[=z.serverName]]</title>
 
+<!-- Sidebar start -->
 <section class="sidebar">
     <header>
         <h1><img src="img/logo.png" alt="SlimIO" /> SlimIO IHM</h1>
@@ -29,6 +33,7 @@
         <hr>
     </header>
 
+    <!-- Activity Overview (stats on alarms, mic & entities) -->
     <p class="overview_title">Activity Overview</p>
     <div class="overview">
         <div>
@@ -45,6 +50,7 @@
         </div>
     </div>
 
+    <!-- Navigation (to update #view) -->
     <nav>
         <ul>
             <li data-menu="dashboard">
@@ -55,7 +61,7 @@
                 <i class="icon-bell-alt"></i>
                 <p>Alarms Console</p>
             </li>
-            <li data-menu="alerting">
+            <li data-menu="alerting" class="disabled">
                 <i class="icon-eye"></i>
                 <p>Alerting Views</p>
             </li>
@@ -71,14 +77,25 @@
         <div class="bull"><i class="icon-cog"></i></div>
     </footer>
 </section>
+<!-- Sidebar end -->
 
+<!-- Main start -->
 <main>
-    <section class="topbar">
-        <div id="search_bar">
-            <i class="icon-search"></i>
-            <input type="text" placeholder="Search">
-            <div class="bull"><i class="icon-help"></i></div>
-        </div>
-    </section>
+    <div class="topbar">
+        <search-bar></search-bar>
+    </div>
     <section id="view"></section>
 </main>
+<!-- Main end -->
+
+<!-- Templates -->
+<template id="searchbar">
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/searchbar.css">
+
+    <i class="icon-search"></i>
+    <input type="text" placeholder="Search">
+    <div class="help-btn">
+        <i class="icon-help"></i>
+    </div>
+</template>
