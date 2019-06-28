@@ -18,8 +18,7 @@ class Widget extends HTMLElement {
         icon.classList.add(this.getAttribute("icon") || "icon-chart-bar");
 
         // Attach shadow root
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.appendChild(clone);
+        this.attachShadow({ mode: "open" }).appendChild(clone);
     }
 }
 

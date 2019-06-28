@@ -1,11 +1,11 @@
-<div class="title">
+<header>
     <i class="icon-home"></i>
     <p>Dashboard</p>
     <div class="extendable-bull" id="edit_mode_btn"><i class="icon-pencil"></i><p>Edit mode</p></div>
-</div>
+</header>
 
-<section class="grow">
-    <section class="fix">
+<div class="grow">
+    <div class="fix">
         <dashboard-widget name="Addons" icon="icon-cubes" draggable="true">
             <table id="addons_table">
                 <thead>
@@ -29,12 +29,12 @@
             <canvas id="test"></canvas>
         </dashboard-widget>
 
-        <section class="widget-add">
+        <div class="widget-add">
             <i class="icon-plus"></i>
             <p>Add widget</p>
-        </section>
-    </section>
-</section>
+        </div>
+    </div>
+</div>
 
 <template id="widget_template">
     <link rel="stylesheet" href="css/fontello.css">

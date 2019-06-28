@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", async() => {
             await loadPage("dashboard");
         }
         else {
-            const menu = document.querySelector(`.menu > li[data-menu='${currPage}']`);
+            const menu = document.querySelector(`nav ul > li[data-menu='${currPage}']`);
             menu.classList.add("active");
             await loadPage(currPage);
         }
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", async() => {
         if (currPage === activePage) {
             return;
         }
-        const activeMenu = document.querySelector(`.menu > li[data-menu='${activePage}']`);
+        const activeMenu = document.querySelector(`nav ul > li[data-menu='${activePage}']`);
         activeMenu.classList.remove("active");
         this.classList.add("active");
 
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
 
     // Add navigation events
-    const listOfMenus = document.querySelectorAll(".menu > li:not(.disabled)");
+    const listOfMenus = document.querySelectorAll("nav ul > li:not(.disabled)");
     for (const menu of listOfMenus) {
         menu.addEventListener("click", menuEventClick);
     }
