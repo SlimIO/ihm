@@ -1,0 +1,13 @@
+{
+    "format": "en-GB",
+    "keys": {
+        "activity_overview": "Activity Overview",
+        "search": "Search",
+        "menu": {
+            "dashboard": "Dashboard",
+            "alarmconsole": "Alarms Console",
+            "alerting": "Alertings Views",
+            "metrics": "Metrics"
+        }
+    }
+}

@@ -34,7 +34,7 @@
     </header>
 
     <!-- Activity Overview (stats on alarms, mic & entities) -->
-    <p class="overview_title">Activity Overview</p>
+    <p class="overview_title">[[=z.i18n.keys.activity_overview]]</p>
     <div class="overview">
         <div>
             <div class="bull"><i class="icon-bell"></i></div>
@@ -53,22 +53,12 @@
     <!-- Navigation (to update #view) -->
     <nav>
         <ul>
-            <li data-menu="dashboard">
-                <i class="icon-home"></i>
-                <p>Dashboard</p>
-            </li>
-            <li data-menu="alarmconsole">
-                <i class="icon-bell-alt"></i>
-                <p>Alarms Console</p>
-            </li>
-            <li data-menu="alerting" class="disabled">
-                <i class="icon-eye"></i>
-                <p>Alerting Views</p>
-            </li>
-            <li data-menu="metrics">
-                <i class="icon-chart-line"></i>
-                <p>Metrics</p>
-            </li>
+            [[ for (const [menu, prop] of Object.entries(z.menu)) { ]]
+                <li data-menu="[[=menu]]">
+                    <i class="[[=prop.icon]]"></i>
+                    <p>[[=prop.title]]</p>
+                </li>
+            [[ } ]]
         </ul>
     </nav>
 
@@ -94,7 +84,7 @@
     <link rel="stylesheet" href="css/searchbar.css">
 
     <i class="icon-search"></i>
-    <input type="text" placeholder="Search">
+    <input type="text" placeholder="[[=z.i18n.keys.search]]">
     <div class="help-btn">
         <i class="icon-help"></i>
     </div>

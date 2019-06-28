@@ -1,0 +1,19 @@
+[
+    {
+        "type": "addons"
+    },
+    {
+        "type": "alarms",
+        "options": {
+            "extend": true,
+            "max": 5
+        }
+    },
+    {
+        "type": "chart",
+        "options": {
+            "extend": true,
+            "mic": "?"
+        }
+    }
+]
