@@ -17,9 +17,47 @@ class Widget extends HTMLElement {
         const icon = clone.querySelector(".widget-icon");
         icon.classList.add(this.getAttribute("icon") || "icon-chart-bar");
 
+        const type = this.getAttribute("type") || "addons";
+        const content = document.getElementById(`widget_${type}`);
+        clone.querySelector(".content").appendChild(content.content.cloneNode(true));
+
         // Attach shadow root
         this.attachShadow({ mode: "open" }).appendChild(clone);
+
+        this.addEventListener("dragstart", (event) => {
+            Widget.dragged = event.target;
+        });
+
+        this.addEventListener("dragover", (event) => event.preventDefault());
+
+        this.addEventListener("dragenter", (event) => {
+            if (event.target.tagName === "DASHBOARD-WIDGET" && Widget.dragged !== event.target) {
+                event.target.classList.add("highlight");
+            }
+        });
+
+        this.addEventListener("dragleave", (event) => {
+            if (event.target.tagName === "DASHBOARD-WIDGET") {
+                event.target.classList.remove("highlight");
+            }
+        });
+
+        this.addEventListener("drop", (event) => {
+            event.preventDefault();
+            if (event.target.tagName === "DASHBOARD-WIDGET" && Widget.dragged !== event.target) {
+                const container = Widget.dragged.parentNode;
+
+                event.target.classList.remove("highlight");
+                const currIndex = Array.prototype.indexOf.call(container.children, Widget.dragged);
+                const nextIndex = Array.prototype.indexOf.call(container.children, event.target);
+
+                container.removeChild(Widget.dragged);
+                container.insertBefore(Widget.dragged, currIndex > nextIndex ? event.target : event.target.nextSibling);
+            }
+        });
     }
 }
+
+Widget.dragged = null;
 
 customElements.define("dashboard-widget", Widget);

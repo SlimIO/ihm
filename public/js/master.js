@@ -8,84 +8,36 @@ async function dashboard() {
         widgetAdd.style.display = "flex";
     });
 
-    const addons = await fetch("/addons").then((raw) => raw.json());
-    // console.log(addons);
+    // const addons = await fetch("/addons").then((raw) => raw.json());
+    // // console.log(addons);
 
-    const addonsTable = document.querySelector("#addons_table > tbody");
-    for (const addon of addons) {
-        const row = addonsTable.insertRow();
+    // const addonsTable = document.querySelector("#addons_table > tbody");
+    // for (const addon of addons) {
+    //     const row = addonsTable.insertRow();
 
-        const start = formatDate(addon.lastStart);
-        const stop = addon.lastStop === null ? "N/A" : formatDate(addon.lastStop);
+    //     const start = formatDate(addon.lastStart);
+    //     const stop = addon.lastStop === null ? "N/A" : formatDate(addon.lastStop);
 
-        const stateTd = row.insertCell(0);
-        const stateBull = createFastElement("div", { classList: ["state"] });
-        stateBull.appendChild(createFastElement("i", { classList: ["icon-ok"] }));
-        stateTd.appendChild(stateBull);
+    //     const stateTd = row.insertCell(0);
+    //     const stateBull = createFastElement("div", { classList: ["state"] });
+    //     stateBull.appendChild(createFastElement("i", { classList: ["icon-ok"] }));
+    //     stateTd.appendChild(stateBull);
 
-        row.insertCell(1).appendChild(document.createTextNode(addon.name));
-        const tdVer = row.insertCell(2);
-        tdVer.classList.add("center");
-        tdVer.appendChild(document.createTextNode(addon.version));
+    //     row.insertCell(1).appendChild(document.createTextNode(addon.name));
+    //     const tdVer = row.insertCell(2);
+    //     tdVer.classList.add("center");
+    //     tdVer.appendChild(document.createTextNode(addon.version));
 
-        const tdContainer = row.insertCell(3);
-        tdContainer.classList.add("center");
-        tdContainer.appendChild(document.createTextNode(addon.containerVersion));
+    //     const tdContainer = row.insertCell(3);
+    //     tdContainer.classList.add("center");
+    //     tdContainer.appendChild(document.createTextNode(addon.containerVersion));
 
-        row.insertCell(4).appendChild(document.createTextNode(start));
-        row.insertCell(5).appendChild(document.createTextNode(stop));
+    //     row.insertCell(4).appendChild(document.createTextNode(start));
+    //     row.insertCell(5).appendChild(document.createTextNode(stop));
 
-        const gearTd = row.insertCell(6);
-        gearTd.appendChild(createFastElement("i", { classList: ["icon-cog"] }));
-    }
-
-    // Chart test
-    createChart("test", {
-        type: "pie",
-        data: {
-            labels: ["User", "Nice", "Sys", "IRQ", "Idle"],
-            datasets: [{
-                data: [15, 20, 30, 2, 48],
-                backgroundColor: ["#06F", "#81C784", "#FFCA28", "#E53935", "#CFD8DC"]
-            }]
-        }
-    });
-
-    let dragged = null;
-    const widgets = document.querySelectorAll("dashboard-widget");
-    for (const widget of widgets) {
-        widget.addEventListener("dragstart", (event) => {
-            dragged = event.target;
-        });
-
-        widget.addEventListener("dragover", (event) => event.preventDefault());
-
-        widget.addEventListener("dragenter", (event) => {
-            if (event.target.tagName === "DASHBOARD-WIDGET" && dragged !== event.target) {
-                event.target.classList.add("highlight");
-            }
-        });
-
-        widget.addEventListener("dragleave", (event) => {
-            if (event.target.tagName === "DASHBOARD-WIDGET") {
-                event.target.classList.remove("highlight");
-            }
-        });
-
-        widget.addEventListener("drop", (event) => {
-            event.preventDefault();
-            if (event.target.tagName === "DASHBOARD-WIDGET" && dragged !== event.target) {
-                const container = dragged.parentNode;
-
-                event.target.classList.remove("highlight");
-                const currIndex = Array.prototype.indexOf.call(container.children, dragged);
-                const nextIndex = Array.prototype.indexOf.call(container.children, event.target);
-
-                container.removeChild(dragged);
-                container.insertBefore(dragged, currIndex > nextIndex ? event.target : event.target.nextSibling);
-            }
-        });
-    }
+    //     const gearTd = row.insertCell(6);
+    //     gearTd.appendChild(createFastElement("i", { classList: ["icon-cog"] }));
+    // }
 }
 
 async function alarmconsole() {
