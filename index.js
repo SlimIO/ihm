@@ -1,3 +1,5 @@
+"use strict";
+
 // Required Third-Party Dependencies
 const Addon = require("@slimio/addon");
 

@@ -1,3 +1,5 @@
+/// <reference types="@slimio/addon" />
+
 declare namespace IHM {
     interface i18n {
         format: string;

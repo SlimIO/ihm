@@ -1,3 +1,6 @@
+"use strict";
+/* eslint-disable jsdoc/require-jsdoc */
+
 function formatDate(date = new Date(), local = "en-GB") {
     // eslint-disable-next-line
     return Intl.DateTimeFormat(local, {

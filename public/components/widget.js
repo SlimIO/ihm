@@ -1,10 +1,13 @@
+"use strict";
+/* eslint-disable jsdoc/require-jsdoc */
+
 /**
  * @class Widget
- * @extneds HTMLElement
+ * @augments HTMLElement
  */
 class Widget extends HTMLElement {
     /**
-     * @constructor
+     * @class Widget
      */
     constructor() {
         super();

@@ -1,3 +1,5 @@
+"use strict";
+
 // Require Node.js dependencies
 const { join } = require("path");
 const { readFile } = require("fs").promises;
@@ -16,6 +18,12 @@ const i18n = require("../i18n/english.json");
 const PUBLIC_DIR = join(__dirname, "..", "public");
 const VIEWS_DIR = join(__dirname, "..", "views");
 
+/**
+ * @async
+ * @function getActivityOverview
+ * @param {Addon} ihm ihm addon
+ * @returns {Promise<any>}
+ */
 async function getActivityOverview(ihm) {
     const [entity, desc, summary] = await Promise.all([
         ihm.sendOne("events.get_entity_by_id", [1]),

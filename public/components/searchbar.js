@@ -1,10 +1,13 @@
+"use strict";
+/* eslint-disable jsdoc/require-jsdoc */
+
 /**
  * @class SearchBar
- * @extneds HTMLElement
+ * @augments HTMLElement
  */
 class SearchBar extends HTMLElement {
     /**
-     * @constructor
+     * @class SearchBar
      */
     constructor() {
         super();

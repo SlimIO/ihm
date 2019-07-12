@@ -1,3 +1,6 @@
+"use strict";
+/* eslint-disable jsdoc/require-jsdoc */
+
 // TODO: Remove executors... (they are not good for flexibility).
 // Keep it simple
 
