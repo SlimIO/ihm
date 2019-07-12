@@ -4,7 +4,7 @@
 const Addon = require("@slimio/addon");
 
 // Create addon
-const ihm = new Addon("ihm")
+const ihm = new Addon("ihm", { verbose: true })
     .lockOn("gate")
     .lockOn("events");
 
@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 8000;
 // Catch start event!
 ihm.on("start", () => {
     httpServer.listen(PORT, () => {
-        console.log(`IHM Http Server started at: ${`http://localhost:${PORT}`}`);
+        ihm.logger.writeLine(`Server started at: ${`http://localhost:${PORT}`}`);
     });
     ihm.ready();
 });
