@@ -45,8 +45,8 @@ async function getActivityOverview(ihm) {
 }
 
 /**
- * @func exportServer
- * @desc Export Polka HTTP Server to the ihm Addon
+ * @function exportServer
+ * @description Export Polka HTTP Server to the ihm Addon
  * @param {!Addon} ihm ihm addon
  * @returns {any}
  */
