@@ -15,6 +15,16 @@
         "interface",
         "ihm"
     ],
+    "files": [
+        "index.js",
+        "index.d.ts",
+        "slimio.toml",
+        "views",
+        "src",
+        "public",
+        "i18n",
+        "config"
+    ],
     "author": "SlimIO",
     "license": "MIT",
     "description": "Interface HTML/CSS for addons",

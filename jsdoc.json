@@ -10,7 +10,11 @@
             "index.js",
             "./src/bodyParser.js",
             "./src/httpServer.js",
-            "./public/js/master.js"
+            "./public/js/master.js",
+            "./public/components/searchbar.js",
+            "./public/components/widget.js",
+            "./public/js/utils.js",
+            "./public/lib/chart.js"
         ],
         "exclude": [
             "node_modules",
