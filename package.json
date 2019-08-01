@@ -33,7 +33,7 @@
         "@slimio/eslint-config": "^3.0.2",
         "@slimio/metrics": "^0.4.0",
         "@slimio/psp": "^0.6.0",
-        "ava": "^1.4.1",
+        "ava": "^2.2.0",
         "cross-env": "^5.2.0",
         "dotenv": "^8.0.0",
         "eslint": "^6.0.1",
