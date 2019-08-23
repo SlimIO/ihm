@@ -30,7 +30,7 @@
     "description": "Interface HTML/CSS for addons",
     "dependencies": {
         "@polka/send-type": "^0.5.2",
-        "@slimio/addon": "^0.18.1",
+        "@slimio/addon": "^0.20.2",
         "polka": "^0.5.2",
         "sirv": "^0.4.2",
         "zup": "0.0.1"
