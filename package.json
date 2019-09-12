@@ -42,7 +42,7 @@
         "@slimio/alert": "^0.2.0",
         "@slimio/eslint-config": "^3.0.2",
         "@slimio/metrics": "^0.4.0",
-        "@slimio/psp": "^0.6.0",
+        "@slimio/psp": "^0.8.0",
         "ava": "^2.2.0",
         "cross-env": "^5.2.0",
         "dotenv": "^8.0.0",
