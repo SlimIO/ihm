@@ -12,7 +12,86 @@ div.widgets {
     }
 
 div.console {
-    background: red;
     flex-grow: 1;
     margin-top: 15px;
+    display: flex;
+    flex-direction: column;
 }
+    div.console > div.console_options {
+        height: 40px;
+        background: var(--secondary-background);
+        flex-shrink: 0;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+    div.console > div.alarms {
+        flex-grow: 1;
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -10px;
+        margin-top: -10px;
+        align-content: flex-start;
+    }
+        div.console > div.alarms .alarm {
+            flex-basis: 500px;
+            background: rgb(236,239,241);
+            background: -moz-linear-gradient(top,  rgba(236,239,241,1) 1%, rgba(207,210,211,1) 100%);
+            background: -webkit-linear-gradient(top,  rgba(236,239,241,1) 1%,rgba(207,210,211,1) 100%);
+            background: linear-gradient(to bottom,  rgba(236,239,241,1) 1%,rgba(207,210,211,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eceff1', endColorstr='#cfd2d3',GradientType=0 );
+            height: 80px;
+            border-radius: 4px;
+            margin-top: 10px;
+            margin-left: 10px;
+            flex-grow: 1;
+            box-sizing: border-box;
+            border-left: 35px solid #90CAF9;
+            box-shadow: 1px 1px 10px rgba(144, 202, 249, 0.308) inset;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            position: relative;
+        }
+        div.console > div.alarms .alarm.critical {
+            border-left-color:#D32F2F;
+            box-shadow: 1px 1px 10px rgba(211, 47, 47, 0.2) inset;
+        }
+        div.console > div.alarms .alarm.major {
+            border-left-color: #F9A825;
+            box-shadow: 1px 1px 10px rgba(253, 216, 53, 0.3) inset;
+        }
+
+        div.console > div.alarms .alarm .inputs {
+            position: absolute;
+            left: -35px;
+            top: 0;
+            width: 35px;
+            height: inherit;
+            display: flex;
+            flex-direction: column;
+            color: #FFF;
+            align-items: center;
+            justify-content: center;
+        }
+            div.console > div.alarms .alarm .inputs > * + * {
+                margin-top: 7px;
+            }
+
+        div.console > div.alarms .alarm .title {
+            width: 90%;
+            height: 20px;
+            flex-shrink: 0;
+            background: rgba(207,210,211,1);
+            border-radius: 4px;
+            display: flex;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0 10px;
+            align-items: center;
+        }
+        div.console > div.alarms .alarm > p {
+            color: #546E7A;
+            font-size: 14px;
+            margin-top: 5px;
+        }
