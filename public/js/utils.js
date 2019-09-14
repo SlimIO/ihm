@@ -30,11 +30,19 @@ function createChart(canvasId, config = {}) {
 }
 
 function createFastElement(kind = "div", options = {}) {
-    const { classList = [] } = options;
+    const { classList = [], attributes = {}, text = null } = options;
 
     const el = document.createElement(kind);
     for (const name of classList) {
         el.classList.add(name);
+    }
+
+    for (const [key, value] of Object.entries(attributes)) {
+        el.setAttribute(key, value);
+    }
+
+    if (text !== null) {
+        el.appendChild(document.createTextNode(String(text)));
     }
 
     return el;

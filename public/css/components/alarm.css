@@ -1,0 +1,91 @@
+
+.alarm {
+    background: rgb(236,239,241);
+    background: -moz-linear-gradient(top,  rgba(236,239,241,1) 1%, rgba(207,210,211,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(236,239,241,1) 1%,rgba(207,210,211,1) 100%);
+    background: linear-gradient(to bottom,  rgba(236,239,241,1) 1%,rgba(207,210,211,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eceff1', endColorstr='#cfd2d3',GradientType=0 );
+    height: 90px;
+    border-radius: 4px;
+    flex-grow: 1;
+    box-sizing: border-box;
+    border-left: 35px solid #90CAF9;
+    box-shadow: 1px 1px 10px rgba(144, 202, 249, 0.308) inset;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+    .alarm.critical {
+        border-left-color:#D32F2F;
+        box-shadow: 1px 1px 10px rgba(211, 47, 47, 0.2) inset;
+    }
+    .alarm.major {
+        border-left-color: #F9A825;
+        box-shadow: 1px 1px 10px rgba(253, 216, 53, 0.3) inset;
+    }
+
+.alarm .inputs {
+    position: absolute;
+    left: -35px;
+    top: 0;
+    width: 35px;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    align-items: center;
+    justify-content: center;
+}
+    .alarm .inputs > * {
+        width: 25px;
+        height: 25px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.25s linear;
+    }
+    .alarm .inputs > *:hover {
+        cursor: pointer;
+        background: rgba(40, 40, 40, 0.6);
+    }
+    .alarm .inputs > * + * {
+        margin-top: 5px;
+    }
+
+.alarm .title, .alarm .footer {
+    height: 22px;
+    flex-shrink: 0;
+    background: -moz-linear-gradient(-45deg,  rgba(73,73,73,0.08) 0%, rgba(0,0,0,0) 100%);
+    background: -webkit-linear-gradient(-45deg,  rgba(73,73,73,0.08) 0%,rgba(0,0,0,0) 100%);
+    background: linear-gradient(135deg,  rgba(73,73,73,0.08) 0%,rgba(0,0,0,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#14494949', endColorstr='#00000000',GradientType=1 );
+    font-size: 14px;
+    padding: 0 10px;
+    align-items: center;
+    display: flex;
+    color: rgba(55, 71, 79, 0.637);
+}
+    .alarm .title b, .alarm .footer b {
+        font-weight: bold;
+        color: #263238b2;
+    }
+
+    .alarm .title p:first-child {
+        font-weight: bold;
+        color: var(--secondary-color);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .alarm .title .ck {
+        font-weight: none;
+        margin-left: auto;
+        color: #9E9E9E;
+    }
+
+.alarm > p {
+    color: #546E7A;
+    font-size: 14px;
+    padding: 7.5px;
+    flex-grow: 1;
+}

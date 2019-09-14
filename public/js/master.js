@@ -4,52 +4,36 @@
 // TODO: Remove executors... (they are not good for flexibility).
 // Keep it simple
 
+// CONSTANT
+const SEVERITIES = new Map([
+    [1, "Critical"],
+    [2, "Major"],
+    [3, "Minor"]
+]);
+const TWO_HOUR_MS = 2 * 60 * 60 * 1000;
+
 async function dashboard() {
     const editModeBtn = document.getElementById("edit_mode_btn");
     editModeBtn.addEventListener("click", () => {
         const widgetAdd = document.querySelector(".widget-add");
         widgetAdd.style.display = "flex";
     });
-
-    // const addons = await fetch("/addons").then((raw) => raw.json());
-    // // console.log(addons);
-
-    // const addonsTable = document.querySelector("#addons_table > tbody");
-    // for (const addon of addons) {
-    //     const row = addonsTable.insertRow();
-
-    //     const start = formatDate(addon.lastStart);
-    //     const stop = addon.lastStop === null ? "N/A" : formatDate(addon.lastStop);
-
-    //     const stateTd = row.insertCell(0);
-    //     const stateBull = createFastElement("div", { classList: ["state"] });
-    //     stateBull.appendChild(createFastElement("i", { classList: ["icon-ok"] }));
-    //     stateTd.appendChild(stateBull);
-
-    //     row.insertCell(1).appendChild(document.createTextNode(addon.name));
-    //     const tdVer = row.insertCell(2);
-    //     tdVer.classList.add("center");
-    //     tdVer.appendChild(document.createTextNode(addon.version));
-
-    //     const tdContainer = row.insertCell(3);
-    //     tdContainer.classList.add("center");
-    //     tdContainer.appendChild(document.createTextNode(addon.containerVersion));
-
-    //     row.insertCell(4).appendChild(document.createTextNode(start));
-    //     row.insertCell(5).appendChild(document.createTextNode(stop));
-
-    //     const gearTd = row.insertCell(6);
-    //     gearTd.appendChild(createFastElement("i", { classList: ["icon-cog"] }));
-    // }
 }
 
 async function alarmconsole() {
+    const alarms = await fetch("/alarms").then((raw) => raw.json());
+
+    const sevCount = { 1: 0, 2: 0, 3: 0 };
+    for (const { severity } of alarms) {
+        sevCount[severity]++;
+    }
+
     createChart("severities", {
         type: "bar",
         data: {
             labels: ["Critical", "Major", "Minor"],
             datasets: [{
-                data: [2, 10, 24],
+                data: [...Object.values(sevCount)],
                 backgroundColor: ["#E53935", "#FFC107", "#03A9F4"]
             }]
         },
@@ -71,7 +55,7 @@ async function alarmconsole() {
 
         // The data for our dataset
         datasets: {
-            data: []
+            data: [alarms.length]
         },
 
         // Configuration options go here
@@ -87,6 +71,49 @@ async function alarmconsole() {
             maintainAspectRatio: false
         }
     });
+
+    const fragment = document.createDocumentFragment();
+    for (const alarm of alarms) {
+        const elAlarm = document.createElement("alarm-row");
+        elAlarm.setAttribute("uuid", alarm.uuid);
+        elAlarm.setAttribute("severity", SEVERITIES.get(alarm.severity));
+
+        const messageElement = createFastElement("span", {
+            attributes: { slot: "message" }, text: alarm.message
+        });
+
+        const entityElement = createFastElement("span", {
+            attributes: { slot: "entity" }, text: alarm.entity_name
+        });
+
+        const ckElement = createFastElement("span", {
+            attributes: { slot: "ck" }, text: alarm.correlate_key
+        });
+
+        const occurElement = createFastElement("span", {
+            attributes: { slot: "occurence" }, text: alarm.occurence
+        });
+
+        const startElement = createFastElement("span", {
+            attributes: { slot: "start_date" }, text: formatDate(alarm.createdAt)
+        });
+        const updateTs = new Date(alarm.updatedAt).getTime();
+        const elapsed = (Date.now() - TWO_HOUR_MS - updateTs) / 1000;
+
+        const sinceElement = createFastElement("span", {
+            attributes: { slot: "since" }, text: `${elapsed.toFixed(1)} sec`
+        });
+
+        elAlarm.appendChild(entityElement);
+        elAlarm.appendChild(messageElement);
+        elAlarm.appendChild(ckElement);
+        elAlarm.appendChild(occurElement);
+        elAlarm.appendChild(startElement);
+        elAlarm.appendChild(sinceElement);
+
+        fragment.appendChild(elAlarm);
+    }
+    document.querySelector(".alarms").appendChild(fragment);
 }
 
 let activePage = null;

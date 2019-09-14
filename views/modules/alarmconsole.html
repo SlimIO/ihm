@@ -9,21 +9,47 @@
 </div>
 
 <div class="console">
-    <div class="console_options"></div>
-    <div class="alarms">
-        <div class="alarm critical">
-            <div class="inputs">
-                <i class="icon-eye"></i>
-                <i class="icon-cog"></i>
-            </div>
-            <div class="title">
-                <p>Entity 01</p>&nbsp;
-                <b>correlatekey#id</b>
-            </div>
-            <p>Alarm message here!</p>
+    <div class="filter-bar">
+        <div class="elems">
+            <i class="icon-cubes"></i>
+            <p>Entities</p>
+            <b>></b>
+            <p>Test</p>
         </div>
-        <div class="alarm"></div>
-        <div class="alarm"></div>
-        <div class="alarm major"></div>
+        <ul>
+            <li>legends:</li>
+            <li><div class="color" style="background: #D32F2F"></div><p>Critical</p></li>
+            <li><div class="color" style="background: #F9A825"></div><p>Major</p></li>
+            <li><div class="color" style="background: #90CAF9"></div><p>Minor</p></li>
+        </ul>
     </div>
+    <div class="console_options">
+        <input type="text" placeholder="filter">
+        <div class="display-type">
+
+        </div>
+    </div>
+    <div class="alarms"></div>
 </div>
+
+<template id="template_alarm">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/components/alarm.css">
+    <link rel="stylesheet" href="css/fontello.css">
+
+    <div class="alarm">
+        <div class="inputs">
+            <i class="icon-eye"></i>
+            <i class="icon-cog"></i>
+        </div>
+        <div class="title">
+            <p><slot name="entity"></slot></p>
+            <p class="ck"><slot name="ck">?</slot></p>
+        </div>
+        <p><slot name="message"></slot></p>
+        <div class="footer">
+            <p><b><slot name="occurence">0</slot></b> since <b><slot name="since">0 min</slot></b> ago</p>
+            <p style="margin-left:auto;"><slot name="start_date"></slot></p>
+        </div>
+    </div>
+</template>

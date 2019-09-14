@@ -27,6 +27,15 @@ class Widget extends HTMLElement {
         // Attach shadow root
         this.attachShadow({ mode: "open" }).appendChild(clone);
 
+        try {
+            const widgetScript = document.createElement("script");
+            widgetScript.src = `js/components/${type}.js`;
+            document.body.appendChild(widgetScript);
+        }
+        catch (err) {
+            console.error(err);
+        }
+
         this.addEventListener("dragstart", (event) => {
             Widget.dragged = event.target;
         });

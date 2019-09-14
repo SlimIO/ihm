@@ -104,6 +104,20 @@ function exportServer(ihm) {
         }
     });
 
+    httpServer.get("/alarms", async(req, res) => {
+        console.time("getAlarms");
+        const alarms = await ihm.sendOne("events.get_alarms");
+
+        // TODO: do this asynchronously
+        for (const alarm of alarms) {
+            const entity = await ihm.sendOne("events.get_entity_by_id", [alarm.entity_id]);
+            alarm.entity_name = entity.name;
+        }
+
+        send(res, 200, alarms);
+        console.timeEnd("getAlarms");
+    });
+
     httpServer.get("/addons", async(req, res) => {
         try {
             /** @type {string[]} */

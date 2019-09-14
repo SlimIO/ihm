@@ -23,8 +23,57 @@ div.console {
         flex-shrink: 0;
         margin-bottom: 10px;
         border-radius: 4px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
     }
-    div.console > div.alarms {
+        div.console > div.console_options > input {
+            border-radius: 4px;
+            border: 2px solid rgba(84, 110, 122, 0.308);
+            padding: 5px;
+        }
+
+
+    div.console > div.filter-bar {
+        height: 20px;
+        margin-bottom: 10px;
+        display: flex;
+        font-size: 14px;
+        font-weight: bold;
+    }
+        div.console > div.filter-bar > .elems {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+            div.console > div.filter-bar > .elems > b {
+                opacity: 0.5;
+            }
+            div.console > div.filter-bar > .elems > * {
+                margin-right: 5px;
+            }
+        div.console > div.filter-bar > ul {
+            margin-left: auto;
+            display: flex;
+        }
+            div.console > div.filter-bar > ul li + li {
+                margin-left: 10px;
+            }
+            div.console > div.filter-bar > ul li {
+                display: flex;
+                align-items: center;
+            }
+                div.console > div.filter-bar > ul li > div.color {
+                    width: 12px;
+                    height: 12px;
+                    border: 1px solid #000;
+                    background: red;
+                    border-radius: 50px;
+                    margin-right: 5px;
+                    box-sizing: border-box;
+                }
+
+    div.console > .alarms {
         flex-grow: 1;
         margin-top: 10px;
         display: flex;
@@ -33,65 +82,8 @@ div.console {
         margin-top: -10px;
         align-content: flex-start;
     }
-        div.console > div.alarms .alarm {
-            flex-basis: 500px;
-            background: rgb(236,239,241);
-            background: -moz-linear-gradient(top,  rgba(236,239,241,1) 1%, rgba(207,210,211,1) 100%);
-            background: -webkit-linear-gradient(top,  rgba(236,239,241,1) 1%,rgba(207,210,211,1) 100%);
-            background: linear-gradient(to bottom,  rgba(236,239,241,1) 1%,rgba(207,210,211,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eceff1', endColorstr='#cfd2d3',GradientType=0 );
-            height: 80px;
-            border-radius: 4px;
-            margin-top: 10px;
+        div.console > .alarms > alarm-row {
             margin-left: 10px;
-            flex-grow: 1;
-            box-sizing: border-box;
-            border-left: 35px solid #90CAF9;
-            box-shadow: 1px 1px 10px rgba(144, 202, 249, 0.308) inset;
-            display: flex;
-            flex-direction: column;
-            padding: 5px;
-            position: relative;
-        }
-        div.console > div.alarms .alarm.critical {
-            border-left-color:#D32F2F;
-            box-shadow: 1px 1px 10px rgba(211, 47, 47, 0.2) inset;
-        }
-        div.console > div.alarms .alarm.major {
-            border-left-color: #F9A825;
-            box-shadow: 1px 1px 10px rgba(253, 216, 53, 0.3) inset;
-        }
-
-        div.console > div.alarms .alarm .inputs {
-            position: absolute;
-            left: -35px;
-            top: 0;
-            width: 35px;
-            height: inherit;
-            display: flex;
-            flex-direction: column;
-            color: #FFF;
-            align-items: center;
-            justify-content: center;
-        }
-            div.console > div.alarms .alarm .inputs > * + * {
-                margin-top: 7px;
-            }
-
-        div.console > div.alarms .alarm .title {
-            width: 90%;
-            height: 20px;
-            flex-shrink: 0;
-            background: rgba(207,210,211,1);
-            border-radius: 4px;
-            display: flex;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 0 10px;
-            align-items: center;
-        }
-        div.console > div.alarms .alarm > p {
-            color: #546E7A;
-            font-size: 14px;
-            margin-top: 5px;
+            margin-top: 10px;
+            flex-basis: 500px;
         }
