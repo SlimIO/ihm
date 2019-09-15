@@ -6,11 +6,10 @@
 
 // CONSTANT
 const SEVERITIES = new Map([
-    [1, "Critical"],
-    [2, "Major"],
-    [3, "Minor"]
+    [0, "Critical"],
+    [1, "Major"],
+    [2, "Minor"]
 ]);
-const TWO_HOUR_MS = 2 * 60 * 60 * 1000;
 
 async function dashboard() {
     const editModeBtn = document.getElementById("edit_mode_btn");
@@ -23,7 +22,7 @@ async function dashboard() {
 async function alarmconsole() {
     const alarms = await fetch("/alarms").then((raw) => raw.json());
 
-    const sevCount = { 1: 0, 2: 0, 3: 0 };
+    const sevCount = { 0: 0, 1: 0, 2: 0 };
     for (const { severity } of alarms) {
         sevCount[severity]++;
     }
@@ -76,40 +75,8 @@ async function alarmconsole() {
     for (const alarm of alarms) {
         const elAlarm = document.createElement("alarm-row");
         elAlarm.setAttribute("uuid", alarm.uuid);
-        elAlarm.setAttribute("severity", SEVERITIES.get(alarm.severity));
-
-        const messageElement = createFastElement("span", {
-            attributes: { slot: "message" }, text: alarm.message
-        });
-
-        const entityElement = createFastElement("span", {
-            attributes: { slot: "entity" }, text: alarm.entity_name
-        });
-
-        const ckElement = createFastElement("span", {
-            attributes: { slot: "ck" }, text: alarm.correlate_key
-        });
-
-        const occurElement = createFastElement("span", {
-            attributes: { slot: "occurence" }, text: alarm.occurence
-        });
-
-        const startElement = createFastElement("span", {
-            attributes: { slot: "start_date" }, text: formatDate(alarm.createdAt)
-        });
-        const updateTs = new Date(alarm.updatedAt).getTime();
-        const elapsed = (Date.now() - TWO_HOUR_MS - updateTs) / 1000;
-
-        const sinceElement = createFastElement("span", {
-            attributes: { slot: "since" }, text: `${elapsed.toFixed(1)} sec`
-        });
-
-        elAlarm.appendChild(entityElement);
-        elAlarm.appendChild(messageElement);
-        elAlarm.appendChild(ckElement);
-        elAlarm.appendChild(occurElement);
-        elAlarm.appendChild(startElement);
-        elAlarm.appendChild(sinceElement);
+        elAlarm.setAttribute("severity", SEVERITIES.get(alarm.severity).toLowerCase());
+        elAlarm.initialize(alarm);
 
         fragment.appendChild(elAlarm);
     }
