@@ -12,10 +12,10 @@ const ihm = new Addon("ihm", { verbose: true })
 const httpServer = require("./src/httpServer")(ihm);
 
 // CONSTANTS
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 
 // Catch start event!
-ihm.on("start", () => {
+ihm.on("awake", () => {
     httpServer.listen(PORT, () => {
         ihm.logger.writeLine(`Server started at: ${`http://localhost:${PORT}`}`);
     });
@@ -23,7 +23,7 @@ ihm.on("start", () => {
 });
 
 // Catch stop event
-ihm.on("stop", () => {
+ihm.on("sleep", () => {
     httpServer.server.close();
 });
 
