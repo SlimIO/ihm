@@ -1,9 +1,13 @@
-"use strict";
-
 // Require Node.js Dependencies
-const queryString = require("querystring");
+import queryString from "querystring";
 
-module.exports = async function bodyParser(req) {
+/**
+ * @async
+ * @function bodyParser
+ * @param {*} req
+ * @returns {Promise<any>}
+ */
+export default async function bodyParser(req) {
     let rawBody = "";
     for await (const chunk of req) {
         rawBody += chunk;
@@ -17,4 +21,4 @@ module.exports = async function bodyParser(req) {
         default:
             return rawBody;
     }
-};
+}

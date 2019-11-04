@@ -1,31 +1,34 @@
-"use strict";
-
 // Required Third-Party Dependencies
-const Addon = require("@slimio/addon");
+import Addon from "@slimio/addon";
 
-// Create addon
+// Require Internal Dependencies
+import createServer from "./src/httpServer.js";
+
+// CONSTANTS & Variables
+const PORT = process.env.PORT || 1338;
+let httpServer = null;
+
 const ihm = new Addon("ihm", { verbose: true })
     .lockOn("gate")
     .lockOn("events");
 
-// Require Internal Dependencies
-const httpServer = require("./src/httpServer")(ihm);
-
-// CONSTANTS
-const PORT = process.env.PORT || 1338;
-
 // Catch start event!
-ihm.on("awake", () => {
+ihm.on("awake", async() => {
+    httpServer = createServer(ihm);
     httpServer.listen(PORT, () => {
         ihm.logger.writeLine(`Server started at: ${`http://localhost:${PORT}`}`);
     });
-    ihm.ready();
+
+    await ihm.ready();
 });
 
 // Catch stop event
 ihm.on("sleep", () => {
-    httpServer.server.close();
+    if (httpServer !== null) {
+        httpServer.server.close();
+        httpServer = null;
+    }
 });
 
 // Export addon for SlimIO Core.
-module.exports = ihm;
+export default ihm;

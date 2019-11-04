@@ -1,14 +1,20 @@
-"use strict";
-
 // Require Node.js dependencies
-const { join } = require("path");
-const { readFile } = require("fs").promises;
+import { promises as fs } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import { createRequire } from "module";
+const { readFile } = fs;
 
 // Require Third-Party dependencies
-const polka = require("polka");
-const send = require("@polka/send-type");
-const sirv = require("sirv");
-const zup = require("zup");
+import polka from "polka";
+import send from "@polka/send-type";
+import sirv from "sirv";
+import zup from "zup";
+
+// Node.js CJS constants
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const require = createRequire(__filename);
 
 // Require Internal Dependencies
 /** @type {IHM.i18n} */
@@ -50,7 +56,7 @@ async function getActivityOverview(ihm) {
  * @param {!Addon} ihm ihm addon
  * @returns {any}
  */
-function exportServer(ihm) {
+export default function exportServer(ihm) {
     const httpServer = polka();
 
     // Serve static assets!
@@ -135,6 +141,3 @@ function exportServer(ihm) {
 
     return httpServer;
 }
-
-module.exports = exportServer;
-
