@@ -129,7 +129,7 @@ export default function exportServer(ihm) {
             /** @type {string[]} */
             const addons = await ihm.sendOne("gate.list_addons");
             const infos = await Promise.all(
-                addons.map((name) => ihm.sendOne(`${name}.get_info`))
+                addons.map((name) => ihm.sendOne(`${name}.status`))
             );
 
             send(res, 200, infos);
