@@ -12,7 +12,7 @@ const ihm = new Addon("ihm", { verbose: true })
 const httpServer = require("./src/httpServer")(ihm);
 
 // CONSTANTS
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 1338;
 
 // Catch start event!
 ihm.on("awake", () => {
