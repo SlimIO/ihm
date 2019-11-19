@@ -1,5 +1,6 @@
 // Required Third-Party Dependencies
 import Addon from "@slimio/addon";
+// import { initialize } from "@slimio/modules";
 
 // Require Internal Dependencies
 import createServer from "./src/httpServer.js";
@@ -11,6 +12,8 @@ let httpServer = null;
 const ihm = new Addon("ihm", { verbose: true })
     .lockOn("gate")
     .lockOn("events");
+
+// initialize(ihm);
 
 // Catch start event!
 ihm.on("awake", async() => {

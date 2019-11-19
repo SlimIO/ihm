@@ -1,0 +1,25 @@
+[
+    {
+        "type": "addons",
+        "settings": {
+            "name": "Addons",
+            "icon": "icon-cubes"
+        }
+    },
+    {
+        "type": "alarms",
+        "settings": {
+            "size": "low",
+            "name": "Last Alarms",
+            "icon": "icon-bell"
+        }
+    },
+    {
+        "type": "chart",
+        "settings": {
+            "size": "low",
+            "name": "CPU Usage",
+            "icon": "icon-chart-bar"
+        }
+    }
+]

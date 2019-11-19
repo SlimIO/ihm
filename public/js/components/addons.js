@@ -4,6 +4,7 @@
  * @function load
  */
 async function load() {
+    console.log("load addons...");
     const addons = await fetch("/addons").then((raw) => raw.json());
 
     const addonsTable = document.querySelector("[name='Addons']");
@@ -12,7 +13,6 @@ async function load() {
         const row = tbody.insertRow();
 
         const start = formatDate(addon.lastStart);
-        const stop = addon.lastStop === null ? "N/A" : formatDate(addon.lastStop);
 
         const stateTd = row.insertCell(0);
         const stateBull = createFastElement("div", { classList: ["state"] });
@@ -28,10 +28,11 @@ async function load() {
         tdContainer.classList.add("center");
         tdContainer.appendChild(document.createTextNode(addon.containerVersion));
 
-        row.insertCell(4).appendChild(document.createTextNode(start));
-        row.insertCell(5).appendChild(document.createTextNode(stop));
+        const startRow = row.insertCell(4);
+        startRow.classList.add("center");
+        startRow.appendChild(document.createTextNode(start));
 
-        const gearTd = row.insertCell(6);
+        const gearTd = row.insertCell(5);
         gearTd.appendChild(createFastElement("i", { classList: ["icon-cog"] }));
     }
 }

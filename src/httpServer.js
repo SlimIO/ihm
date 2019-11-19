@@ -1,5 +1,5 @@
 // Require Node.js dependencies
-import { promises as fs } from "fs";
+import { promises as fs, createReadStream } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { createRequire } from "module";
@@ -23,6 +23,7 @@ const i18n = require("../i18n/english.json");
 // CONSTANTS
 const PUBLIC_DIR = join(__dirname, "..", "public");
 const VIEWS_DIR = join(__dirname, "..", "views");
+const DASHBOARD_JSON = join(__dirname, "..", "dashboard.json");
 
 /**
  * @async
@@ -133,6 +134,18 @@ export default function exportServer(ihm) {
             );
 
             send(res, 200, infos);
+        }
+        catch (err) {
+            send(res, 500, err.message);
+        }
+    });
+
+    httpServer.get("/dashboard", async(req, res) => {
+        try {
+            res.writeHead(200, {
+                "Content-Type": "application/json"
+            });
+            createReadStream(DASHBOARD_JSON).pipe(res);
         }
         catch (err) {
             send(res, 500, err.message);

@@ -5,30 +5,7 @@
 </header>
 
 <div class="grow">
-    <div class="fix">
-        <dashboard-widget
-            type="addons"
-            name="Addons"
-            icon="icon-cubes"
-            draggable="true">
-        </dashboard-widget>
-
-        <dashboard-widget
-            type="alarms"
-            name="Last Alarms"
-            icon="icon-bell"
-            class="size-low"
-            draggable="true">
-        </dashboard-widget>
-
-        <dashboard-widget
-            type="chart"
-            name="CPU Usage"
-            icon="icon-chart-bar"
-            class="size-low"
-            draggable="true">
-        </dashboard-widget>
-
+    <div class="fix" id="widgets_container">
         <div class="widget-add">
             <i class="icon-plus"></i>
             <p>Add widget</p>
@@ -46,8 +23,7 @@
                 <th>name</th>
                 <th class="min">version</th>
                 <th class="min">addon version</th>
-                <th>last start</th>
-                <th>last stop</th>
+                <th style="text-align: center;">last start</th>
                 <th></th>
             </tr>
         </thead>

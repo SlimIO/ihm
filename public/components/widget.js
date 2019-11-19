@@ -12,29 +12,9 @@ class Widget extends HTMLElement {
     constructor() {
         super();
 
-        const tmpl = document.getElementById("widget");
-        const clone = tmpl.content.cloneNode(true);
-
-        // Hydrate template
-        clone.querySelector(".widget-name").textContent = this.getAttribute("name") || "N/A";
-        const icon = clone.querySelector(".widget-icon");
-        icon.classList.add(this.getAttribute("icon") || "icon-chart-bar");
-
-        const type = this.getAttribute("type") || "addons";
-        const content = document.getElementById(`widget_${type}`);
-        clone.querySelector(".content").appendChild(content.content.cloneNode(true));
-
-        // Attach shadow root
-        this.attachShadow({ mode: "open" }).appendChild(clone);
-
-        try {
-            const widgetScript = document.createElement("script");
-            widgetScript.src = `js/components/${type}.js`;
-            document.body.appendChild(widgetScript);
-        }
-        catch (err) {
-            console.error(err);
-        }
+        this.addEventListener("init", () => {
+            this.init();
+        });
 
         this.addEventListener("dragstart", (event) => {
             Widget.dragged = event.target;
@@ -67,6 +47,32 @@ class Widget extends HTMLElement {
                 container.insertBefore(Widget.dragged, currIndex > nextIndex ? event.target : event.target.nextSibling);
             }
         });
+    }
+
+    init() {
+        const tmpl = document.getElementById("widget");
+        const clone = tmpl.content.cloneNode(true);
+
+        // Hydrate template
+        clone.querySelector(".widget-name").textContent = this.getAttribute("name") || "N/A";
+        const icon = clone.querySelector(".widget-icon");
+        icon.classList.add(this.getAttribute("icon") || "icon-chart-bar");
+
+        const type = this.getAttribute("type") || "addons";
+        const content = document.getElementById(`widget_${type}`);
+        clone.querySelector(".content").appendChild(content.content.cloneNode(true));
+
+        // Attach shadow root
+        this.attachShadow({ mode: "open" }).appendChild(clone);
+
+        try {
+            const widgetScript = document.createElement("script");
+            widgetScript.src = `js/components/${type}.js`;
+            document.body.appendChild(widgetScript);
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
 }
 
