@@ -2,6 +2,7 @@
     "extends": "@slimio/eslint-config",
     "rules": {
         "no-invalid-this": "off",
-        "no-loop-func": "off"
+        "no-loop-func": "off",
+        "class-methods-use-this": "off"
     }
 }

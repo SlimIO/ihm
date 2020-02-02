@@ -6,7 +6,7 @@ class Modules extends HTMLElement {
         this.module = module;
     }
 
-    async create()  {
+    async create() {
         const mainElement = document.getElementById("view");
         const HTMLContent = await fetch(`/module/${this.module}`).then((raw) => raw.text());mainElement.innerHTML = HTMLContent;
         mainElement.innerHTML = HTMLContent;

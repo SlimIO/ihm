@@ -1,5 +1,3 @@
-"use strict";
-
 const TWO_HOUR_MS = 2 * 60 * 60 * 1000;
 
 class Alarm extends HTMLElement {

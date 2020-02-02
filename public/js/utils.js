@@ -1,4 +1,3 @@
-"use strict";
 /* eslint-disable jsdoc/require-jsdoc */
 
 function formatDate(date = new Date(), local = "en-GB") {
