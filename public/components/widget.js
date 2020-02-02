@@ -59,20 +59,11 @@ class Widget extends HTMLElement {
         icon.classList.add(this.getAttribute("icon") || "icon-chart-bar");
 
         const type = this.getAttribute("type") || "addons";
-        const content = document.getElementById(`widget_${type}`);
-        clone.querySelector(".content").appendChild(content.content.cloneNode(true));
 
-        // Attach shadow root
+        const widgetAddon = document.createElement(`widget-${type}`);
+        clone.querySelector(".content").appendChild(widgetAddon);
+
         this.attachShadow({ mode: "open" }).appendChild(clone);
-
-        try {
-            const widgetScript = document.createElement("script");
-            widgetScript.src = `js/components/${type}.js`;
-            document.body.appendChild(widgetScript);
-        }
-        catch (err) {
-            console.error(err);
-        }
     }
 }
 
