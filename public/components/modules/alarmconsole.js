@@ -1,12 +1,3 @@
-"use strict";
-
-// CONSTANT
-const SEVERITIES = new Map([
-    [0, "Critical"],
-    [1, "Major"],
-    [2, "Minor"]
-]);
-
 class AlarmConsole extends Modules {
     constructor() {
         super("alarmconsole");
@@ -65,16 +56,7 @@ class AlarmConsole extends Modules {
             }
         });
 
-        const fragment = document.createDocumentFragment();
-        for (const alarm of alarms) {
-            const elAlarm = document.createElement("alarm-row");
-            elAlarm.setAttribute("uuid", alarm.uuid);
-            elAlarm.setAttribute("severity", SEVERITIES.get(alarm.severity).toLowerCase());
-            elAlarm.initialize(alarm);
-
-            fragment.appendChild(elAlarm);
-        }
-        document.querySelector(".alarms").appendChild(fragment);
+        document.querySelector(".alarms").appendChild(Alarm.proceedAll(alarms));
     }
 }
 
