@@ -20,17 +20,45 @@
     <table>
         <thead>
             <tr>
-                <th></th>
+                <th>state</th>
                 <th>name</th>
                 <th class="min">version</th>
                 <th class="min">addon version</th>
-                <th style="text-align: center;">last start</th>
+                <th>last start</th>
                 <th></th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
+    <template id="table-line">
+        <tr>
+            <td>
+                <div class="state">
+                </div>
+            </td>
+            <td><p class="name"></p></td>
+            <td><p class="version"></p></td>
+            <td><p class="addon-version"></p></td>
+            <td><p class="last-start"></p></td>
+            <td>
+                <i class="icon-cog">
+                    <div class="options">
+                        <ul>
+                            <li><p>Start</p></li>
+                            <li><p>Restart</p></li>
+                            <li><p>Callbacks</p></li>
+                            <li><p>Configure</p></li>
+                            <li><p>Stop</p></li>
+                        </ul>
+                    </div>
+                </i>
+            </td>
+        </tr>
+    </template>
 </template>
+
+
+
 
 <template id="widget_alarms">
 </template>

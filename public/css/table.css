@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 table .state {
     width: 25px;
     height: 25px;
@@ -28,9 +33,9 @@ table {
             padding: 0 10px;
             font-weight: bold;
             font-variant: small-caps;
+            text-align: center;
         }
         table > thead th.min {
-            text-align: center;
             width: 120px;
         }
 
@@ -45,7 +50,44 @@ table {
             color: #607D8B;
             padding: 5px 10px;
             border-bottom: 2px solid rgba(207, 216, 220, 0.5);
-        }
-        table > tbody tr td.center {
             text-align: center;
+            /* position: relative; */
         }
+        table > tbody tr td .state {
+            margin: auto;
+        }
+        table > tbody tr td:nth-child(2) {
+            text-align: left;
+        }
+        table > tbody tr td .icon-cog:hover {
+            display: flex;
+            justify-content: center;
+        }
+
+            table > tbody tr td .icon-cog:hover > .options{
+                display: flex;
+                cursor: pointer;
+            }
+
+        table > tbody tr td .options {
+            position: absolute;
+            display: none;
+            list-style: none;
+            z-index: 1;
+            padding-top: 20px;
+        }
+
+            table > tbody tr td .options > ul {
+                border: 1px solid black;
+                background: red;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+                margin: 0;
+                align-items: center;
+            }
+                table > tbody tr td .options > ul > li {
+                    height: 20px;
+                    display: flex;
+                }

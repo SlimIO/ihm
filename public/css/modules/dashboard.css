@@ -33,6 +33,7 @@ dashboard-widget {
     flex-direction: row;
     font-size: 26px;
     text-shadow: 1px 1px 10px rgba(129, 212, 250, 0.45);
+    position: relative;
 }
     .widget-add:hover {
         border-color: var(--secondary-color);

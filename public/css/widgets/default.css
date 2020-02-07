@@ -39,4 +39,6 @@ header {
     box-shadow: 1px 1px 10px #EEE inset;
     display: flex;
     flex-direction: column;
+    /* position: relative; */
+    overflow-y: auto;
 }
