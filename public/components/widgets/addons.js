@@ -28,10 +28,19 @@ class WidgetAddon extends HTMLElement {
             cloneLine.querySelector(".addon-version").textContent = addon.containerVersion;
             cloneLine.querySelector(".last-start").textContent = start;
     
+            const iconCog = cloneLine.querySelector(".icon-cog");
+            iconCog.addEventListener("mouseover", () => {
+                const optPanel = iconCog.querySelector(".options");
+
+                const bounding = iconCog.getBoundingClientRect();
+                optPanel.style.top = `${bounding.top}px`;
+            });
+
             fragment.appendChild(cloneLine);
         }
         tbody.appendChild(fragment);
         this.attachShadow({ mode: "open" }).appendChild(clone);
+
     }
 }
 

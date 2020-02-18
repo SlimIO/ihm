@@ -8,9 +8,11 @@ class Dashboard extends Modules {
 
     async init() {
         const editModeBtn = document.getElementById("edit_mode_btn");
+        let display = false;
         editModeBtn.addEventListener("click", () => {
             const widgetAdd = document.querySelector(".widget-add");
-            widgetAdd.style.display = "flex";
+            display = !display;
+            widgetAdd.style.display = display === true ? "flex" : "none";
         });
 
         const dashboard = await fetch("/dashboard").then((raw) => raw.json());
