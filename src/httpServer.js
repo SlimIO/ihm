@@ -19,11 +19,21 @@ const require = createRequire(__filename);
 // Require Internal Dependencies
 /** @type {IHM.i18n} */
 const i18n = require("../i18n/english.json");
+import {
+    getAllHTMLComponents,
+
+    PUBLIC_DIR,
+    VIEWS_DIR,
+    COMPONENTS_DIR,
+    SLIMIO_MODULES_DIR,
+    DASHBOARD_JSON
+} from "./utils.js";
 
 // CONSTANTS
-const PUBLIC_DIR = join(__dirname, "..", "public");
-const VIEWS_DIR = join(__dirname, "..", "views");
-const DASHBOARD_JSON = join(__dirname, "..", "dashboard.json");
+// const PUBLIC_DIR = join(__dirname, "..", "public");
+// const VIEWS_DIR = join(__dirname, "..", "views");
+// const COMPONENTS_DIR = join(PUBLIC_DIR, "components");
+// const DASHBOARD_JSON = join(__dirname, "..", "dashboard.json");
 
 /**
  * @async
@@ -62,6 +72,7 @@ export default function exportServer(ihm) {
 
     // Serve static assets!
     httpServer.use(sirv(PUBLIC_DIR, { dev: true }));
+    httpServer.use(sirv(SLIMIO_MODULES_DIR, { dev: true }));
 
     httpServer.get("/", async(req, res) => {
         try {
@@ -90,7 +101,19 @@ export default function exportServer(ihm) {
                 }
             };
 
-            const renderedHTML = zup(views)(Object.assign(data, { menu, i18n }));
+            let renderedHTML = zup(views)(Object.assign(data, { menu, i18n }));
+
+            // add all template
+            const allComponentsPath = await getAllHTMLComponents();
+            const allWidgetsPath = await getAllHTMLComponents(SLIMIO_MODULES_DIR);
+            const allHTMLPath = [...allComponentsPath, ...allWidgetsPath];
+            // console.log(allHTMLPath);
+            await Promise.all(allHTMLPath.map(async(path) => {
+                const html = await readFile(path, "utf8");
+                
+                renderedHTML += zup(html)({i18n});;
+            }))
+
             send(res, 200, renderedHTML, { "Content-Type": "text/html" });
             console.timeEnd("get_home");
         }

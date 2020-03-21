@@ -31,25 +31,3 @@
     </div>
     <div class="alarms"></div>
 </div>
-
-<template id="template_alarm">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/components/alarm.css">
-    <link rel="stylesheet" href="css/fontello.css">
-
-    <div class="alarm">
-        <div class="inputs">
-            <i class="icon-eye"></i>
-            <i class="icon-cog"></i>
-        </div>
-        <div class="title">
-            <p><slot name="entity"></slot></p>
-            <p class="ck"><slot name="ck">?</slot></p>
-        </div>
-        <p><slot name="message"></slot></p>
-        <div class="footer">
-            <p><b><slot name="occurence">0</slot></b> since <b><slot name="since">0 min</slot></b> ago</p>
-            <p style="margin-left:auto;"><slot name="start_date"></slot></p>
-        </div>
-    </div>
-</template>

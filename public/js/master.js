@@ -5,7 +5,9 @@ window.activePage = null;
 function loadPage(name) {
     switch (name) {
         case "dashboard":
+            console.log("dashboard 1");
             document.createElement("dash-board");
+            console.log("dashboard 2");
             break;
         case "alarmconsole":
             document.createElement("alarm-console");
@@ -15,7 +17,7 @@ function loadPage(name) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
     const currPage = new URL(window.location).searchParams.get("page");
 
     if (currPage === null) {
@@ -34,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(`nav ul > li[data-menu='${activePage}']`).classList.remove("active");
             this.classList.add("active");
 
+            console.log("cliked !");
             loadPage(currentRequestedPage);
         }
     }
@@ -41,4 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add navigation events
     document.querySelectorAll("nav ul > li:not(.disabled)")
         .forEach((menu) => menu.addEventListener("click", menuEventClick));
-});
+
+    console.log("loaded !");
+// });

@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    max-height: 90%;
+    background: orange;
+    overflow-x: auto;
+    min-width: 600px;
+}
+    .wrapper > .title {
+        display: flex;
+        background: green;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .wrapper > .title > .icon-window-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: red;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 4px 10px;
+        }
+    .wrapper > .content {
+        display: flex;
+    }

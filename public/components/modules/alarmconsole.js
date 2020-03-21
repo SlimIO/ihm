@@ -1,3 +1,5 @@
+import Modules from "./modules.js";
+
 class AlarmConsole extends Modules {
     constructor() {
         super("alarmconsole");
@@ -59,5 +61,5 @@ class AlarmConsole extends Modules {
         document.querySelector(".alarms").appendChild(Alarm.proceedAll(alarms));
     }
 }
-
+    
 customElements.define("alarm-console", AlarmConsole);

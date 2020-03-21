@@ -1,4 +1,4 @@
-"use strict";
+import Modules from "./modules.js";
 
 class Dashboard extends Modules {
     constructor() {
@@ -38,6 +38,5 @@ class Dashboard extends Modules {
         widgetsContainer.appendChild(fragment);
     }
 }
-
 
 customElements.define("dash-board", Dashboard);

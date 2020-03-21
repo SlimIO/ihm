@@ -1,6 +1,4 @@
-"use strict";
-
-class Modules extends HTMLElement {
+export default class Modules extends HTMLElement {
     constructor(module) {
         super();
         this.module = module;
@@ -8,7 +6,7 @@ class Modules extends HTMLElement {
 
     async create() {
         const mainElement = document.getElementById("view");
-        const HTMLContent = await fetch(`/module/${this.module}`).then((raw) => raw.text());mainElement.innerHTML = HTMLContent;
+        const HTMLContent = await fetch(`/module/${this.module}`).then((raw) => raw.text());
         mainElement.innerHTML = HTMLContent;
 
         // Setup new URL location

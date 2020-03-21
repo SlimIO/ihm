@@ -278,3 +278,12 @@ main > section#view {
             align-content: flex-start;
         }
 
+pop-up {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,12 @@
+<template id="pop-up">
+    <link rel="stylesheet" href="css/popup.css">
+
+    <section class="wrapper">
+        <section class="title">
+            <p><slot name="title">Title</slot></p>
+            <section class="icon-window-close">X</section>
+        </section>
+        <slot class="content" name="content"></slot>
+    </section>
+    <slot></slot>
+</template>
