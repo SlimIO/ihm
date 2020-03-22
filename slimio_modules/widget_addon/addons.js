@@ -1,4 +1,5 @@
 "use strict";
+import WidgetAddonsPopupCallbacks from "./popup-callback.js";
 
 class WidgetAddon extends HTMLElement {
     constructor() {
@@ -49,32 +50,19 @@ class WidgetAddon extends HTMLElement {
                 optPanel.style.display = "none";
             });
 
-
             const popup = document.querySelector("pop-up");
 
             const callbacksElem = cloneLine.querySelector(".callbacks");
             callbacksElem.addEventListener("click", () => {
-                const detail = { tmplName: "popup-widget-addon-callback" };
+                new WidgetAddonsPopupCallbacks(callbacks);
 
-                function callBackList() {
-                    const asideList = popup.querySelector("aside > ul");
-                    for (const callback of Object.keys(callbacks)) {
-                        const li = document.createElement("li");
-                        li.textContent = callback;
-                        asideList.appendChild(li);
-                    }
-                    popup.removeEventListener("opened", callBackList);
-                }
-                popup.addEventListener("opened", callBackList);
-
-                popup.dispatchEvent(new CustomEvent("open", { detail }));
+                popup.dispatchEvent(new CustomEvent("open"));
             });
 
             fragment.appendChild(cloneLine);
         }
         tbody.appendChild(fragment);
         this.attachShadow({ mode: "open" }).appendChild(clone);
-
     }
 }
 

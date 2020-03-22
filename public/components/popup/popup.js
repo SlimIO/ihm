@@ -21,20 +21,13 @@ class Popup extends HTMLElement {
     }
 
     open(event) {
-        const { tmplName } = event.detail;
-
-        const tmpl = document.getElementById(tmplName);
-        const clone = tmpl.content.cloneNode(true);
-
         if (this.isOpen) {
             while (this.firstChild) {
                 this.removeChild(this.firstChild);
             }
         }
 
-        this.appendChild(clone);
         this.dispatchEvent(new CustomEvent("opened"));
-
 
         this.style.display = "flex";
         this.isOpen = true;
