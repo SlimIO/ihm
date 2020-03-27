@@ -25,6 +25,7 @@ body {
     position: relative;
     background: #EEE;
     color: #37474F;
+    flex-grow: 1;
 }
 
 hr {

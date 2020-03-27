@@ -13,6 +13,7 @@ const PUBLIC_DIR = join(__dirname, "..", "public");
 const VIEWS_DIR = join(__dirname, "..", "views");
 const COMPONENTS_DIR = join(PUBLIC_DIR, "components");
 const SLIMIO_MODULES_DIR = join(PUBLIC_DIR, "..", "slimio_modules");
+const CONFIG_DIR = join(PUBLIC_DIR, "..", "config");
 const DASHBOARD_JSON = join(__dirname, "..", "dashboard.json");
 
 export {
@@ -20,6 +21,7 @@ export {
     VIEWS_DIR,
     COMPONENTS_DIR,
     SLIMIO_MODULES_DIR,
+    CONFIG_DIR,
     DASHBOARD_JSON
 }
 

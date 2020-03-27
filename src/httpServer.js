@@ -19,6 +19,7 @@ const require = createRequire(__filename);
 // Require Internal Dependencies
 /** @type {IHM.i18n} */
 const i18n = require("../i18n/english.json");
+import bodyParser from "./bodyParser.js";
 import {
     getAllHTMLComponents,
 
@@ -26,6 +27,7 @@ import {
     VIEWS_DIR,
     COMPONENTS_DIR,
     SLIMIO_MODULES_DIR,
+    CONFIG_DIR,
     DASHBOARD_JSON
 } from "./utils.js";
 
@@ -171,6 +173,42 @@ export default function exportServer(ihm) {
             createReadStream(DASHBOARD_JSON).pipe(res);
         }
         catch (err) {
+            send(res, 500, err.message);
+        }
+    });
+
+    httpServer.get("/config/:name", async(req, res) => {
+        try {
+            const addonName = req.params.name;
+            
+            const callbackDescriptorPath = join(CONFIG_DIR, `${addonName}CallbackDescriptor.json`);
+            const callbackDescriptor = await require(callbackDescriptorPath);
+
+            send(res, 200, callbackDescriptor, { "Content-Type": "application/json" });
+        }
+        catch (err) {
+            console.log(err);
+            send(res, 500, err.message);
+        }
+    });
+
+    httpServer.post("/sendOne/:addonName/:callback", async(req, res) => {
+        try {
+            const addonName = req.params.addonName;
+            const callback = req.params.callback;
+            const data = await bodyParser(req);
+
+            const dataArray = [];
+            for (const key of Object.keys(data)) {
+                dataArray.push(data[key]);
+            }
+
+            const response = await ihm.sendOne(`${addonName}.${callback}`, [...dataArray])
+
+            send(res, 200, response);
+        }
+        catch (err) {
+            console.log(err);
             send(res, 500, err.message);
         }
     });

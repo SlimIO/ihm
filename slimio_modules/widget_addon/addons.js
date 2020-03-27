@@ -1,5 +1,5 @@
 "use strict";
-import WidgetAddonsPopupCallbacks from "./popup-callback.js";
+import WidgetAddonsPopupCallbacks from "./popup_callback/popup-callback.js";
 
 class WidgetAddon extends HTMLElement {
     constructor() {
@@ -54,7 +54,7 @@ class WidgetAddon extends HTMLElement {
 
             const callbacksElem = cloneLine.querySelector(".callbacks");
             callbacksElem.addEventListener("click", () => {
-                new WidgetAddonsPopupCallbacks(callbacks);
+                new WidgetAddonsPopupCallbacks(name, callbacks);
 
                 popup.dispatchEvent(new CustomEvent("open"));
             });

@@ -1,0 +1,292 @@
+{
+    "get_descriptors": {
+        "arguments": {
+            "entityId": {
+                "type": "number"
+            },
+            "key": {
+                "type": "string"
+            }
+        },
+
+        "return": "array"
+    },
+
+    "declare_entity": {
+        "arguments": {
+            "entity": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "parent": {
+                        "type": "number",
+                        "default": 1
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "descriptors": {
+                        "type": "object",
+                        "properties" : {
+                            "key": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "return": "number"
+    },
+
+    "search_entities": {
+        "arguments": {
+            "searchOptions": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "default": null
+                    },
+                    "pattern": {
+                        "type": "string",
+                        "default": null
+                    },
+                    "patternIdentifier": {
+                        "type": "string"
+                    },
+                    "fields": {
+                        "type": "string",
+                        "default": "*"
+                    },
+                    "createdAt": {
+                        "type": "Date",
+                        "default": "Date.now()"
+                    }
+                }
+            }
+        },
+
+        "return": "array"
+    },
+
+    "get_entity_by_id": {
+        "arguments": {
+            "entityId": {
+                "type": "number"
+            }
+        },
+
+        "return": "array"
+    },
+
+    "remove_entity": {
+        "arguments": {
+            "entityId": {
+                "type": "number"
+            }
+        }
+    },
+
+    "declare_mic": {
+        "arguments": {
+            "mic": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "desc": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "unit": {
+                        "type": "string"
+                    },
+                    "interval": {
+                        "type": "number",
+                        "default": 5
+                    },
+                    "max": {
+                        "type": "number",
+                        "default": null
+                    },
+                    "entityId": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+
+        "return": "number"
+    },
+
+    "publish_metric": {
+        "arguments": {
+            "micId": {
+                "type": "number"
+            },
+            "metric": {
+                "type": "array",
+                "items": {
+                    "value": {
+                        "type": "number"
+                    },
+                    "harvestedAt": {
+                        "type": "Date",
+                        "default": "Date.now()"
+                    },
+                    "level": {
+                        "type": "number",
+                        "default": 0
+                    }
+                }
+            }
+        }
+    },
+
+    "get_mic": {
+        "arguments": {
+            "micId": {
+                "type": "number"
+            }
+        }
+    },
+
+    "pull_mic": {
+        "arguments": {
+            "micId": {
+                "type": "number"
+            },
+            "options": {
+                "type": "object",
+                "properties": {
+                    "withSubscriber": {
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "level": {
+                        "type": "number",
+                        "default": 0
+                    }
+                }
+            }
+        },
+
+        "return": "number"
+    },
+
+    "get_mic_stats": {
+        "arguments": {
+            "micId": {
+                "type": "number"
+            },
+            "options": {
+                "type": "object",
+                "properties": {
+                    "walkTimestamp": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "withSubscriber": {
+                        "type": "boolean",
+                        "default": true
+                    }
+                }
+            }
+        },
+
+        "return": "array"
+    },
+
+    "delete_mic_rows": {
+        "arguments": {
+            "micId": {
+                "type": "number"
+            },
+            "options": {
+                "type": "object",
+                "properties": {
+                    "since": {
+                        "type": "number"
+                    },
+                    "level ": {
+                        "type": "number",
+                        "default": 0
+                    }
+                }
+            }
+        }
+    },
+
+    "create_alarm": {
+        "arguments": {
+            "alarm": {
+                "type": "object",
+                "properties": {
+                    "message" : {
+                        "type": "string"
+                    },
+                    "severity" : {
+                        "type": "number"
+                    },
+                    "correlateKey" : {
+                        "type": "string"
+                    },
+                    "entityId " : {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+
+        "return": "boolean"
+    },
+
+    "get_alarms": {
+        "arguments": {
+            "cid": {
+                "type": "string"
+            }
+        },
+
+        "return": "object|array"
+    },
+
+    "get_alarms_occurence": {
+        "arguments": {
+            "cid": {
+                "type": "string"
+            },
+            "occurence": {
+                "type": "object",
+                "properties": {
+                    "time": {
+                        "type": "number"
+                    },
+                    "severity": {
+                        "type": "number",
+                        "default": 0
+                    }
+                },
+                "default": {}
+            }
+        },
+
+        "return": "array"
+    },
+
+    "remove_alarm": {
+        "arguments": {
+            "cid": {
+                "type": "string"
+            }
+        }
+    }
+}
