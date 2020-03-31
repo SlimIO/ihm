@@ -1,5 +1,6 @@
 {
     "get_descriptors": {
+        "required": ["entityId"],
         "arguments": {
             "entityId": {
                 "type": "number"

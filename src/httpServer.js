@@ -204,7 +204,7 @@ export default function exportServer(ihm) {
             }
 
             const response = await ihm.sendOne(`${addonName}.${callback}`, [...dataArray])
-
+            console.log(response);
             send(res, 200, response);
         }
         catch (err) {

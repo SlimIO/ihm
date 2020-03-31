@@ -3,26 +3,26 @@
 export default class WidgetAddonsPopupCallbacks extends HTMLElement {
     constructor(name, callbacks) {
         super();
+
         this.addonName = name;
+        this.callbacksToAvoid = new Set(["start", "stop", "sleep", "event"]);
 
         this.currentCallback;
         this.callbacksDescriptor;
-        this.addonName;
 
         this.callbackTitleElem;
         this.callbackFormElem;
 
-        this.create(name, callbacks).catch(console.error);
+        this.create(callbacks).catch(console.error);
     }
 
     async create(callbacks) {
-        const popup = document.querySelector("pop-up");
-
+        this.popup = document.querySelector("pop-up");
         const tmpl = document.getElementById("widget-addon-popup-callback");
         const clone = tmpl.content.cloneNode(true);
 
         const popupTitle = clone.querySelector("p[slot=\"title\"");
-        popupTitle.textContent = `Addon Callback Manager : ${this.addonName.charAt(0).toUpperCase() + name.slice(1)}`;
+        popupTitle.textContent = `Addon Callback Manager : ${this.addonName.charAt(0).toUpperCase() + this.addonName.slice(1)}`;
 
         this.callbacksDescriptor = JSON.parse(await fetch("/config/events").then((raw) => raw.text()));
         console.log(this.callbacksDescriptor);
@@ -30,6 +30,9 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
         const fragment = document.createDocumentFragment();
         const asideList = clone.querySelector("aside > ul");
         for (const callback of Object.keys(callbacks)) {
+            if (this.callbacksToAvoid.has(callback)) {
+                continue;
+            }
             const li = document.createElement("li");
             li.textContent = callback;
             fragment.appendChild(li);
@@ -42,9 +45,9 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
         asideList.addEventListener("click", this.callbackListClicked.bind(this));
 
         const submitButton = clone.querySelector("#callback-info > .buttons > .send");
-        submitButton.addEventListener("click", this.submitClicked.bind(this));
+        submitButton.addEventListener("submit", this.submitClicked.bind(this));
 
-        popup.appendChild(clone);
+        this.popup.appendChild(clone);
     }
 
     callbackListClicked(event) {
@@ -58,7 +61,7 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
 
         const callbackDescriptor = this.callbacksDescriptor[textContent];
         console.log(callbackDescriptor);
-        if (callbackDescriptor !== undefined) {
+        if (typeof callbackDescriptor !== "undefined") {
             this.currentCallback = textContent;
             this.callbackTitleElem.textContent = textContent;
 
@@ -68,7 +71,7 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
         }
     }
 
-    async submitClicked(event) {
+    async submitClicked() {
         const data = {};
         console.log(this.callbackFormElem.elements);
         for (const elem of this.callbackFormElem.elements) {
@@ -93,20 +96,37 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
         }
 
         console.log(data);
-        const response = await fetch(`/sendOne/${this.addonName}/${this.currentCallback}`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-        const res = await response.json();
-        console.log(res);
+
+        const codeElem = this.popup.querySelector("#callback-info > .callback-response > pre > code");
+            const response = await fetch(`/sendOne/${this.addonName}/${this.currentCallback}`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            if(response.ok === true) {
+                const res = await response.json();
+                console.log(res);
+        
+                codeElem.textContent = JSON.stringify(res, null, 4);
+            }
+            else {
+                const res = await response.text();
+                console.log(res);
+        
+                codeElem.textContent = res;
+            }
     }
 
     static createForm(obj = Object.create(null), parent) {
         const fragment = document.createDocumentFragment();
         const ul = document.createElement("ul");
+        console.log("obj.required");
+        console.log(obj.required);
+        const required = typeof obj.required !== "undefined" ? obj.required : [];
+        console.log(required);
         const entries = obj.arguments !== undefined ? obj.arguments : obj;
         // console.log(entries);
         for (const [key, value] of Object.entries(entries)) {
@@ -128,7 +148,12 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
                     elem = li;
                     break;
                 default:
-                    elem = WidgetAddonsPopupCallbacks.createInput(key, type, defValue, name);
+                    console.log("required");
+                    console.log(required);
+                    elem = WidgetAddonsPopupCallbacks.createInput(key, type, name, {
+                        defValue,
+                        required: required.includes(key)
+                    });
                     break;
             }
             ul.appendChild(elem);
@@ -137,7 +162,8 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
         return fragment;
     }
 
-    static createInput(key, type, defValue, name) {
+    static createInput(key, type, name, options = Object.create(null)) {
+        const { defValue, required = false} = options;
         const li = document.createElement("li");
         const label = document.createElement("label");
         label.textContent = `${key}: ${type}`;
@@ -145,6 +171,7 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
 
         const input = document.createElement("input");
         input.name = name;
+        input.required = required;
         if (type === "boolean") {
             input.type = "checkbox";
             input.checked = defValue !== undefined ? defValue : false;
