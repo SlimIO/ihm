@@ -1,7 +1,7 @@
 // Require Node.js dependencies
 import { promises as fs, createReadStream } from "fs";
 import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import { join } from "path";
 import { createRequire } from "module";
 const { readFile } = fs;
 
@@ -10,10 +10,10 @@ import polka from "polka";
 import send from "@polka/send-type";
 import sirv from "sirv";
 import zup from "zup";
+import combineAsyncIterators from "combine-async-iterators";
 
 // Node.js CJS constants
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 const require = createRequire(__filename);
 
 // Require Internal Dependencies
@@ -25,17 +25,10 @@ import {
 
     PUBLIC_DIR,
     VIEWS_DIR,
-    COMPONENTS_DIR,
     SLIMIO_MODULES_DIR,
     CONFIG_DIR,
     DASHBOARD_JSON
 } from "./utils.js";
-
-// CONSTANTS
-// const PUBLIC_DIR = join(__dirname, "..", "public");
-// const VIEWS_DIR = join(__dirname, "..", "views");
-// const COMPONENTS_DIR = join(PUBLIC_DIR, "components");
-// const DASHBOARD_JSON = join(__dirname, "..", "dashboard.json");
 
 /**
  * @async
@@ -105,16 +98,15 @@ export default function exportServer(ihm) {
 
             let renderedHTML = zup(views)(Object.assign(data, { menu, i18n }));
 
-            // add all template
-            const allComponentsPath = await getAllHTMLComponents();
-            const allWidgetsPath = await getAllHTMLComponents(SLIMIO_MODULES_DIR);
-            const allHTMLPath = [...allComponentsPath, ...allWidgetsPath];
-            // console.log(allHTMLPath);
-            await Promise.all(allHTMLPath.map(async(path) => {
+            const HTMLFilesIterators = combineAsyncIterators(
+                getAllHTMLComponents(),
+                getAllHTMLComponents(SLIMIO_MODULES_DIR)
+            );
+            for await (const path of HTMLFilesIterators) {
                 const html = await readFile(path, "utf8");
-                
-                renderedHTML += zup(html)({i18n});;
-            }))
+
+                renderedHTML += zup(html)({ i18n });
+            }
 
             send(res, 200, renderedHTML, { "Content-Type": "text/html" });
             console.timeEnd("get_home");
@@ -180,9 +172,9 @@ export default function exportServer(ihm) {
     httpServer.get("/config/:name", async(req, res) => {
         try {
             const addonName = req.params.name;
-            
+
             const callbackDescriptorPath = join(CONFIG_DIR, `${addonName}CallbackDescriptor.json`);
-            const callbackDescriptor = await require(callbackDescriptorPath);
+            const callbackDescriptor = require(callbackDescriptorPath);
 
             send(res, 200, callbackDescriptor, { "Content-Type": "application/json" });
         }
@@ -194,16 +186,10 @@ export default function exportServer(ihm) {
 
     httpServer.post("/sendOne/:addonName/:callback", async(req, res) => {
         try {
-            const addonName = req.params.addonName;
-            const callback = req.params.callback;
+            const { addonName, callback } = req.params;
             const data = await bodyParser(req);
 
-            const dataArray = [];
-            for (const key of Object.keys(data)) {
-                dataArray.push(data[key]);
-            }
-
-            const response = await ihm.sendOne(`${addonName}.${callback}`, [...dataArray])
+            const response = await ihm.sendOne(`${addonName}.${callback}`, Object.values(data));
             console.log(response);
             send(res, 200, response);
         }

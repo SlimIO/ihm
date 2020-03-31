@@ -1,3 +1,5 @@
+import { createDOMElement, formatDate } from "../../js/utils.js";
+
 // CONSTANTS
 const TWO_HOUR_MS = 2 * 60 * 60 * 1000;
 const SEVERITIES = new Map([
@@ -6,9 +8,9 @@ const SEVERITIES = new Map([
     [2, "Minor"]
 ]);
 
-class Alarm extends HTMLElement {
+export default class Alarm extends HTMLElement {
     static create(slot, text) {
-        return createFastElement("span", { attributes: { slot }, text });
+        return createDOMElement("span", { attributes: { slot }, text });
     }
 
     static proceedAll(alarms) {

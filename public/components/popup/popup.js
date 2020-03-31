@@ -1,9 +1,7 @@
-"use strict";
-
 class Popup extends HTMLElement {
     constructor() {
         super();
-        
+
         this.isOpen = false;
         this.addEventListener("open", this.open);
         this.addEventListener("close", this.close);
@@ -34,7 +32,6 @@ class Popup extends HTMLElement {
     }
 
     close() {
-
         if (this.isOpen) {
             while (this.firstChild) {
                 this.removeChild(this.firstChild);
@@ -42,7 +39,6 @@ class Popup extends HTMLElement {
         }
         this.style.display = "none";
         this.isOpen = false;
-
     }
 }
 

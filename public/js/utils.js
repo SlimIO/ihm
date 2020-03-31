@@ -1,6 +1,6 @@
 /* eslint-disable jsdoc/require-jsdoc */
 
-function formatDate(date = new Date(), local = "en-GB") {
+export function formatDate(date = new Date(), local = "en-GB") {
     // eslint-disable-next-line
     return Intl.DateTimeFormat(local, {
         day: "2-digit",
@@ -12,7 +12,7 @@ function formatDate(date = new Date(), local = "en-GB") {
     }).format(date instanceof Date ? date : new Date(date));
 }
 
-function createChart(canvasId, config = {}) {
+export function createChart(canvasId, config = {}) {
     const { type, data, options } = config;
 
     const ctx = document.getElementById(canvasId).getContext("2d");
@@ -28,13 +28,12 @@ function createChart(canvasId, config = {}) {
     });
 }
 
-function createFastElement(kind = "div", options = {}) {
-    const { classList = [], attributes = {}, text = null } = options;
+export function createDOMElement(kind = "div", options = {}) {
+    const { classList = [], childs = [], attributes = {}, text = null } = options;
 
     const el = document.createElement(kind);
-    for (const name of classList) {
-        el.classList.add(name);
-    }
+    classList.forEach((name) => el.classList.add(name));
+    childs.forEach((child) => el.appendChild(child));
 
     for (const [key, value] of Object.entries(attributes)) {
         el.setAttribute(key, value);

@@ -1,4 +1,6 @@
+import { createChart } from "../../js/utils.js";
 import Modules from "./modules.js";
+import Alarm from "../alarm/alarm.js";
 
 class AlarmConsole extends Modules {
     constructor() {
@@ -61,5 +63,5 @@ class AlarmConsole extends Modules {
         document.querySelector(".alarms").appendChild(Alarm.proceedAll(alarms));
     }
 }
-    
+
 customElements.define("alarm-console", AlarmConsole);
