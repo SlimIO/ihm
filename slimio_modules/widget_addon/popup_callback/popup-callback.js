@@ -6,11 +6,11 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
         this.addonName = name;
         this.callbacksToAvoid = new Set(["start", "stop", "sleep", "event"]);
 
+        this.popup = document.querySelector("pop-up");
         this.create(callbacks).catch(console.error);
     }
 
     async create(callbacks) {
-        this.popup = document.querySelector("pop-up");
         const tmpl = document.getElementById("widget-addon-popup-callback");
         const clone = tmpl.content.cloneNode(true);
 
@@ -35,8 +35,9 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
 
         asideList.addEventListener("click", this.callbackListClicked.bind(this));
 
-        const submitButton = clone.querySelector("#callback-info > .buttons > .send");
-        submitButton.addEventListener("submit", this.submitClicked.bind(this));
+        // const submitButton = clone.querySelector("#callback-info > .buttons > .send");
+        this.callbackFormElem.addEventListener("submit", this.submitClicked.bind(this));
+        this.codeElem = clone.querySelector("#callback-info > .callback-response > pre > code");
 
         this.popup.appendChild(clone);
     }
@@ -50,19 +51,21 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
             return;
         }
 
+        this.codeElem.textContent = "";
         const callbackDescriptor = this.callbacksDescriptor[textContent];
         console.log(callbackDescriptor);
-        if (typeof callbackDescriptor !== "undefined") {
+        // if (typeof callbackDescriptor !== "undefined") {
             this.currentCallback = textContent;
             this.callbackTitleElem.textContent = textContent;
 
             const ul = WidgetAddonsPopupCallbacks.createForm(callbackDescriptor);
             this.removeAllChildren(this.callbackFormElem);
             this.callbackFormElem.appendChild(ul);
-        }
+        // }
     }
 
-    async submitClicked() {
+    async submitClicked(event) {
+        event.preventDefault();
         const data = {};
         console.log(this.callbackFormElem.elements);
         for (const elem of this.callbackFormElem.elements) {
@@ -80,16 +83,16 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
                         return (prev[curr] = value === "" ? placeholderValue : value);
                     }
 
-                    return (prev[curr] = {});
+                    prev[curr] = {};
                 }
 
                 return prev[curr];
             }, data);
+
         }
 
         console.log(data);
 
-        const codeElem = this.popup.querySelector("#callback-info > .callback-response > pre > code");
         const response = await fetch(`/sendOne/${this.addonName}/${this.currentCallback}`, {
             method: "POST",
             headers: {
@@ -102,13 +105,13 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
             const res = await response.json();
             console.log(res);
 
-            codeElem.textContent = JSON.stringify(res, null, 4);
+            this.codeElem.textContent = JSON.stringify(res, null, 4);
         }
         else {
             const res = await response.text();
             console.log(res);
 
-            codeElem.textContent = res;
+            this.codeElem.textContent = res;
         }
     }
 
@@ -154,7 +157,9 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
     static createInput(key, type, name, options = Object.create(null)) {
         const { defValue, required = false } = options;
 
-        const labelElement = createDOMElement("label", { text: `${key}: ${type}` });
+        const labelElement = createDOMElement("label", {
+            text: `${key}${required === true ? "*" : ""}: ${type}`
+        });
         const input = document.createElement("input");
 
         input.name = name;
@@ -173,7 +178,7 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
 
     removeAllChildren(element) {
         while (element.firstChild) {
-            this.callbackFormElem.removeChild(element.firstChild);
+            element.removeChild(element.firstChild);
         }
     }
 }

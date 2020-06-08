@@ -1,6 +1,8 @@
-:root {
+/* :host {
     display: flex;
-}
+    flex-grow: 1;
+    overflow: hidden;
+} */
 
 section[slot="content"] {
     display: flex;
@@ -8,15 +10,27 @@ section[slot="content"] {
 }
 
 aside {
+    display: flex;
+    flex-direction: column;
     width: 200px;
     background: purple;
     flex-shrink: 0;
-    overflow-y: auto;
 }
+    aside > header {
+        display: flex;
+        justify-content: space-evenly;
+        background: red;
+    }
+        aside > header > p {
+            padding:10px;
+            font-size: 15pt;
+            font-weight: bold;
+        }
 
     aside > ul {
         display: flex;
         flex-direction: column;
+        overflow-y: auto;
     }
 
         aside > ul > li {
@@ -38,6 +52,7 @@ aside {
     flex-grow: 1;
     padding: 10px;
     min-width: 500px;
+    overflow: auto;
 }
 
     #callback-info > .callback-name {
@@ -79,6 +94,23 @@ aside {
                 padding-left: 20px;
             }
 
-                /* #callback-info > form > ul > li ul li {
-                    padding: 5px;
-                } */
+    #callback-info > .buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        background: red;
+    }
+        #callback-info > .buttons > .send {
+            padding: 5px 10px;
+            background: lightblue;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+    #callback-info > .callback-response {
+        padding: 10px;
+        margin-top: 10px;
+        background: grey;
+    }

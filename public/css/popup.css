@@ -4,7 +4,7 @@
     max-width: 90%;
     max-height: 90%;
     background: orange;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     min-width: 600px;
 }
     .wrapper > .title {
@@ -27,4 +27,5 @@
         }
     .wrapper > .content {
         display: flex;
+        overflow: hidden;
     }
