@@ -1,0 +1,11 @@
+{
+    "extends": [
+      "../.eslintrc"
+    ],
+    "rules": {
+        "jsdoc/require-jsdoc": "off",
+        "no-invalid-this": "off",
+        "no-loop-func": "off",
+        "class-methods-use-this": "off"
+    }
+}

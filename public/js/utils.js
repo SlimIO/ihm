@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/require-jsdoc */
 import Chart from "chart.js";
 
 export function formatDate(date = new Date(), local = "en-GB") {
@@ -45,4 +44,10 @@ export function createDOMElement(kind = "div", options = {}) {
     }
 
     return el;
+}
+
+export function removeAllFromElement(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
 }

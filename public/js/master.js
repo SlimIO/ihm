@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/require-jsdoc */
-
 window.activePage = null;
 
 function loadPage(name) {

@@ -1,3 +1,5 @@
+import { removeAllFromElement } from "../../js/utils.js";
+
 class Popup extends HTMLElement {
     constructor() {
         super();
@@ -18,13 +20,8 @@ class Popup extends HTMLElement {
         this.attachShadow({ mode: "open" }).appendChild(clone);
     }
 
-    open(event) {
-        if (this.isOpen) {
-            while (this.firstChild) {
-                this.removeChild(this.firstChild);
-            }
-        }
-
+    open() {
+        this.isOpen && removeAllFromElement(this);
         this.dispatchEvent(new CustomEvent("opened"));
 
         this.style.display = "flex";
@@ -32,11 +29,7 @@ class Popup extends HTMLElement {
     }
 
     close() {
-        if (this.isOpen) {
-            while (this.firstChild) {
-                this.removeChild(this.firstChild);
-            }
-        }
+        this.isOpen && removeAllFromElement(this);
         this.style.display = "none";
         this.isOpen = false;
     }

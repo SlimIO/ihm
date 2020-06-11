@@ -1,26 +1,14 @@
-/* eslint-disable jsdoc/require-jsdoc */
 
-/**
- * @class Widget
- * @augments HTMLElement
- */
 class Widget extends HTMLElement {
-    /**
-     * @class Widget
-     */
     constructor() {
         super();
 
-        this.addEventListener("init", () => {
-            this.init();
-        });
-
+        this.addEventListener("init", () => this.init());
         this.addEventListener("dragstart", (event) => {
             Widget.dragged = event.target;
         });
 
         this.addEventListener("dragover", (event) => event.preventDefault());
-
         this.addEventListener("dragenter", (event) => {
             if (event.target.tagName === "DASHBOARD-WIDGET" && Widget.dragged !== event.target) {
                 event.target.classList.add("highlight");
@@ -49,7 +37,6 @@ class Widget extends HTMLElement {
     }
 
     init() {
-        console.log("init project!");
         const tmpl = document.getElementById("widget");
         const clone = tmpl.content.cloneNode(true);
 

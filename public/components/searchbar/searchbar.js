@@ -1,13 +1,5 @@
-/* eslint-disable jsdoc/require-jsdoc */
 
-/**
- * @class SearchBar
- * @augments HTMLElement
- */
 class SearchBar extends HTMLElement {
-    /**
-     * @class SearchBar
-     */
     constructor() {
         super();
 
