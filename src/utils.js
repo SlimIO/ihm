@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 
 // CONSTANTS
 export const PUBLIC_DIR = join(__dirname, "..", "public");
+export const DIST_DIR = join(__dirname, "..", "dist");
 export const VIEWS_DIR = join(__dirname, "..", "views");
 export const COMPONENTS_DIR = join(PUBLIC_DIR, "components");
 export const SLIMIO_MODULES_DIR = join(PUBLIC_DIR, "..", "slimio_modules");

@@ -1,5 +1,5 @@
-import { createDOMElement, formatDate } from "../../js/utils.js";
 import WidgetAddonsPopupCallbacks from "./popup_callback/popup-callback.js";
+import { createDOMElement, formatDate } from "./utils.js";
 
 class WidgetAddon extends HTMLElement {
     constructor() {

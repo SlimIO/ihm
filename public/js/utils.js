@@ -1,4 +1,5 @@
 /* eslint-disable jsdoc/require-jsdoc */
+import Chart from "chart.js";
 
 export function formatDate(date = new Date(), local = "en-GB") {
     // eslint-disable-next-line

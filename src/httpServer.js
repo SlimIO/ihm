@@ -24,7 +24,7 @@ import bodyParser from "./bodyParser.js";
 import {
     getAllHTMLComponents,
 
-    PUBLIC_DIR,
+    DIST_DIR,
     VIEWS_DIR,
     SLIMIO_MODULES_DIR,
     CONFIG_DIR,
@@ -67,7 +67,7 @@ export default function exportServer(ihm) {
     const httpServer = polka();
 
     // Serve static assets!
-    httpServer.use(sirv(PUBLIC_DIR, { dev: true }));
+    httpServer.use(sirv(DIST_DIR, { dev: true }));
     httpServer.use(sirv(SLIMIO_MODULES_DIR, { dev: true }));
 
     httpServer.get("/", async(req, res) => {
@@ -162,7 +162,9 @@ export default function exportServer(ihm) {
         try {
             res.writeHead(200, { "Content-Type": "application/json" });
             pipeline(createReadStream(DASHBOARD_JSON), res, (error) => {
-                ihm.logger.writeLine(error.message);
+                if (error) {
+                    console.error(error);
+                }
             });
         }
         catch (err) {

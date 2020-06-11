@@ -1,4 +1,4 @@
-import { createDOMElement } from "../../../js/utils.js";
+import { createDOMElement } from "../utils.js";
 
 export default class WidgetAddonsPopupCallbacks extends HTMLElement {
     constructor(name, callbacks) {
@@ -55,12 +55,12 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
         const callbackDescriptor = this.callbacksDescriptor[textContent];
         console.log(callbackDescriptor);
         // if (typeof callbackDescriptor !== "undefined") {
-            this.currentCallback = textContent;
-            this.callbackTitleElem.textContent = textContent;
+        this.currentCallback = textContent;
+        this.callbackTitleElem.textContent = textContent;
 
-            const ul = WidgetAddonsPopupCallbacks.createForm(callbackDescriptor);
-            this.removeAllChildren(this.callbackFormElem);
-            this.callbackFormElem.appendChild(ul);
+        const ul = WidgetAddonsPopupCallbacks.createForm(callbackDescriptor);
+        this.removeAllChildren(this.callbackFormElem);
+        this.callbackFormElem.appendChild(ul);
         // }
     }
 
@@ -88,7 +88,6 @@ export default class WidgetAddonsPopupCallbacks extends HTMLElement {
 
                 return prev[curr];
             }, data);
-
         }
 
         console.log(data);

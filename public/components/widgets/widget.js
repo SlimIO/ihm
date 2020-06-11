@@ -49,6 +49,7 @@ class Widget extends HTMLElement {
     }
 
     init() {
+        console.log("init project!");
         const tmpl = document.getElementById("widget");
         const clone = tmpl.content.cloneNode(true);
 

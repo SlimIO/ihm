@@ -1,1 +1,0 @@
-import "./widget_addon/addons.js";
