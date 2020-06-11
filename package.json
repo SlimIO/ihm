@@ -49,7 +49,7 @@
         "ava": "^2.4.0",
         "chart.js": "^2.9.3",
         "copy-webpack-plugin": "^6.0.2",
-        "cross-env": "^6.0.3",
+        "cross-env": "^7.0.2",
         "css-loader": "^3.5.3",
         "dotenv": "^8.2.0",
         "eslint": "^6.6.0",
