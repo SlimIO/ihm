@@ -3,6 +3,7 @@ import { promises as fs, createReadStream } from "fs";
 import { fileURLToPath } from "url";
 import { join } from "path";
 import { createRequire } from "module";
+import { pipeline } from "stream";
 const { readFile } = fs;
 
 // Require Third-Party dependencies
@@ -47,7 +48,7 @@ async function getActivityOverview(ihm) {
         prev[curr.key] = curr.value;
 
         return prev;
-    }, {});
+    }, Object.create(null));
 
     return {
         serverName: entity.name,
@@ -159,10 +160,10 @@ export default function exportServer(ihm) {
 
     httpServer.get("/dashboard", async(req, res) => {
         try {
-            res.writeHead(200, {
-                "Content-Type": "application/json"
+            res.writeHead(200, { "Content-Type": "application/json" });
+            pipeline(createReadStream(DASHBOARD_JSON), res, (error) => {
+                ihm.logger.writeLine(error.message);
             });
-            createReadStream(DASHBOARD_JSON).pipe(res);
         }
         catch (err) {
             send(res, 500, err.message);
@@ -179,7 +180,7 @@ export default function exportServer(ihm) {
             send(res, 200, callbackDescriptor, { "Content-Type": "application/json" });
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
             send(res, 500, err.message);
         }
     });
@@ -190,11 +191,10 @@ export default function exportServer(ihm) {
             const data = await bodyParser(req);
 
             const response = await ihm.sendOne(`${addonName}.${callback}`, Object.values(data));
-            console.log(response);
             send(res, 200, response);
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
             send(res, 500, err.message);
         }
     });

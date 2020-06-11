@@ -33,7 +33,7 @@
         "@polka/send-type": "^0.5.2",
         "@slimio/addon": "^0.22.1",
         "combine-async-iterators": "^1.1.2",
-        "polka": "^0.5.2",
+        "polka": "^1.0.0-next.11",
         "sirv": "^0.4.2",
         "zup": "0.0.1"
     },
