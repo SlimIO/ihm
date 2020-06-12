@@ -15,7 +15,8 @@ export function formatDate(date = new Date(), local = "en-GB") {
 export function createChart(canvasId, config = {}) {
     const { type, data, options } = config;
 
-    const ctx = document.getElementById(canvasId).getContext("2d");
+    const element = typeof canvasId === "string" ? document.getElementById(canvasId) : canvasId;
+    const ctx = element.getContext("2d");
     new Chart(ctx, {
         type, data,
 
@@ -27,6 +28,7 @@ export function createChart(canvasId, config = {}) {
         }, options)
     });
 }
+window.createChart = createChart;
 
 export function createDOMElement(kind = "div", options = {}) {
     const { classList = [], childs = [], attributes = {}, text = null } = options;

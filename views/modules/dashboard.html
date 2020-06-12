@@ -15,25 +15,3 @@
         </div>
     </div>
 </div>
-
-
-<template id="widget_alarms">
-</template>
-
-<template id="widget_chart">
-    <canvas id="test"></canvas>
-
-    <script>
-        console.log("hell");
-        createChart("test", {
-            type: "pie",
-            data: {
-                labels: ["User", "Nice", "Sys", "IRQ", "Idle"],
-                datasets: [{
-                    data: [15, 20, 30, 2, 48],
-                    backgroundColor: ["#06F", "#81C784", "#FFCA28", "#E53935", "#CFD8DC"]
-                }]
-            }
-        });
-    </script>
-</template>

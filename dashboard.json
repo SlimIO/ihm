@@ -1,6 +1,7 @@
 [
     {
         "type": "addons",
+        "unique": true,
         "settings": {
             "name": "Addons",
             "icon": "icon-cubes"
@@ -8,14 +9,17 @@
     },
     {
         "type": "alarms",
+        "unique": true,
         "settings": {
             "size": "low",
             "name": "Last Alarms",
-            "icon": "icon-bell"
+            "icon": "icon-bell",
+            "count": 10
         }
     },
     {
         "type": "chart",
+        "unique": false,
         "settings": {
             "size": "low",
             "name": "CPU Usage",

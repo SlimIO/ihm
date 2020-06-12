@@ -11,7 +11,6 @@ class WidgetAddon extends HTMLElement {
         const tmpl = document.getElementById("widget_addons");
         const clone = tmpl.content.cloneNode(true);
 
-        console.log("load addons...");
         const addons = await fetch("/addons").then((raw) => raw.json());
 
         const tbody = clone.querySelector("table > tbody");
