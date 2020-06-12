@@ -34,7 +34,7 @@ module.exports = {
             join(kCssDir, "modules", "console.css"),
             join(kCssDir, "modules", "dashboard.css"),
             join(kCssDir, "modules", "metrics.css"),
-            join(kCssDir, "modules", "alerting.js")
+            join(kCssDir, "modules", "alerting.css")
         ],
         "main.js": [
             join(kPublicDir, "js", "master.js"),
