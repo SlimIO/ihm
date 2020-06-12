@@ -8,8 +8,12 @@ function loadPage(name) {
         case "alarmconsole":
             document.createElement("alarm-console");
             break;
-        case "alerting": break;
-        case "metrics": break;
+        case "alerting": 
+            document.createElement("alerting-view");
+            break;
+        case "metrics":
+            document.createElement("metrics-board");
+            break;
     }
 }
 
