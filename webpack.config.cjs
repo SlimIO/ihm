@@ -32,7 +32,9 @@ module.exports = {
             join(kCssDir, "table.css"),
             join(kCssDir, "fontello.css"),
             join(kCssDir, "modules", "console.css"),
-            join(kCssDir, "modules", "dashboard.css")
+            join(kCssDir, "modules", "dashboard.css"),
+            join(kCssDir, "modules", "metrics.css"),
+            join(kCssDir, "modules", "alerting.js")
         ],
         "main.js": [
             join(kPublicDir, "js", "master.js"),
@@ -40,6 +42,8 @@ module.exports = {
             join(kComponentsDir, "alarm", "alarm.js"),
             join(kComponentsDir, "modules", "dashboard.js"),
             join(kComponentsDir, "modules", "alarmconsole.js"),
+            join(kComponentsDir, "modules", "metrics.js"),
+            join(kComponentsDir, "modules", "alerting.js"),
             join(kComponentsDir, "popup", "popup.js"),
             join(kComponentsDir, "searchbar", "searchbar.js"),
             join(kComponentsDir, "widgets", "widget.js")
