@@ -8,12 +8,14 @@ header {
     align-items: center;
     font-size: 24px;
     border-bottom: 2px solid #FFF;
+    user-select: none;
 }
     header > p {
         font-weight: 300;
         margin-left: 10px;
         font-size: 20px;
         font-variant-caps: titling-caps;
+        user-select: text;
     }
     header > ul {
         margin-left: auto;

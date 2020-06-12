@@ -31,6 +31,7 @@ class Dashboard extends Modules {
             widgetElement.setAttribute("name", widget.settings.name);
             widgetElement.setAttribute("type", widget.type);
             widgetElement.setAttribute("icon", widget.settings.icon);
+            widgetElement.setAttribute("draggable", "true");
             widgetElement.dispatchEvent(new Event("init"));
 
             fragment.appendChild(widgetElement);
