@@ -64,3 +64,4 @@ jsdoc/
 # personnal
 personal/
 dist/
+views/template.html

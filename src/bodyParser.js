@@ -1,6 +1,9 @@
 // Require Node.js Dependencies
 import queryString from "querystring";
 
+// Import Third-party Dependencies
+import flatstr from "flatstr";
+
 /**
  * @async
  * @function bodyParser
@@ -12,6 +15,7 @@ export default async function bodyParser(req) {
     for await (const chunk of req) {
         rawBody += chunk;
     }
+    flatstr(rawBody);
 
     switch (req.headers["content-type"]) {
         case "application/x-www-form-urlencoded":

@@ -4,9 +4,12 @@ import Addon from "@slimio/addon";
 
 // Require Internal Dependencies
 import createServer from "./src/httpServer.js";
+import polka from "polka";
 
 // CONSTANTS & Variables
 const PORT = process.env.PORT || 1338;
+
+/** @type {polka.Polka} */
 let httpServer = null;
 
 const ihm = new Addon("ihm", { verbose: true })

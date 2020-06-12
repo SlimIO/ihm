@@ -10,6 +10,7 @@
         "doc": "jsdoc -c ./jsdoc.json -r -R ./README.md -P ./package.json --verbose",
         "coverage": "nyc npm test",
         "report": "nyc report --reporter=html",
+        "postinstall": "npm run build",
         "build": "webpack --config webpack.config.cjs"
     },
     "keywords": [
@@ -34,6 +35,7 @@
         "@polka/send-type": "^0.5.2",
         "@slimio/addon": "^0.22.1",
         "combine-async-iterators": "^1.1.2",
+        "flatstr": "^1.0.12",
         "polka": "^1.0.0-next.11",
         "sirv": "^0.4.2",
         "zup": "0.0.1"

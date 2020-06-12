@@ -36,3 +36,30 @@ export async function* getAllHTMLComponents(directoryLocation = COMPONENTS_DIR) 
         }
     }
 }
+
+/**
+ * @async
+ * @function getActivityOverview
+ * @description get all the stats for the IHM home page... like the number of entities and mic.
+ * @param {Addon} ihm ihm addon
+ * @returns {Promise<any>}
+ */
+export async function getActivityOverview(ihm) {
+    const [entity, desc, summary] = await Promise.all([
+        ihm.sendOne("events.get_entity_by_id", [1]),
+        ihm.sendOne("events.get_descriptors", [1]),
+        ihm.sendOne("events.summary_stats")
+    ]);
+
+    const descriptors = desc.reduce((prev, curr) => {
+        prev[curr.key] = curr.value;
+
+        return prev;
+    }, Object.create(null));
+
+    return {
+        serverName: entity.name,
+        descriptors,
+        summary
+    };
+}
