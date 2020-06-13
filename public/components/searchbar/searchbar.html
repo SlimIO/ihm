@@ -3,8 +3,36 @@
     <link rel="stylesheet" href="css/searchbar.css">
 
     <i class="icon-search"></i>
-    <input type="text" placeholder="[[=z.i18n.keys.search]]">
+    <div class="input-filters"></div>
+    <input type="text" class="search-bar" placeholder="[[=z.i18n.keys.search]]">
     <div class="help-btn">
         <i class="icon-help"></i>
+    </div>
+
+    <div class="search-results hidden">
+        <div class="group" id="helper">
+            <div class="title">
+                <p>options de recherche</p>
+            </div>
+            <ul>
+                <li><b>alarm:</b><p>alarm</p></li>
+                <li><b>entity:</b><p>nom de l'entité</p></li>
+                <li><b>mic:</b><p>nom ou id</p></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="group hidden" id="history">
+            <div class="title">
+                <p>historique</p>
+                <i class="icon-eye"></i>
+            </div>
+            <ul>
+                <li>alarm: CKING</li>
+                <li>CPU</li>
+            </ul>
+        </div>
+        <div class="group hidden" id="items">
+
+        </div>
     </div>
 </template>
