@@ -9,6 +9,20 @@ p, ul, li {
     padding: 0;
 }
 
+.input-filters {
+    display: flex;
+    height: 24px;
+}
+.input-filters > p {
+    background: #B0BEC5;
+    color: #FFF;
+    border-radius: 2px;
+    line-height: 24px;
+    padding: 0 3px;
+    margin-right: 5px;
+    font-size: 15px;
+    font-style: oblique;
+}
 input {
     border: none;
     outline: none;
