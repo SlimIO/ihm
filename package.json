@@ -37,7 +37,7 @@
         "combine-async-iterators": "^1.1.2",
         "flatstr": "^1.0.12",
         "polka": "^1.0.0-next.11",
-        "sirv": "^1.0.0",
+        "sirv": "^1.0.12",
         "zup": "0.0.1"
     },
     "devDependencies": {
