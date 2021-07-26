@@ -41,7 +41,7 @@
         "zup": "0.0.1"
     },
     "devDependencies": {
-        "@commitlint/cli": "^8.3.5",
+        "@commitlint/cli": "^13.1.0",
         "@commitlint/config-conventional": "^8.3.4",
         "@escommunity/minami": "^1.0.0",
         "@slimio/alert": "^0.2.0",
